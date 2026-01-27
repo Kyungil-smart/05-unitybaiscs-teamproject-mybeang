@@ -28,7 +28,8 @@ public class SingleTon<T> : MonoBehaviour where T : MonoBehaviour
         }
         else
         {
-            _instance = this as T;    
+            _instance = this as T;
+            DontDestroyOnLoad(_instance.gameObject);
         }
     }
 }
