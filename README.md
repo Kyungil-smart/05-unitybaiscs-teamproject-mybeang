@@ -1,1 +1,17 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=22381426&assignment_repo_type=AssignmentRepo)
+# Project: AIF (Army In Fantasy)
+
+# 게임명: 
+
+# 개요
+
+# 조작법
+
+# 만든이
+
+- 팀장: 채병희
+- 팀원
+  - 김건표
+  - 김영찬
+  - 전호준
+  - 최경선
+  - 최완용
