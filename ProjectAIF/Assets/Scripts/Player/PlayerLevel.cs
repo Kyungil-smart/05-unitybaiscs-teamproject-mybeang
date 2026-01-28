@@ -60,8 +60,8 @@ public class PlayerLevel : MonoBehaviour
         // - OnExpbarChange(int curExp, int maxExp) -> EXP 게이지/텍스트 갱신 함수 연결
         // - OnLevelChange(int level) -> 레벨 텍스트 갱신 함수 연결
         // UI 갱신 이벤트
-        OnExpbarChange.Invoke(CurrentExp, CurrentMaxExp);
-        OnLevelChange.Invoke(CurrentLevel);
+        OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
+        OnLevelChange?.Invoke(CurrentLevel);
     }
 
     public void AddExp(int Value)
@@ -83,7 +83,7 @@ public class PlayerLevel : MonoBehaviour
 
         // 최종 경험치 바 갱신
         // TODO(UI): 경험치 획득 시 경험치바 갱신 필요
-        OnExpbarChange.Invoke(CurrentExp, CurrentMaxExp);
+        OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ public class PlayerLevel : MonoBehaviour
 
         TryProcessOneLevelUp();
 
-        OnExpbarChange.Invoke(CurrentExp, CurrentMaxExp);
+        OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
     }
 
     /// <summary>
@@ -144,14 +144,14 @@ public class PlayerLevel : MonoBehaviour
         // UI 갱신 이벤트
         // - OnLevelChange(int level) -> 레벨 텍스트 갱신
         // - OnExpbarChange(int curExp, int maxExp) -> EXP 게이지/텍스트 갱신
-        OnLevelChange.Invoke(CurrentLevel);
-        OnExpbarChange.Invoke(CurrentExp, CurrentMaxExp);
+        OnLevelChange?.Invoke(CurrentLevel);
+        OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
 
         // 어빌리티 선택창 띄우기 트리거
         // TODO(UI): 어빌리티 선택창 오픈 트리거
         // - OnLevelUp(int level) 이벤트에 "어빌리티 선택 UI Open()" 함수 연결
         // - 이 이벤트가 호출되면 게임을 일시정지(Time.timeScale=0 등)할지, 커서 표시할지 UI담당자가가 결정
-        OnLevelUp.Invoke(CurrentLevel);
+        OnLevelUp?.Invoke(CurrentLevel);
 
         // 창이 열려있는 동안에는 다음 레벨업 진행 금지
         isOpenAblity = true;
