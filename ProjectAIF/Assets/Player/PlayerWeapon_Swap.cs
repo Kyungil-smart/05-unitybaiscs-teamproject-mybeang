@@ -6,6 +6,10 @@ public class PlayerWeaponSwap : MonoBehaviour
 {
     [SerializeField] GameObject Player;
 
+    [SerializeField] GameObject Pistol;
+    [SerializeField] GameObject AR;
+    [SerializeField] GameObject Grenade;
+
     Transform _pistolSlot;
     Transform _aRSlot;
     Transform _gGrenadeSlot;
@@ -34,6 +38,7 @@ public class PlayerWeaponSwap : MonoBehaviour
     private void Awake()
     {
         WeaponPosCheck();
+        UpgradeWeapon();
     }
 
     private void Update()
@@ -42,6 +47,8 @@ public class PlayerWeaponSwap : MonoBehaviour
         VisualSwap();
     }
 
+    // 시작과 동시에 무기슬롯이 어느위치에 놓여야하는지 계산하는 함수입니다
+    // TODO : 간이적으로 수치가 조정되어있으니 차후에 더욱 적절한 값 대입요망
     void WeaponPosCheck()
     {
         foreach (Transform Pistol in Player.GetComponentsInChildren<Transform>())
@@ -80,6 +87,7 @@ public class PlayerWeaponSwap : MonoBehaviour
         _downPosGre = _basePosGre + Vector3.down * 0.7f;
     }
 
+    // 1,2,3 키입력을 받고 현재 어떤 무기를 선택중인지 저장하는 함수
     void CheckCurWeapon()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -107,6 +115,7 @@ public class PlayerWeaponSwap : MonoBehaviour
         }
     }
 
+    // 무기가 스왑되는 시각적인 효과를 제공한다
     void VisualSwap()
     {
         Vector3 TargetPistol = _pickPistol ? _basePosPistol : _downPosPistol;
@@ -135,5 +144,19 @@ public class PlayerWeaponSwap : MonoBehaviour
             ref _velocityGre,
             _smoothTime
         );
+    }
+
+    // 장착되는 피스톨,AR,수류탄등의 무기를 바꾼다
+    // TODO : 추후에 무기의 종류가 다양해질경우 수정되어야하는 함수입니다.
+    void UpgradeWeapon()
+    {
+        GameObject pistol = Instantiate(Pistol, _pistolSlot);
+        pistol.transform.SetParent(_pistolSlot);
+
+        GameObject ar = Instantiate(AR, _aRSlot);
+        ar.transform.SetParent(_aRSlot);
+
+        GameObject grenade = Instantiate(Grenade, _gGrenadeSlot);
+        grenade.transform.SetParent(_gGrenadeSlot);
     }
 }

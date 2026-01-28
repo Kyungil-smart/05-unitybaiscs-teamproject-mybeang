@@ -506,18 +506,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1634073726159595255, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: m_Name
+      value: ARSlot
+      objectReference: {fileID: 0}
     - target: {fileID: 1705244896542795337, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989964926258971537, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: m_Name
+      value: GrenadeSlot
       objectReference: {fileID: 0}
     - target: {fileID: 3656373531972155026, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4393515658585433551, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: m_Name
+      value: PistolSlot
+      objectReference: {fileID: 0}
     - target: {fileID: 5015272921681521995, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
       propertyPath: _cameraTr
       value: 
       objectReference: {fileID: 76410129}
+    - target: {fileID: 6574959519049793112, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: m_Name
+      value: VisualBody
+      objectReference: {fileID: 0}
     - target: {fileID: 6636128927435803509, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.5
@@ -526,11 +542,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8628022921040327192, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: m_Name
+      value: CameraView
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6827939075787462711, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
     - {fileID: 6193874397532917183, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
     - {fileID: 7763578585717930723, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+    - {fileID: 3163343927724817077, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1705244896542795337, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
@@ -576,6 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 8504300724679416823}
+  PlayerCurrentWeapon: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
