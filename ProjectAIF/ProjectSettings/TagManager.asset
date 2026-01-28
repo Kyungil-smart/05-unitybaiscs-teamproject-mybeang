@@ -12,6 +12,7 @@ TagManager:
   - Water
   - UI
   - 
+  - Player
   - 
   - 
   - 
@@ -34,8 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Crystal
   - 
   m_SortingLayers:
   - name: Default
