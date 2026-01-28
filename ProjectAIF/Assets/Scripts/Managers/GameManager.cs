@@ -9,9 +9,12 @@ public class GameManager : SingleTon<GameManager>
     public bool IsGameOver { get; private set; }
     public UnityEvent OnGameOver;
     public int StageNumber { get; private set; }
-    
+
+
     // Game Objects Data
     // ToDo: Player Data
+    [SerializeField] private int _maxPlayerLevel = 100;
+    public int MaxPlayerLevel => _maxPlayerLevel;
     // ToDo: Crystal Data
     
     // 아래 값을 이용하여 Enemy 가
@@ -20,6 +23,7 @@ public class GameManager : SingleTon<GameManager>
     // 결정하게 됨.
     public bool IsCrystalNearPlayer = true;
 
+    
     private void Awake()
     {
         SingleTonInit();
