@@ -1,10 +1,22 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMove : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Move")]
     [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private Camera _camera;
+
+    [Header("Attack")]
+    [SerializeField] private float _attackRange;
+    [SerializeField] private LayerMask _attackTargetLayer;
+    [SerializeField] private int _attackDamage;
+
+    private IDamageable _targetDamagable;
+    private Transform _targetTransform;
+
+    [SerializeField] private int _maxMagazine; // 탄창 Max
+    private int _currentMagazine; // 현재 남은 수
 
     [Header("Mouse Look")]
     [SerializeField] private Transform _cameraTr;   // 자식 카메라 Transform 넣기
@@ -71,5 +83,7 @@ public class PlayerMove : MonoBehaviour
         targetVel.y = _rb.velocity.y;
         _rb.velocity = targetVel;
     }
+
+    
 }
 
