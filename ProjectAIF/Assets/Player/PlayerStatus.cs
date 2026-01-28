@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Status : MonoBehaviour
+public class PlayerStatus : MonoBehaviour
 {
     int Current_HP;
     int Max_HP;
