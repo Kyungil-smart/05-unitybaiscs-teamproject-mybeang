@@ -35,10 +35,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Wall
   - Crystal
   - 
   m_SortingLayers:
