@@ -9,9 +9,12 @@ public class GameManager : SingleTon<GameManager>
     public bool IsGameOver { get; private set; }
     public UnityEvent OnGameOver;
     public int StageNumber { get; private set; }
-    
+
+
     // Game Objects Data
     // ToDo: Player Data
+    [SerializeField] private int _maxPlayerLevel = 100;
+    public int MaxPlayerLevel => _maxPlayerLevel;
     // ToDo: Crystal Data
 
     private void Awake()
