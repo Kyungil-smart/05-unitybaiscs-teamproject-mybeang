@@ -7,17 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private Camera _camera;
 
-    [Header("Attack")]
-    [SerializeField] private float _attackRange;
-    [SerializeField] private LayerMask _attackTargetLayer;
-    [SerializeField] private int _attackDamage;
-
-    private IDamageable _targetDamagable;
-    private Transform _targetTransform;
-
-    [SerializeField] private int _maxMagazine; // 탄창 Max
-    private int _currentMagazine; // 현재 남은 수
-
     [Header("Mouse Look")]
     [SerializeField] private Transform _cameraTr;   // 자식 카메라 Transform 넣기
     [SerializeField] private float _mouseSensitivity = 2f;
