@@ -17,6 +17,7 @@ public class GameManager : SingleTon<GameManager>
     public int MaxPlayerLevel => _maxPlayerLevel;
     // ToDo: Crystal Data
 
+    
     private void Awake()
     {
         SingleTonInit();
