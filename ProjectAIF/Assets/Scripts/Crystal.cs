@@ -2,17 +2,46 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Crystal : MonoBehaviour
+public class Crystal : MonoBehaviour, IDamageable
 {
+    // Crystal HP
+    public UnityEvent OnHpChanged = new();
+    private int _currentHp;
+    public int CurrentHp
+    {
+        get => _currentHp;
+        set
+        {
+            _currentHp = value;
+            OnHpChanged?.Invoke();
+        }
+    }
+    [SerializeField] private int _maxHp;
+    public int MaxHp
+    {
+        get => _maxHp;
+    }
+    
     [SerializeField] private Transform _playerTF;
     [SerializeField] private float _distance;
     [SerializeField] private LayerMask _playerLayer;
     private Ray _ray;
 
+    private void Awake()
+    {
+        Init();
+    }
+    
     private void LateUpdate()
     {
         DetectPlayerRange();
+    }
+
+    private void Init()
+    {
+        CurrentHp = _maxHp;
     }
     
     private Vector3 GetDirectionToPlayer()
@@ -42,5 +71,14 @@ public class Crystal : MonoBehaviour
     {
          Gizmos.color = Color.red;
          Gizmos.DrawRay(_ray.origin, _ray.direction * _distance);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        CurrentHp -= damage;
+        if (CurrentHp <= 0)
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 }
