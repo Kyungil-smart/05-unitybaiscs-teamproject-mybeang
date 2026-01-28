@@ -2,42 +2,25 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-
-public enum AbilityName
-{
-    Hp,
-    MoveSpeed,
-    Defense,
-    PistolDamage,
-    PistolCriticalChance,
-    PistolCriticalDamage,
-    PistolMagazine,
-    RifleDamage,
-    RifleCriticalChance,
-    RifleCriticalDamage,
-    RifleMagazine,
-    GrenadeDamage,
-    GrenadeMagazine,
-}
+using TMPro;
 
 public class AbilityManager : SingleTon<AbilityManager>
 {
     // Ability Values
     [Header("Ability Value")]
-    public (int min, int max) HpRange;
-    public (float min, float max) SpeedRange;
-    public (int min, int max) DefenseRange;
-    public (int min, int max) PistolDamageRange;
-    public (float min, float max) PistolCriticalChanceRange;
-    public (int min, int max) PistolCriticalDamageRange;
-    public (int min, int max) PistolMagazineRange;
-    public (int min, int max) RifleDamageRange;
-    public (float min, float max) RifleCriticalChanceRange;
-    public (int min, int max) RifleCriticalDamageRange;
-    public (int min, int max) RifleMagazineRange;
-    public (int min, int max) GrenadeDamageRange;
-    public (int min, int max) GrenadeMagazineRange;
+    public IntRange HpRange;
+    public FloatRange SpeedRange;
+    public IntRange DefenseRange;
+    public IntRange PistolDamageRange;
+    public FloatRange PistolCriticalChanceRange;
+    public IntRange PistolCriticalDamageRange;
+    public IntRange PistolMagazineRange;
+    public IntRange RifleDamageRange;
+    public FloatRange RifleCriticalChanceRange;
+    public IntRange RifleCriticalDamageRange;
+    public IntRange RifleMagazineRange;
+    public IntRange GrenadeDamageRange;
+    public IntRange GrenadeMagazineRange;
     
     [Header("Data Target")]
     [SerializeField] private PlayerStatusDummy _playerStatus;
@@ -52,6 +35,14 @@ public class AbilityManager : SingleTon<AbilityManager>
     // Data 
     public Dictionary<AbilityName, Ability.AbilityBase> AbilityData = new ();
     public Dictionary<AbilityName, Ability.AbilityBase> CurrentAbilityData = new ();
+    
+    // UI
+    [Header("UI")] 
+    private bool _isSelectAbility;
+    private AbilityName _selectedAbilityName;
+    [SerializeField] private TextMeshProUGUI _leftAbilityText;
+    [SerializeField] private TextMeshProUGUI _centerAbilityText;
+    [SerializeField] private TextMeshProUGUI _rightAbilityText;
 
     private void Awake()
     {
@@ -100,9 +91,14 @@ public class AbilityManager : SingleTon<AbilityManager>
     /// 버튼에서 클릭시
     /// </summary>
     /// <param name="name">Ability 이름</param>
-    public void ApplyAbility(AbilityName name)
+    public void ApplyAbility()
     {
-        CurrentAbilityData[name].ApplyAbility();
+        if (_isSelectAbility)
+        {
+            CurrentAbilityData[_selectedAbilityName].ApplyAbility();
+            Debug.Log("Applying Ability: " + _selectedAbilityName);
+            // TODO: Apply 후 본래의 게임 화면으로 돌아가는 내용 추가 구현 필요    
+        }
     }
     
     /// <summary>
@@ -110,6 +106,7 @@ public class AbilityManager : SingleTon<AbilityManager>
     /// </summary>
     public void ReadyToThreeAbilities()
     {
+        CurrentAbilityData.Clear();
         List<AbilityName> selected = new List<AbilityName>();
         int cnt = AbilityData.Count - 1;
         for (int i = 0; i < 3; i++)
@@ -125,5 +122,58 @@ public class AbilityManager : SingleTon<AbilityManager>
                 }
             }
         }
+        _leftAbilityText.text = selected[0].ToString();
+        _centerAbilityText.text = selected[1].ToString();
+        _rightAbilityText.text = selected[2].ToString();
     }
+
+    public void ClickLeftSelectBt()
+    {
+        _selectedAbilityName = Enum.Parse<AbilityName>(_leftAbilityText.text);
+        _isSelectAbility = !_isSelectAbility;
+        // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+    }
+    public void ClickCenterSelectBt()
+    {
+        _selectedAbilityName = Enum.Parse<AbilityName>(_centerAbilityText.text);
+        _isSelectAbility = !_isSelectAbility;
+        // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+    }
+    public void ClickRightSelectBt()
+    {
+        _selectedAbilityName = Enum.Parse<AbilityName>(_rightAbilityText.text);
+        _isSelectAbility = !_isSelectAbility;
+        // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+    }
+}
+
+public enum AbilityName
+{
+    Hp,
+    MoveSpeed,
+    Defense,
+    PistolDamage,
+    PistolCriticalChance,
+    PistolCriticalDamage,
+    PistolMagazine,
+    RifleDamage,
+    RifleCriticalChance,
+    RifleCriticalDamage,
+    RifleMagazine,
+    GrenadeDamage,
+    GrenadeMagazine,
+}
+
+[Serializable]
+public struct IntRange
+{
+    [Range(-100, 100)] public int min;
+    [Range(-100, 100)] public int max;
+}
+
+[Serializable]
+public struct FloatRange
+{
+    [Range(-1f, 1f)] public float min;
+    [Range(-1f, 1f)] public float max;
 }
