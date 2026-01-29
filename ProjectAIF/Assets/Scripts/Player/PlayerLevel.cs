@@ -163,6 +163,7 @@ public class PlayerLevel : MonoBehaviour
         int calc = _playerLevelupExp + (_playerExpIncrease * (level - 1));
         return Mathf.Max(1, calc);
     }
+    // 이 밑에 있는 코드는 테스트용 코드입니다. 추후에 삭제 가능합니다.
 #if UNITY_EDITOR
     [ContextMenu("DEBUG/Force OnLevelUp")]
     private void DebugForceOnLevelUp()
