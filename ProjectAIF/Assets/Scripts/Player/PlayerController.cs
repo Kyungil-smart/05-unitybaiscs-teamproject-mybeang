@@ -8,14 +8,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera _camera;
 
     [Header("Mouse Look")]
-    [SerializeField] private Transform _cameraTr;   // ÀÚ½Ä Ä«¸Ş¶ó Transform ³Ö±â
+    [SerializeField] private Transform _cameraTr;   // ìì‹ ì¹´ë©”ë¼ Transform ë„£ê¸°
     [SerializeField] private float _mouseSensitivity = 2f;
     [SerializeField] private float _minPitch = -80f;
     [SerializeField] private float _maxPitch = 80f;
 
     private Rigidbody _rb;
-    private Vector2 _moveInput;     // (x: ÁÂ¿ì, y: ¾ÕµÚ)
-    private float _pitch;           // Ä«¸Ş¶ó »óÇÏ °¢µµ ´©Àû
+    private Vector2 _moveInput;     // (x: ì¢Œìš°, y: ì•ë’¤)
+    private float _pitch;           // ì¹´ë©”ë¼ ìƒí•˜ ê°ë„ ëˆ„ì 
 
 
     private void Awake()
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // FPSÃ³·³ ¸¶¿ì½º Ä¿¼­ Àá±×±â
+        // FPSì²˜ëŸ¼ ë§ˆìš°ìŠ¤ ì»¤ì„œ ì ê·¸ê¸°
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -53,10 +53,10 @@ public class PlayerController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
-        // 1) ¸öÃ¼ ÁÂ¿ì È¸Àü
+        // 1) ëª¸ì²´ ì¢Œìš° íšŒì „
         transform.Rotate(0f, mouseX, 0f);
 
-        // 2) Ä«¸Ş¶ó »óÇÏ È¸Àü + °¢µµ Á¦ÇÑ
+        // 2) ì¹´ë©”ë¼ ìƒí•˜ íšŒì „ + ê°ë„ ì œí•œ
         _pitch -= mouseY;
         _pitch = Mathf.Clamp(_pitch, _minPitch, _maxPitch);
 
