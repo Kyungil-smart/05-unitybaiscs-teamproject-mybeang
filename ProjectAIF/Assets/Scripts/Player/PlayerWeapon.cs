@@ -105,7 +105,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     
     void WeaponChange()
     {
-        
+        /*
         if (Pistol.GetComponent<WeaponID>().ID == _playerManager.Pistol.GetComponent<WeaponID>().ID && 
             AR.GetComponent<WeaponID>().ID == _playerManager.AR.GetComponent<WeaponID>().ID &&
             Grenade.GetComponent<WeaponID>().ID == _playerManager.Grenade.GetComponent<WeaponID>().ID)
@@ -113,7 +113,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
             Debug.Log($"{Pistol.GetComponent<WeaponID>().ID} == {_playerManager.Pistol.GetComponent<WeaponID>().ID}");
             return; 
         }
-        
+        */
 
         Pistol = _playerManager.Pistol;
         GameObject pistol = Instantiate(Pistol, _pistolSlot);
