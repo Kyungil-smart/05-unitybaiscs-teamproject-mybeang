@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CrystalRaycast : MonoBehaviour
 {
+    // 지정한 거리만큼만 레이캐스트를 쏩니다.
     public float maxDistance = 8f;
 
     private Camera cam;
