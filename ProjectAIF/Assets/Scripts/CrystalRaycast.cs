@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrystalRaycast : MonoBehaviour
 {
-    public float maxDistance = 8f;
+    [SerializeField]private float maxDistance = 8f;
 
     [Header("Hold Settings")]
     [SerializeField] private float holdSeconds = 5f;
