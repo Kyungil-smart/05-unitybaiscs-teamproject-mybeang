@@ -4,6 +4,12 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
 
+/// <summary>
+/// 어빌리티 추가시,
+/// - "Ability Value" 에 Range 관련 데이터 추가
+/// - Enum 에 어빌리티 이름 추가
+/// - AbilityBase 를 상속받는 Ability 본체 추가
+/// </summary>
 public class AbilityManager : SingleTon<AbilityManager>
 {
     // Ability Values
