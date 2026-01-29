@@ -14,7 +14,7 @@ public class MonsterMovement : MonoBehaviour
         
         _navMeshAgent.speed = _monster.MoveSpeed;
         _navMeshAgent.angularSpeed = 200f;
-        _navMeshAgent.acceleration = _monster.MoveSpeed * 0.5f;
+        _navMeshAgent.acceleration = _monster.MoveSpeed * 1.5f;
         _navMeshAgent.stoppingDistance = _monster.AttackRange;
     }
 
