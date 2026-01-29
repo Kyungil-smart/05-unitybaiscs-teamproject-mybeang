@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicAR : AR
+public class BasicAR : Rifle
 {
     private void Start()
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AR : MonoBehaviour
+public class Rifle : MonoBehaviour
 {
     [Header("소총")]
     public int Damage; // 기본 데미지
