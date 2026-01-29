@@ -16,7 +16,7 @@ public abstract class Monster : MonoBehaviour
     
     // Init할때 몬스터가 들고 있는 _currentHp의 기준치
     // _currentHp <= 0일때 사망
-    [field:SerializeField]public int HP { get; protected set; }
+    [field:SerializeField]public int Hp { get; protected set; }
     
     [field:SerializeField]public float MoveSpeed { get; protected set; }
     

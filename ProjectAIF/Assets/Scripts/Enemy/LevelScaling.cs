@@ -4,33 +4,33 @@ using UnityEngine;
 [Serializable]
 public struct LevelScaling
 {
-    [SerializeField] private int _maxScalingLevel;        // ÃÖ´ë ·¹º§
-    [SerializeField] private int _secDifficultyLevel;     // ¸î ÃÊ¸¶´Ù ·¹º§ +1
+    [SerializeField] private int _maxScalingLevel;        // ìµœëŒ€ ë ˆë²¨
+    [SerializeField] private int _secDifficultyLevel;     // ëª‡ ì´ˆë§ˆë‹¤ ë ˆë²¨ +1
 
-    [SerializeField] private float _spwanInterval;        // ±âº» ½ºÆù °£°İ(¿¹: 20)
-    [SerializeField] private float _intervalDecreasePerLevel; // ·¹º§´ç °¨¼Ò(¿¹: 2)
+    [SerializeField] private float _spwanInterval;        // ê¸°ë³¸ ìŠ¤í° ê°„ê²©(ì˜ˆ: 20)
+    [SerializeField] private float _intervalDecreasePerLevel; // ë ˆë²¨ë‹¹ ê°ì†Œ(ì˜ˆ: 2)
 
-    [SerializeField] private int _spawnCount;               // ±âº» ¼ÒÈ¯ ¼ö
-    [SerializeField] private int _countIncreasePerLevel;    // ·¹º§´ç ¼ÒÈ¯ ¼ö
+    [SerializeField] private int _spawnCount;               // ê¸°ë³¸ ì†Œí™˜ ìˆ˜
+    [SerializeField] private int _countIncreasePerLevel;    // ë ˆë²¨ë‹¹ ì†Œí™˜ ìˆ˜
 
-    // ÇöÀç ·¹º§ ±¸ÇÏ±â(0 ~ max)
+    // í˜„ì¬ ë ˆë²¨ êµ¬í•˜ê¸°(0 ~ max)
     public int GetCurrentLevel(float playTimeSec)
     {
-        int maxLv = Mathf.Max(0, _maxScalingLevel); // ÃÖ´ë·¹º§ ¾ÈÀü º¸Á¤
+        int maxLv = Mathf.Max(0, _maxScalingLevel); // ìµœëŒ€ë ˆë²¨ ì•ˆì „ ë³´ì •
 
-        int lv = Mathf.FloorToInt(playTimeSec / _secDifficultyLevel); // ½Ã°£/±¸°£
-        return Mathf.Clamp(lv, 0, maxLv); // ¹üÀ§ Á¦ÇÑ
+        int lv = Mathf.FloorToInt(playTimeSec / _secDifficultyLevel); // ì‹œê°„/êµ¬ê°„
+        return Mathf.Clamp(lv, 0, maxLv); // ë²”ìœ„ ì œí•œ
     }
 
-    // ÇöÀç ½ºÆù °£°İ ±¸ÇÏ±â(0ÃÊ±îÁö Çã¿ë)
+    // í˜„ì¬ ìŠ¤í° ê°„ê²© êµ¬í•˜ê¸°(0ì´ˆê¹Œì§€ í—ˆìš©)
     public float GetCurrentSpawnInterval(float playTimeSec)
     {
-        int lv = GetCurrentLevel(playTimeSec); // ÇöÀç ·¹º§
-        float baseInterval = Mathf.Max(0f, _spwanInterval); // À½¼ö ¹æÁö
-        float dec = Mathf.Max(0f, _intervalDecreasePerLevel); // À½¼ö ¹æÁö
+        int lv = GetCurrentLevel(playTimeSec); // í˜„ì¬ ë ˆë²¨
+        float baseInterval = Mathf.Max(0f, _spwanInterval); // ìŒìˆ˜ ë°©ì§€
+        float dec = Mathf.Max(0f, _intervalDecreasePerLevel); // ìŒìˆ˜ ë°©ì§€
 
-        float interval = baseInterval - (lv * dec); // ·¹º§ ¿À¸¦¼ö·Ï »¡¶óÁü
-        return Mathf.Max(0f, interval); // 0ÃÊ Çã¿ë
+        float interval = baseInterval - (lv * dec); // ë ˆë²¨ ì˜¤ë¥¼ìˆ˜ë¡ ë¹¨ë¼ì§
+        return Mathf.Max(0f, interval); // 0ì´ˆ í—ˆìš©
     }
 
     public int GetSpawnCount(float playTimeSec)
