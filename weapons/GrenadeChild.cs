@@ -16,3 +16,4 @@ public class BasicGrenade : Grenade
         Destroy(gameObject); // 사용 후 삭제
     }
 }
+

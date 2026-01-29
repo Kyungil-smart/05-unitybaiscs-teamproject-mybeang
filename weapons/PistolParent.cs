@@ -17,4 +17,3 @@ public class Pistol : MonoBehaviour
         Debug.Log("권총 사격");
     }
 }
-

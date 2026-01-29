@@ -17,3 +17,5 @@ public class Rifle : MonoBehaviour
         Debug.Log("소총 발사");
     }
 }
+
+

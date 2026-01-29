@@ -17,3 +17,4 @@ public class Grenade : MonoBehaviour
         Debug.Log(EffectRange);
     }
 }
+
