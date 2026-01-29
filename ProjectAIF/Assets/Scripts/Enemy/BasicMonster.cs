@@ -27,7 +27,6 @@ public class BasicMonster : Monster, IAttackable, IDamageable, ITargetable
     private void Update()
     {
         DetectTarget();
-        if(Input.GetKeyDown(KeyCode.Space)) TakeDamage(11);
     }
 
     private void LateUpdate()
