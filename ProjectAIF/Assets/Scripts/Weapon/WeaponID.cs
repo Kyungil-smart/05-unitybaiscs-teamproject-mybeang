@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : SingleTon<PlayerManager>
+public class WeaponID : MonoBehaviour
 {
-
+    public WeaponType ID;
 }
