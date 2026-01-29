@@ -14,8 +14,7 @@ public class PlayerManager : SingleTon<PlayerManager>
     public GameObject Grenade;
     float timer = 0f;
 
-    // ¹«±â ÀÎ½Ä ¹× ÅºÃ¢ °ü¸®±â´É = °ü·Ã º¯¼ö¸ñ·Ï
-
+    // ë¬´ê¸° ì¸ì‹ ë° íƒ„ì°½ ê´€ë¦¬ê¸°ëŠ¥ = ê´€ë ¨ ë³€ìˆ˜ëª©ë¡
 
     private void Awake()
     {
@@ -30,12 +29,11 @@ public class PlayerManager : SingleTon<PlayerManager>
     }
 
 
+    // ë¬´ê¸° ì¸ì‹ ë° íƒ„ì°½ ê´€ë¦¬ê¸°ëŠ¥
 
-    // ¹«±â ÀÎ½Ä ¹× ÅºÃ¢ °ü¸®±â´É
+    // ìˆ˜ë¥˜íƒ„ íƒ„ì°½ ë° ì°¨ì§• ê´€ë¦¬ê¸°ëŠ¥
 
-    // ¼ö·ùÅº ÅºÃ¢ ¹× Â÷Â¡ °ü¸®±â´É
-
-    // ÇÃ·¹ÀÌ¾î Ã¼·Â & »ç¸Á °ü·Ã °ü¸®±â´É
+    // í”Œë ˆì´ì–´ ì²´ë ¥ & ì‚¬ë§ ê´€ë ¨ ê´€ë¦¬ê¸°ëŠ¥
 
 
 
