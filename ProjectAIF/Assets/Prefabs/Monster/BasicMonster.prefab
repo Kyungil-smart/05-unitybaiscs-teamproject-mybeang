@@ -3424,7 +3424,7 @@ GameObject:
   - component: {fileID: 8324826134953120405}
   - component: {fileID: 3328067211768931059}
   - component: {fileID: 7864831627169627841}
-  - component: {fileID: 5319099310174958363}
+  - component: {fileID: -8016320348504053375}
   m_Layer: 6
   m_Name: BasicMonster
   m_TagString: Enemy
@@ -3520,7 +3520,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1073741952
   _attackAnimationDelay: 0.25
-  _animator: {fileID: 584468020116178354}
 --- !u!195 &7864831627169627841
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3543,6 +3542,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-8016320348504053375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3556,7 +3556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crystalTF: {fileID: 0}
   _playerTF: {fileID: 0}
-  _navMeshAgent: {fileID: 0} 
   _monster: {fileID: 3328067211768931059}
 --- !u!1 &759208720957371045
 GameObject:

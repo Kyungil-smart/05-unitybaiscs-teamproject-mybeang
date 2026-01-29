@@ -29,6 +29,6 @@ public abstract class Monster : MonoBehaviour
     [field:SerializeField]public int Exp {get; protected set;}
     
     // 그 밖에 연산을 위해 공통으로 갖고 있어야할 변수
-    [SerializeField]protected Animator _animator;
+    protected Animator _animator;
     public Animator MonsterAnimator => _animator;
 }
