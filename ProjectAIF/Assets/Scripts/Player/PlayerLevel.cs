@@ -10,17 +10,17 @@ public class PlayerLevel : MonoBehaviour
     [SerializeField] private int _startLevel;
 
     [Header("Player Exp Rule")]
-    [Tooltip("ÇÃ·¹ÀÌ¾î°¡ 1¿¡¼­ 2·¹º§ µÉ¶§ ÇÊ¿äÇÑ °æÇèÄ¡¾ç")]
+    [Tooltip("í”Œë ˆì´ì–´ê°€ 1ì—ì„œ 2ë ˆë²¨ ë ë•Œ í•„ìš”í•œ ê²½í—˜ì¹˜ì–‘")]
     [SerializeField] private int _playerLevelupExp;
 
-    [Tooltip("Áõ°¡·®")]
+    [Tooltip("ì¦ê°€ëŸ‰")]
     [SerializeField] private int _playerExpIncrease;
 
-    //·¹º§
+    //ë ˆë²¨
     public int CurrentLevel { get; private set; }
-    //ÇöÀç ´©ÀûµÈ °æÇèÄ¡
+    //í˜„ì¬ ëˆ„ì ëœ ê²½í—˜ì¹˜
     public int CurrentExp { get; private set; }
-    //ÇöÀç·¹º§¿¡¼­ ÇÊ¿äÇÑ °æÇèÄ¡
+    //í˜„ì¬ë ˆë²¨ì—ì„œ í•„ìš”í•œ ê²½í—˜ì¹˜
     public int CurrentMaxExp { get; private set; }
 
     public UnityEvent<int> OnLevelChange;
@@ -29,15 +29,15 @@ public class PlayerLevel : MonoBehaviour
 
     private int MaxPlayerLevel => GameManager.Instance.MaxPlayerLevel;
 
-    // ¿¬¼Ó ·¹º§¾÷ °¡´É È½¼ö
+    // ì—°ì† ë ˆë²¨ì—… ê°€ëŠ¥ íšŸìˆ˜
     public int PendingLevel { get; private set; }
 
-    // ¾îºô¸®Æ¼ ¼±ÅÃÃ¢ÀÌ ¿­·ÁÀÖ´Â µ¿¾È true (¿­·ÁÀÖÀ¸¸é ´ÙÀ½ ·¹º§¾÷ ÁøÇà X)
+    // ì–´ë¹Œë¦¬í‹° ì„ íƒì°½ì´ ì—´ë ¤ìˆëŠ” ë™ì•ˆ true (ì—´ë ¤ìˆìœ¼ë©´ ë‹¤ìŒ ë ˆë²¨ì—… ì§„í–‰ X)
     public bool isOpenAblity { get; private set; }
 
     private void Awake()
     {
-        // ÀÎ½ºÆåÅÍ¿¡¼­ ÀÌº¥Æ®¸¦ ºñ¿öµÖµµ NullReference ¾È ³ª°Ô ÃÊ±âÈ­
+        // ì¸ìŠ¤í™í„°ì—ì„œ ì´ë²¤íŠ¸ë¥¼ ë¹„ì›Œë‘¬ë„ NullReference ì•ˆ ë‚˜ê²Œ ì´ˆê¸°í™”
         if (OnLevelChange == null) OnLevelChange = new UnityEvent<int>();
         if (OnExpbarChange == null) OnExpbarChange = new UnityEvent<int, int>();
         if (OnLevelUp == null) OnLevelUp = new UnityEvent<int>();
@@ -57,10 +57,10 @@ public class PlayerLevel : MonoBehaviour
         PendingLevel = 0;
         isOpenAblity = false;
 
-        // TODO(UI): °ÔÀÓ ½ÃÀÛ ½Ã °æÇèÄ¡¹Ù/·¹º§ ÅØ½ºÆ® ÃÊ±âÈ­ ÇÊ¿ä
-        // - OnExpbarChange(int curExp, int maxExp) -> EXP °ÔÀÌÁö/ÅØ½ºÆ® °»½Å ÇÔ¼ö ¿¬°á
-        // - OnLevelChange(int level) -> ·¹º§ ÅØ½ºÆ® °»½Å ÇÔ¼ö ¿¬°á
-        // UI °»½Å ÀÌº¥Æ®
+        // TODO(UI): ê²Œì„ ì‹œì‘ ì‹œ ê²½í—˜ì¹˜ë°”/ë ˆë²¨ í…ìŠ¤íŠ¸ ì´ˆê¸°í™” í•„ìš”
+        // - OnExpbarChange(int curExp, int maxExp) -> EXP ê²Œì´ì§€/í…ìŠ¤íŠ¸ ê°±ì‹  í•¨ìˆ˜ ì—°ê²°
+        // - OnLevelChange(int level) -> ë ˆë²¨ í…ìŠ¤íŠ¸ ê°±ì‹  í•¨ìˆ˜ ì—°ê²°
+        // UI ê°±ì‹  ì´ë²¤íŠ¸
         OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
         OnLevelChange?.Invoke(CurrentLevel);
     }
@@ -72,28 +72,28 @@ public class PlayerLevel : MonoBehaviour
 
         CurrentExp += Value;
 
-        // ÇöÀç °æÇèÄ¡·Î °¡´ÉÇÑ ·¹º§¾÷ È½¼ö °è»ê
+        // í˜„ì¬ ê²½í—˜ì¹˜ë¡œ ê°€ëŠ¥í•œ ë ˆë²¨ì—… íšŸìˆ˜ ê³„ì‚°
         RecalculatePendingLevel();
 
-        // ¾îºô¸®Æ¼ Ã¢ÀÌ ¾È ¿­·ÁÀÖÀ¸¸é ·¹º§¾÷À» 1¹ø¸¸ Ã³¸®ÇÏ°í Ã¢À» ¶ç¿ò
+        // ì–´ë¹Œë¦¬í‹° ì°½ì´ ì•ˆ ì—´ë ¤ìˆìœ¼ë©´ ë ˆë²¨ì—…ì„ 1ë²ˆë§Œ ì²˜ë¦¬í•˜ê³  ì°½ì„ ë„ì›€
         if (!isOpenAblity)
         {
             TryProcessOneLevelUp();
         }
 
 
-        // ÃÖÁ¾ °æÇèÄ¡ ¹Ù °»½Å
-        // TODO(UI): °æÇèÄ¡ È¹µæ ½Ã °æÇèÄ¡¹Ù °»½Å ÇÊ¿ä
+        // ìµœì¢… ê²½í—˜ì¹˜ ë°” ê°±ì‹ 
+        // TODO(UI): ê²½í—˜ì¹˜ íšë“ ì‹œ ê²½í—˜ì¹˜ë°” ê°±ì‹  í•„ìš”
         OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
     }
 
     /// <summary>
-    /// ¾îºô¸®Æ¼ ¼±ÅÃÃ¢¿¡¼­ ¼±ÅÃ ¿Ï·á ½Ã È£Ãâ
-    /// - PendingLevelÀÌ ³²¾ÆÀÖÀ¸¸é ´Ù½Ã ·¹º§¾÷ 1¹ø Ã³¸® -> ¼±ÅÃÃ¢ ¶Ç ¶ä
+    /// ì–´ë¹Œë¦¬í‹° ì„ íƒì°½ì—ì„œ ì„ íƒ ì™„ë£Œ ì‹œ í˜¸ì¶œ
+    /// - PendingLevelì´ ë‚¨ì•„ìˆìœ¼ë©´ ë‹¤ì‹œ ë ˆë²¨ì—… 1ë²ˆ ì²˜ë¦¬ -> ì„ íƒì°½ ë˜ ëœ¸
     /// </summary>
     public void ConfirmAbility()
     {
-        // TODO(UI): ¾îºô¸®Æ¼ ¼±ÅÃ ¿Ï·á ¹öÆ°¿¡¼­ ÀÌ ¸Ş¼­µå¸¦ È£ÃâÇØ¾ß ÇÔ
+        // TODO(UI): ì–´ë¹Œë¦¬í‹° ì„ íƒ ì™„ë£Œ ë²„íŠ¼ì—ì„œ ì´ ë©”ì„œë“œë¥¼ í˜¸ì¶œí•´ì•¼ í•¨
 
         isOpenAblity = false;
 
@@ -103,7 +103,7 @@ public class PlayerLevel : MonoBehaviour
     }
 
     /// <summary>
-    /// ÇöÀç °æÇèÄ¡·Î ·¹º§¾÷ °¡´ÉÇÑ È½¼ö¸¦ °è»êÇØ¼­ PendingLevel¿¡ ³Ö´Â´Ù.
+    /// í˜„ì¬ ê²½í—˜ì¹˜ë¡œ ë ˆë²¨ì—… ê°€ëŠ¥í•œ íšŸìˆ˜ë¥¼ ê³„ì‚°í•´ì„œ PendingLevelì— ë„£ëŠ”ë‹¤.
     /// </summary>
     private void RecalculatePendingLevel()
     {
@@ -125,36 +125,36 @@ public class PlayerLevel : MonoBehaviour
     }
 
     /// <summary>
-    /// ·¹º§¾÷À» "µü 1¹ø¸¸" ½ÇÁ¦ Àû¿ëÇÏ°í, ¹Ù·Î ¾îºô¸®Æ¼ Ã¢ »óÅÂ·Î ÀüÈ¯
+    /// ë ˆë²¨ì—…ì„ "ë”± 1ë²ˆë§Œ" ì‹¤ì œ ì ìš©í•˜ê³ , ë°”ë¡œ ì–´ë¹Œë¦¬í‹° ì°½ ìƒíƒœë¡œ ì „í™˜
     /// </summary>
     private void TryProcessOneLevelUp()
     {
         if (PendingLevel <= 0) return;
         if (CurrentLevel >= MaxPlayerLevel) return;
 
-        // ·¹º§¾÷ 1¹ø Àû¿ë
+        // ë ˆë²¨ì—… 1ë²ˆ ì ìš©
         CurrentExp -= CurrentMaxExp;
         CurrentLevel++;
 
         CurrentMaxExp = ExpCalc(CurrentLevel);
 
-        // Pending ´Ù½Ã °è»ê
+        // Pending ë‹¤ì‹œ ê³„ì‚°
         RecalculatePendingLevel();
 
 
-        // UI °»½Å ÀÌº¥Æ®
-        // - OnLevelChange(int level) -> ·¹º§ ÅØ½ºÆ® °»½Å
-        // - OnExpbarChange(int curExp, int maxExp) -> EXP °ÔÀÌÁö/ÅØ½ºÆ® °»½Å
+        // UI ê°±ì‹  ì´ë²¤íŠ¸
+        // - OnLevelChange(int level) -> ë ˆë²¨ í…ìŠ¤íŠ¸ ê°±ì‹ 
+        // - OnExpbarChange(int curExp, int maxExp) -> EXP ê²Œì´ì§€/í…ìŠ¤íŠ¸ ê°±ì‹ 
         OnLevelChange?.Invoke(CurrentLevel);
         OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
 
-        // ¾îºô¸®Æ¼ ¼±ÅÃÃ¢ ¶ç¿ì±â Æ®¸®°Å
-        // TODO(UI): ¾îºô¸®Æ¼ ¼±ÅÃÃ¢ ¿ÀÇÂ Æ®¸®°Å
-        // - OnLevelUp(int level) ÀÌº¥Æ®¿¡ "¾îºô¸®Æ¼ ¼±ÅÃ UI Open()" ÇÔ¼ö ¿¬°á
-        // - ÀÌ ÀÌº¥Æ®°¡ È£ÃâµÇ¸é °ÔÀÓÀ» ÀÏ½ÃÁ¤Áö(Time.timeScale=0 µî)ÇÒÁö, Ä¿¼­ Ç¥½ÃÇÒÁö UI´ã´çÀÚ°¡°¡ °áÁ¤
+        // ì–´ë¹Œë¦¬í‹° ì„ íƒì°½ ë„ìš°ê¸° íŠ¸ë¦¬ê±°
+        // TODO(UI): ì–´ë¹Œë¦¬í‹° ì„ íƒì°½ ì˜¤í”ˆ íŠ¸ë¦¬ê±°
+        // - OnLevelUp(int level) ì´ë²¤íŠ¸ì— "ì–´ë¹Œë¦¬í‹° ì„ íƒ UI Open()" í•¨ìˆ˜ ì—°ê²°
+        // - ì´ ì´ë²¤íŠ¸ê°€ í˜¸ì¶œë˜ë©´ ê²Œì„ì„ ì¼ì‹œì •ì§€(Time.timeScale=0 ë“±)í• ì§€, ì»¤ì„œ í‘œì‹œí• ì§€ UIë‹´ë‹¹ìê°€ê°€ ê²°ì •
         OnLevelUp?.Invoke(CurrentLevel);
 
-        // Ã¢ÀÌ ¿­·ÁÀÖ´Â µ¿¾È¿¡´Â ´ÙÀ½ ·¹º§¾÷ ÁøÇà ±İÁö
+        // ì°½ì´ ì—´ë ¤ìˆëŠ” ë™ì•ˆì—ëŠ” ë‹¤ìŒ ë ˆë²¨ì—… ì§„í–‰ ê¸ˆì§€
         isOpenAblity = true;
     }
 
@@ -163,4 +163,30 @@ public class PlayerLevel : MonoBehaviour
         int calc = _playerLevelupExp + (_playerExpIncrease * (level - 1));
         return Mathf.Max(1, calc);
     }
+    // ì´ ë°‘ì— ìˆëŠ” ì½”ë“œëŠ” í…ŒìŠ¤íŠ¸ìš© ì½”ë“œì…ë‹ˆë‹¤. ì¶”í›„ì— ì‚­ì œ ê°€ëŠ¥í•©ë‹ˆë‹¤.
+#if UNITY_EDITOR
+    [ContextMenu("DEBUG/Force OnLevelUp")]
+    private void DebugForceOnLevelUp()
+    {
+        Debug.Log("[PlayerLevel] Force OnLevelUp");
+        OnLevelUp?.Invoke(CurrentLevel);
+    }
+#endif
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            int before = CurrentLevel;
+            Debug.Log($"[PlayerLevel] DEBUG AddExp 999 (before level = {before})");
+
+            AddExp(300);
+
+            int after = CurrentLevel;
+            Debug.Log($"[PlayerLevel] after level = {after}, level gained = {after - before}");
+        }
+    }
+#endif
+
+
 }
