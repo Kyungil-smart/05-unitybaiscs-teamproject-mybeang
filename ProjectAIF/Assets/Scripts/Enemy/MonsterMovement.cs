@@ -33,6 +33,7 @@ public class MonsterMovement : MonoBehaviour
             {
                 _monster.MonsterAnimator.SetBool("IsMove", false);
                 _navMeshAgent.SetDestination(_monster.transform.position);
+                transform.LookAt(_crystalTF.position);
             }
         }
         else
@@ -46,6 +47,8 @@ public class MonsterMovement : MonoBehaviour
             else
             {
                 _monster.MonsterAnimator.SetBool("IsMove", false);
+                _navMeshAgent.SetDestination(_monster.transform.position);
+                transform.LookAt(_playerTF.position);
             }
         }
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, ITargetable
 {
     [Header("Move")]
     [SerializeField] private float _moveSpeed = 5f;
@@ -69,5 +69,15 @@ public class PlayerMove : MonoBehaviour
 
         targetVel.y = _rb.velocity.y;
         _rb.velocity = targetVel;
+    }
+
+    public void SetTarget()
+    {
+        
+    }
+
+    public void UnsetTarget()
+    {
+        
     }
 }
