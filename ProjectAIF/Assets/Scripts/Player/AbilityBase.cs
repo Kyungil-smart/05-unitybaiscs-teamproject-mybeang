@@ -29,9 +29,9 @@ namespace Ability
 
     public class Hp : AbilityBase
     {
-        private PlayerStatusDummy _playerStatus;
+        private PlayerStatus _playerStatus;
         
-        public Hp(PlayerStatusDummy playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public Hp(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _playerStatus = playerStatus;
         }
@@ -49,9 +49,9 @@ namespace Ability
 
     public class MoveSpeed : AbilityBase
     {
-        private PlayerStatusDummy _playerStatus;
+        private PlayerStatus _playerStatus;
         
-        public MoveSpeed(PlayerStatusDummy playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public MoveSpeed(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _playerStatus = playerStatus;
         }
@@ -69,9 +69,9 @@ namespace Ability
 
     public class Defense : AbilityBase
     {
-        private PlayerStatusDummy _playerStatus;
+        private PlayerStatus _playerStatus;
         
-        public Defense(PlayerStatusDummy playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public Defense(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _playerStatus = playerStatus;
         }

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    int Hp;
-    float MoveSpeed;
-    int Defence;
-    int Exp;
-    int Level;
+    public int CurrentHp;
+    public int MaxHp;
+    public float MoveSpeed;
+    public int Defense;
+    public int Exp;
+    public int Level;
 }

@@ -29,7 +29,7 @@ public class AbilityManager : SingleTon<AbilityManager>
     public IntRange GrenadeMagazineRange;
     
     [Header("Data Target")]
-    [SerializeField] private PlayerStatusDummy _playerStatus;
+    [SerializeField] private PlayerStatus _playerStatus;
     [SerializeField] private PistolDummy _pistolStatus;
     [SerializeField] private RifleDummy _rifleStatus;
     [SerializeField] private GrenadeDummy _grenadeStatus;

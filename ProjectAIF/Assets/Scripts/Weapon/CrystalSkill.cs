@@ -17,6 +17,4 @@ public class CrystalSkill : MonoBehaviour
         foreach (var e in enemies)
             Destroy(e);
     }
-
-
 }
