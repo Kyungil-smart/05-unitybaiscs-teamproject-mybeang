@@ -14,7 +14,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     [FormerlySerializedAs("_attackAnimationTime")]
     [Tooltip("공격모션 길이에 따라서 타격 순간까지 공격판정 대기함")] 
     [SerializeField] private float _attackAnimationDelay;
-    [SerializeField] private Animator _animator;
+    
     private Coroutine _attackCoroutine;
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
