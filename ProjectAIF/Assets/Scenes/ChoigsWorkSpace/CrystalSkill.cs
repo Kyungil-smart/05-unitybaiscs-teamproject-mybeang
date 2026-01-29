@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrystalSkill : MonoBehaviour
 {
-    public string enemyTag = "Enemy";
+    [SerializeField] private string enemyTag = "Enemy";
 
     private bool used = false;
 
