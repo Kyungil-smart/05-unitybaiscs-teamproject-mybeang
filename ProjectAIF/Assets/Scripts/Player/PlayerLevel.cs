@@ -163,4 +163,29 @@ public class PlayerLevel : MonoBehaviour
         int calc = _playerLevelupExp + (_playerExpIncrease * (level - 1));
         return Mathf.Max(1, calc);
     }
+#if UNITY_EDITOR
+    [ContextMenu("DEBUG/Force OnLevelUp")]
+    private void DebugForceOnLevelUp()
+    {
+        Debug.Log("[PlayerLevel] Force OnLevelUp");
+        OnLevelUp?.Invoke(CurrentLevel);
+    }
+#endif
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            int before = CurrentLevel;
+            Debug.Log($"[PlayerLevel] DEBUG AddExp 999 (before level = {before})");
+
+            AddExp(300);
+
+            int after = CurrentLevel;
+            Debug.Log($"[PlayerLevel] after level = {after}, level gained = {after - before}");
+        }
+    }
+#endif
+
+
 }
