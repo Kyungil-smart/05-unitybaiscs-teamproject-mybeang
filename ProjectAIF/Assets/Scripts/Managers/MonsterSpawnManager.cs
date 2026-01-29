@@ -5,19 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MonsterSpawnManager : SingleTon<MonsterSpawnManager>
 {
-    [SerializeField] private LevelScaling _scaling;  // struct¶ó null Ã¼Å© X
+    [SerializeField] private LevelScaling _scaling;  // structë¼ null ì²´í¬ X
     [SerializeField] private float _minSpawnInterval = 0.05f;
 
     private List<MonsterSpawner> _spawners = new List<MonsterSpawner>();
     private Coroutine _spawnRoutine;
-    private float _spawnTimeSec;    // ½ºÆù ½ºÄÉÀÏ¸µ °è»ê¿ë
+    private float _spawnTimeSec;    // ìŠ¤í° ìŠ¤ì¼€ì¼ë§ ê³„ì‚°ìš©
 
     private void Awake()
     {
-        // ½Ì±ÛÅæ ÃÊ±âÈ­(Áßº¹ Á¦°Å + DontDestroyOnLoad)
+        // ì‹±ê¸€í†¤ ì´ˆê¸°í™”(ì¤‘ë³µ ì œê±° + DontDestroyOnLoad)
         SingleTonInit();
 
-        // ¾ÀÀÌ ¹Ù²ğ ¶§¸¶´Ù ½ºÆ÷³Ê Àç¼öÁı + ½ºÆù »óÅÂ °»½Å
+        // ì”¬ì´ ë°”ë€” ë•Œë§ˆë‹¤ ìŠ¤í¬ë„ˆ ì¬ìˆ˜ì§‘ + ìŠ¤í° ìƒíƒœ ê°±ì‹ 
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
 
         RefreshSpawners();
@@ -26,7 +26,7 @@ public class MonsterSpawnManager : SingleTon<MonsterSpawnManager>
 
     private void OnDestroy()
     {
-        // ÀÌº¥Æ® ÇØÁ¦(Áßº¹ ±¸µ¶ ¹æÁö)
+        // ì´ë²¤íŠ¸ í•´ì œ(ì¤‘ë³µ êµ¬ë… ë°©ì§€)
         SceneManager.activeSceneChanged -= OnActiveSceneChanged;
     }
 
@@ -81,7 +81,7 @@ public class MonsterSpawnManager : SingleTon<MonsterSpawnManager>
                     MonsterSpawner spawner = _spawners[i];
                     if (spawner == null) continue;
 
-                    // ¸Å´ÏÀú´Â ½ºÆù¸¸ÇÔ
+                    // ë§¤ë‹ˆì €ëŠ” ìŠ¤í°ë§Œí•¨
                     spawner.Spawn(difficultyLevel, spawnCount);
                 }
             }
