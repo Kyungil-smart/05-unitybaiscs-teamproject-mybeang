@@ -25,13 +25,13 @@ public class MonsterSpawner : MonoBehaviour
 
         if (spawnPoints.Length == 0 || spawnPoints == null)
         {
-            Debug.Log("½ºÆù Æ÷ÀÎÆ® ÁöÁ¤ÇØ ÁÖ¼¼¿ä");
+            Debug.Log("ìŠ¤í° í¬ì¸íŠ¸ ì§€ì •í•´ ì£¼ì„¸ìš”");
             return;
         }
 
         if (_monster == null || _monster.Count ==0) 
         {
-            Debug.Log("¸ó½ºÅÍ¸¦ ¸ñ·Ï¿¡ ³Ö¾îÁÖ¼¼¿ä");
+            Debug.Log("ëª¬ìŠ¤í„°ë¥¼ ëª©ë¡ì— ë„£ì–´ì£¼ì„¸ìš”");
             return;
         }
 
@@ -70,12 +70,12 @@ public class MonsterSpawner : MonoBehaviour
     }
     private SpawnEntry Monsterweigth(List<SpawnEntry> candidates)
     {
-        int totalWeight = 0; //ÅäÅ» °¡ÁßÄ¡
+        int totalWeight = 0; //í† íƒˆ ê°€ì¤‘ì¹˜
         for (int i = 0; i < candidates.Count; i++)
-            totalWeight += candidates[i].MonsterLevel; // °¡ÁßÄ¡=·¹º§
+            totalWeight += candidates[i].MonsterLevel; // ê°€ì¤‘ì¹˜=ë ˆë²¨
 
         int RandomPick = Random.Range(0, totalWeight);
-        int acc = 0; // °¡ÁßÄ¡
+        int acc = 0; // ê°€ì¤‘ì¹˜
 
         for (int i = 0; i < candidates.Count; i++)
         {
