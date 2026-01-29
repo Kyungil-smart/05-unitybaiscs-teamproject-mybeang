@@ -58,12 +58,12 @@ public class Crystal : MonoBehaviour, IDamageable
         if (Physics.Raycast(_ray, out hit, _distance, _playerLayer))
         {
             GameManager.Instance.IsCrystalNearPlayer = true;
-            // Debug.Log("가까이 있어");
+            Debug.Log($"가까이 있어 {hit.distance}");
         }
         else
         {
             GameManager.Instance.IsCrystalNearPlayer = false;
-            // Debug.Log("멀리 있어");
+            Debug.Log($"멀리 있어  {hit.distance}");
         }
     }
 

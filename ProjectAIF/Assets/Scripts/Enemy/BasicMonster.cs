@@ -15,7 +15,6 @@ public class BasicMonster : Monster, IAttackable, IDamageable, ITargetable
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
     private Transform _targetTransform;
-    [SerializeField]private Animator _animator;
     //private PlayerStatus _playerStatus;
     
 
