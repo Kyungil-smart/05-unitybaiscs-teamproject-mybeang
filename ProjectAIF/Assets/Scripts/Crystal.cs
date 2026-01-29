@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Crystal : MonoBehaviour, IDamageable
+public class Crystal : MonoBehaviour, IDamageable, ITargetable
 {
     // Crystal HP
     public UnityEvent OnHpChanged = new();
@@ -58,12 +58,10 @@ public class Crystal : MonoBehaviour, IDamageable
         if (Physics.Raycast(_ray, out hit, _distance, _playerLayer))
         {
             GameManager.Instance.IsCrystalNearPlayer = true;
-            // Debug.Log("가까이 있어");
         }
         else
         {
             GameManager.Instance.IsCrystalNearPlayer = false;
-            // Debug.Log("멀리 있어");
         }
     }
 
@@ -80,5 +78,15 @@ public class Crystal : MonoBehaviour, IDamageable
         {
             GameManager.Instance.GameOver();
         }
+    }
+
+    public void SetTarget()
+    {
+        
+    }
+
+    public void UnsetTarget()
+    {
+        
     }
 }
