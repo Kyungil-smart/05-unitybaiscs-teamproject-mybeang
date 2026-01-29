@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WeaponManager : SingleTon<WeaponManager>
 {
+    // PlayerManager 에 있는 무기 가져오던 코드랑 뭐가 다른거지?
     GameObject BasePisotl;
     GameObject BasePisotl2;
     GameObject BaseAR;

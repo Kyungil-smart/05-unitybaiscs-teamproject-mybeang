@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Move")]
     [SerializeField] private float _moveSpeed = 5f;
-    [SerializeField] private Camera _camera;
 
     [Header("Mouse Look")]
     [SerializeField] private Transform _cameraTr;   // 자식 카메라 Transform 넣기

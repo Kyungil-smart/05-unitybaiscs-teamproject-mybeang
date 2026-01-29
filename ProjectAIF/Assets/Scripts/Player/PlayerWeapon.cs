@@ -6,17 +6,17 @@ using static PlayerManager;
 
 public class PlayerWeapon : MonoBehaviour, IAttackable
 {
-    [SerializeField] GameObject Player;
+    [SerializeField] private GameObject _player;
     [SerializeField] private Camera _camera;
-    [SerializeField] private GameObject GrenadePoint;
+    [SerializeField] private GameObject _grenadePoint;
 
     [Header("Weapon")]
     public GameObject Pistol;
-    public GameObject AR;
+    public GameObject Rifle;
     public GameObject Grenade;
 
-    private int _maxMagazine; // ÅºÃ¢ Max
-    private int _currentMagazine = 30; // ÇöÀç ³²Àº ¼ö
+    private int _maxMagazine; // íƒ„ì°½ Max
+    private int _currentMagazine = 30; // í˜„ì¬ ë‚¨ì€ ìˆ˜
 
 
     [Header("Attack")]
@@ -28,40 +28,40 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     private Transform _targetTransform;
 
     [Header("Slot")]
-    Transform _pistolSlot;
-    Transform _aRSlot;
-    Transform _gGrenadeSlot;
+    private Transform _pistolSlot;
+    private Transform _aRSlot;
+    private Transform _gGrenadeSlot;
 
-    Vector3 _basePosPistol;
-    Vector3 _downPosPistol;
+    private Vector3 _basePosPistol;
+    private Vector3 _downPosPistol;
 
-    Vector3 _basePosAR;
-    Vector3 _downPosAR;
+    private Vector3 _basePosAR;
+    private Vector3 _downPosAR;
 
-    Vector3 _basePosGre;
-    Vector3 _downPosGre;
+    private Vector3 _basePosGre;
+    private Vector3 _downPosGre;
 
-    Vector3 _velocityPistol;
-    Vector3 _velocityAR;
-    Vector3 _velocityGre;
+    private Vector3 _velocityPistol;
+    private Vector3 _velocityAR;
+    private Vector3 _velocityGre;
 
-    float _smoothTime = 0.15f;
-    float _roatationSpeed = 2.0f;
+    private float _smoothTime = 0.15f;
+    private float _roatationSpeed = 2.0f;
 
-    bool _pickPistol = false;
-    bool _pickAR = false;
-    bool _pickGrenade = false;
-    bool _reLoading = false;
-    bool _isThrowing = false;
-    bool _isTrhowCoroutin = false;
-    bool _isSwapable = true;
-    Quaternion targetRotation;
-    Vector3 ArmPos;
-    Vector3 IdleArmPos;
+    private bool _pickPistol = false;
+    private bool _pickAR = false;
+    private bool _pickGrenade = false;
+    private bool _reLoading = false;
+    private bool _isThrowing = false;
+    private bool _isTrhowCoroutin = false;
+    private bool _isSwapable = true;
+    private Quaternion targetRotation;
+    private Vector3 ArmPos;
+    private Vector3 IdleArmPos;
 
     PlayerManager _playerManager;
 
-    //============================= ÇÃ·¹ÀÌ¾î ¹«±âµ¿ÀÛ¿¡ °ü·ÃÇÑ º¯¼ö¸ñ·Ï========================
+    //============================= í”Œë ˆì´ì–´ ë¬´ê¸°ë™ì‘ì— ê´€ë ¨í•œ ë³€ìˆ˜ëª©ë¡========================
     public int PlayerCurrentWeapon = 0;
     int Damage;
 
@@ -94,8 +94,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         GameObject pistol = Instantiate(Pistol, _pistolSlot);
         pistol.transform.SetParent(_pistolSlot);
 
-        AR = _playerManager.AR;
-        GameObject ar = Instantiate(AR, _aRSlot);
+        Rifle = _playerManager.Rifle;
+        GameObject ar = Instantiate(Rifle, _aRSlot);
         ar.transform.SetParent(_aRSlot);
 
         Grenade = _playerManager.Grenade;
@@ -120,8 +120,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         pistol.transform.SetParent(_pistolSlot);
 
 
-        AR = _playerManager.AR;
-        GameObject ar = Instantiate(AR, _aRSlot);
+        Rifle = _playerManager.Rifle;
+        GameObject ar = Instantiate(Rifle, _aRSlot);
         ar.transform.SetParent(_aRSlot);
 
         Grenade = _playerManager.Grenade;
@@ -130,7 +130,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     }
     
     
-    // ÇÃ·¹ÀÌ¾î°¡ ÀÔ·ÂÇÏ´Â ¸ğµç ¹öÆ°ÀÔ·ÂÀ» Ã³¸®ÇÏ´Â ÇÔ¼ö
+    // í”Œë ˆì´ì–´ê°€ ì…ë ¥í•˜ëŠ” ëª¨ë“  ë²„íŠ¼ì…ë ¥ì„ ì²˜ë¦¬í•˜ëŠ” í•¨ìˆ˜
     private void OnButton()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -139,11 +139,11 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         }
     }
 
-    // ½ÃÀÛ°ú µ¿½Ã¿¡ ¹«±â½½·ÔÀÌ ¾î´ÀÀ§Ä¡¿¡ ³õ¿©¾ßÇÏ´ÂÁö °è»êÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
-    // TODO : °£ÀÌÀûÀ¸·Î ¼öÄ¡°¡ Á¶Á¤µÇ¾îÀÖÀ¸´Ï Â÷ÈÄ¿¡ ´õ¿í ÀûÀıÇÑ °ª ´ëÀÔ¿ä¸Á
+    // ì‹œì‘ê³¼ ë™ì‹œì— ë¬´ê¸°ìŠ¬ë¡¯ì´ ì–´ëŠìœ„ì¹˜ì— ë†“ì—¬ì•¼í•˜ëŠ”ì§€ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
+    // TODO : ê°„ì´ì ìœ¼ë¡œ ìˆ˜ì¹˜ê°€ ì¡°ì •ë˜ì–´ìˆìœ¼ë‹ˆ ì°¨í›„ì— ë”ìš± ì ì ˆí•œ ê°’ ëŒ€ì…ìš”ë§
     void WeaponPosCheck()
     {
-        foreach (Transform Pistol in Player.GetComponentsInChildren<Transform>())
+        foreach (Transform Pistol in _player.GetComponentsInChildren<Transform>())
         {
             if (Pistol.name == "PistolSlot")
             {
@@ -155,7 +155,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _downPosPistol = _basePosPistol + Vector3.down * 0.7f;
 
 
-        foreach (Transform AR in Player.GetComponentsInChildren<Transform>())
+        foreach (Transform AR in _player.GetComponentsInChildren<Transform>())
         {
             if (AR.name == "ARSlot")
             {
@@ -167,7 +167,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _downPosAR = _basePosAR + Vector3.down * 0.7f;
 
 
-        foreach (Transform Gre in Player.GetComponentsInChildren<Transform>())
+        foreach (Transform Gre in _player.GetComponentsInChildren<Transform>())
         {
             if (Gre.name == "GrenadeSlot")
             {
@@ -181,7 +181,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         IdleArmPos = _gGrenadeSlot.localPosition;
     }
 
-    // 1,2,3 Å°ÀÔ·ÂÀ» ¹Ş°í ÇöÀç ¾î¶² ¹«±â¸¦ ¼±ÅÃÁßÀÎÁö ÀúÀåÇÏ´Â ÇÔ¼ö
+    // 1,2,3 í‚¤ì…ë ¥ì„ ë°›ê³  í˜„ì¬ ì–´ë–¤ ë¬´ê¸°ë¥¼ ì„ íƒì¤‘ì¸ì§€ ì €ì¥í•˜ëŠ” í•¨ìˆ˜
     void CheckCurWeapon()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -209,7 +209,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         }
     }
 
-    // ¹«±â°¡ ½º¿ÒµÇ´Â ½Ã°¢ÀûÀÎ È¿°ú¸¦ Á¦°øÇÑ´Ù
+    // ë¬´ê¸°ê°€ ìŠ¤ì™‘ë˜ëŠ” ì‹œê°ì ì¸ íš¨ê³¼ë¥¼ ì œê³µí•œë‹¤
     void VisualSwap()
     {
         if (_isSwapable == false)
@@ -247,8 +247,6 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _smoothTime
         );
     }
-
-    
 
     public void Attack(int damage)
     {
@@ -292,7 +290,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         }
     }
 
-    //±ÇÃÑ ARÀÇ °æ¿ì µ¥¹ÌÁö¸¦ÁÜ
+    //ê¶Œì´ ARì˜ ê²½ìš° ë°ë¯¸ì§€ë¥¼ì¤Œ
     private void Fire()
     {
         _isSwapable = false;
@@ -305,12 +303,12 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
             return;
         }
 
-        // TODO : ¸ó½ºÅÍ¿¡°Ô µ¥¹ÌÁö¸¦ ÁÖ´Â ±â´É
+        // TODO : ëª¬ìŠ¤í„°ì—ê²Œ ë°ë¯¸ì§€ë¥¼ ì£¼ëŠ” ê¸°ëŠ¥
 
         _isSwapable = true;
     }
 
-    //ÀåÀüÇÒ°ÍÀº ¸í·ÉÇÏ´Â ÇÔ¼ö
+    //ì¥ì „í• ê²ƒì€ ëª…ë ¹í•˜ëŠ” í•¨ìˆ˜
     private void Reload()
     {
         if (_reLoading) return;
@@ -320,7 +318,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         StartCoroutine(ReLoadRoutine());
     }
 
-    // ÀåÀüÇÏ´Â ¸ğ¼Ç ÃÑ±¸¸¦ »ìÂ¦ ÇÃ·¹ÀÌÂÊÀ¸·Î µ¹¸®¸ç ÇöÀç ÃÑ¾Ë¼ö°¡ ÀåÀüµË´Ï´Ù
+    // ì¥ì „í•˜ëŠ” ëª¨ì…˜ ì´êµ¬ë¥¼ ì‚´ì§ í”Œë ˆì´ìª½ìœ¼ë¡œ ëŒë¦¬ë©° í˜„ì¬ ì´ì•Œìˆ˜ê°€ ì¥ì „ë©ë‹ˆë‹¤
     private IEnumerator ReLoadRoutine()
     {
 
@@ -328,7 +326,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         {
             targetRotation = _pistolSlot.localRotation * Quaternion.Euler(0, -45, 0);
             
-            // TODO : »ç¿îµå ÀÔ·Â  Ã¶ÄÀ! ÀåÀü¼Ò¸®!
+            // TODO : ì‚¬ìš´ë“œ ì…ë ¥  ì² ì»¥! ì¥ì „ì†Œë¦¬!
 
 
             while (Quaternion.Angle(_pistolSlot.localRotation, targetRotation) > 0.1f)
@@ -367,7 +365,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         {
             targetRotation = _aRSlot.localRotation * Quaternion.Euler(0, -45, 0);
 
-            // TODO : »ç¿îµå ÀÔ·Â  Ã¶ÄÀ! ÀåÀü¼Ò¸®!
+            // TODO : ì‚¬ìš´ë“œ ì…ë ¥  ì² ì»¥! ì¥ì „ì†Œë¦¬!
 
 
             while (Quaternion.Angle(_aRSlot.localRotation, targetRotation) > 0.1f)
@@ -405,12 +403,12 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
     }
 
-    // ¼ö·ùÅºÀ» ´øÁö´Â ¸ğ¼Ç°ú ¼ö·ùÅº»ı¼º¹× Æ÷¹°¼± °¢µµ·Î ¹ß»çÇÏ´Â ±â´ÉÀ» ´ãÀº ÇÔ¼ö
+    // ìˆ˜ë¥˜íƒ„ì„ ë˜ì§€ëŠ” ëª¨ì…˜ê³¼ ìˆ˜ë¥˜íƒ„ìƒì„±ë° í¬ë¬¼ì„  ê°ë„ë¡œ ë°œì‚¬í•˜ëŠ” ê¸°ëŠ¥ì„ ë‹´ì€ í•¨ìˆ˜
     void Throw()
     {
         _isThrowing = true;
         _isSwapable = false;
-        // ¼ö·ùÅº ÅõÃ´½Ã ÆÈÈ¸Àü °¢µµ °è»ê
+        // ìˆ˜ë¥˜íƒ„ íˆ¬ì²™ì‹œ íŒ”íšŒì „ ê°ë„ ê³„ì‚°
         ArmPos = _gGrenadeSlot.localPosition + new Vector3(0.6f, 1.6f, -0.45f);
     }
 
@@ -455,7 +453,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
     void GrenadeInstantiate()
     {
-        GameObject grenadeObj = Instantiate(Grenade, GrenadePoint.transform.position, GrenadePoint.transform.rotation);
+        GameObject grenadeObj = Instantiate(Grenade, _grenadePoint.transform.position, _grenadePoint.transform.rotation);
 
         Rigidbody rb = grenadeObj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
@@ -464,7 +462,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         col.radius = 0.15f;      
         col.isTrigger = false;
 
-        Vector3 throwDir = GrenadePoint.transform.forward * 14f + GrenadePoint.transform.up * 8f;
+        Vector3 throwDir = _grenadePoint.transform.forward * 14f + _grenadePoint.transform.up * 8f;
 
         rb.AddForce(throwDir, ForceMode.Impulse);
     }

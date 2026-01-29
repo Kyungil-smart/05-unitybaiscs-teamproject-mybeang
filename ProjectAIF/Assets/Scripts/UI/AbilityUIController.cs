@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityUIController : MonoBehaviour
 {
     [SerializeField] private PlayerLevel _playerLevel;
-    [SerializeField] private GameObject _abilityPanel;
+    [SerializeField] private Canvas _abilityPanel;
 
     [SerializeField] private bool _pauseGameWhileSelecting = true;
 
@@ -44,7 +44,7 @@ public class AbilityUIController : MonoBehaviour
 
         if(_abilityPanel != null)
         {
-            _abilityPanel.SetActive(true);
+            _abilityPanel.enabled = true;
         }
         if (_pauseGameWhileSelecting)
         {
@@ -61,8 +61,9 @@ public class AbilityUIController : MonoBehaviour
 
 
         if (_abilityPanel != null)
-            _abilityPanel.SetActive(false);
-
+        {
+            _abilityPanel.enabled = false;
+        }
 
         if (_pauseGameWhileSelecting)
         {
@@ -87,7 +88,7 @@ public class AbilityUIController : MonoBehaviour
 
         if (_abilityPanel != null)
         {
-            _abilityPanel.SetActive(true);
+            _abilityPanel.enabled = true;
         }
 
         if (_pauseGameWhileSelecting)
@@ -105,7 +106,7 @@ public class AbilityUIController : MonoBehaviour
     {
         if (_abilityPanel != null)
         {
-            _abilityPanel.SetActive(false);
+            _abilityPanel.enabled = false;
         }
 
         if (_pauseGameWhileSelecting)
