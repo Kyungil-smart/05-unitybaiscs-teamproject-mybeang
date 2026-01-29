@@ -128,9 +128,9 @@ public class AbilityManager : SingleTon<AbilityManager>
                 }
             }
         }
-        _leftAbilityText.text = selected[0].ToString();
-        _centerAbilityText.text = selected[1].ToString();
-        _rightAbilityText.text = selected[2].ToString();
+        _leftAbilityText.text = $"{selected[0].ToString()}\n\n{CurrentAbilityData[selected[0]].Description}";
+        _centerAbilityText.text = $"{selected[1].ToString()}\n\n{CurrentAbilityData[selected[1]].Description}";
+        _rightAbilityText.text = $"{selected[2].ToString()}\n\n{CurrentAbilityData[selected[2]].Description}";
     }
 
     public void ClickLeftSelectBt()

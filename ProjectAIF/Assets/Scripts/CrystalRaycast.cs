@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class CrystalRaycast : MonoBehaviour
 {
-    [SerializeField]private float maxDistance = 8f;
+    [SerializeField] private float _maxDistance = 8f;
 
     [Header("Hold Settings")]
-    [SerializeField] private float holdSeconds = 5f;
+    [SerializeField] private float _holdSeconds = 5f;
 
-    private Camera cam;
-    private CrystalOutline current;
-    private CrystalSkill currentSkill;
+    private Camera _cam;
+    private CrystalOutline _current;
+    private CrystalSkill _currentSkill;
 
     private float holdTimer = 0f;
 
     void Awake()
     {
-        cam = GetComponent<Camera>();
+        _cam = Camera.main;
     }
 
     void Update()
@@ -25,58 +25,58 @@ public class CrystalRaycast : MonoBehaviour
         CrystalOutline target = RaycastCrystal();
 
         // 타겟 변경되면 초기화
-        if (target != current)
+        if (target != _current)
         {
-            if (current != null)
+            if (_current != null)
             {
-                current.LockOn(false);
-                current.SetHoldVisual(false);
+                _current.LockOn(false);
+                _current.SetHoldVisual(false);
             }
 
-            current = target;
+            _current = target;
             holdTimer = 0f;
 
-            if (current != null)
+            if (_current != null)
             {
-                current.LockOn(true);
-                currentSkill = current.GetComponentInParent<CrystalSkill>();
+                _current.LockOn(true);
+                _currentSkill = _current.GetComponentInParent<CrystalSkill>();
             }
             else
             {
-                currentSkill = null;
+                _currentSkill = null;
             }
         }
 
-        if (current == null) return;
+        if (_current == null) return;
 
         //F 홀드: 누르는 동안 빨간색, 5초 채우면 발동
         if (Input.GetKey(KeyCode.F))
         {
-            current.SetHoldVisual(true);
+            _current.SetHoldVisual(true);
             holdTimer += Time.deltaTime;
 
-            if (holdTimer >= holdSeconds)
+            if (holdTimer >= _holdSeconds)
             {
-                if (currentSkill != null)
-                    currentSkill.Activate(); //맵 전체 몬스터 제거
+                if (_currentSkill != null)
+                    _currentSkill.Activate(); //맵 전체 몬스터 제거
 
                 holdTimer = 0f;
-                current.SetHoldVisual(false); // 발동 후 흰색으로 복귀(원하면 유지로 바꿔도 됨)
+                _current.SetHoldVisual(false); // 발동 후 흰색으로 복귀(원하면 유지로 바꿔도 됨)
             }
         }
         else
         {
             holdTimer = 0f;
-            current.SetHoldVisual(false);
+            _current.SetHoldVisual(false);
         }
     }
 
     CrystalOutline RaycastCrystal()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, maxDistance))
+        if (Physics.Raycast(ray, out hit, _maxDistance))
         {
             return hit.collider.GetComponentInParent<CrystalOutline>();
         }

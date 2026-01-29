@@ -7,6 +7,8 @@ namespace Ability
     public abstract class AbilityBase
     {
         public bool IsUnlucky = false;
+        protected string _description;
+        public string Description => _description;
         protected AudioSource _audioSource;
         protected AudioClip _audioClip;
 
@@ -34,6 +36,7 @@ namespace Ability
         public Hp(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _playerStatus = playerStatus;
+            _description = "Maximum HP may change.";
         }
         
         public override void ApplyAbility()
@@ -54,6 +57,7 @@ namespace Ability
         public MoveSpeed(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _playerStatus = playerStatus;
+            _description = "Move speed may change.";
         }
         
         public override void ApplyAbility()
@@ -74,6 +78,7 @@ namespace Ability
         public Defense(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _playerStatus = playerStatus;
+            _description = "Defense may change.";
         }
         
         public override void ApplyAbility()
@@ -94,6 +99,7 @@ namespace Ability
         public PistolDamage(PistolDummy pistolStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _pistolStatus = pistolStatus;
+            _description = "Pistol Damage may change.";
         }
         
         public override void ApplyAbility()
@@ -114,6 +120,7 @@ namespace Ability
         public PistolCriticalChance(PistolDummy pistolStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _pistolStatus = pistolStatus;
+            _description = "Pistol Critical Chance may change.";
         }
         
         public override void ApplyAbility()
@@ -134,6 +141,7 @@ namespace Ability
         public PistolCriticalDamage(PistolDummy pistolStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _pistolStatus = pistolStatus;
+            _description = "Pistol Critical Damage may change.";
         }
         
         public override void ApplyAbility()
@@ -154,6 +162,7 @@ namespace Ability
         public PistolMagazine(PistolDummy pistolStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _pistolStatus = pistolStatus;
+            _description = "Pistol Magazine may change.";
         }
         
         public override void ApplyAbility()
@@ -174,6 +183,7 @@ namespace Ability
         public RifleDamage(RifleDummy rifleStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _rifleStatus = rifleStatus;
+            _description = "Rifle Damage may change.";
         }
         
         public override void ApplyAbility()
@@ -194,6 +204,7 @@ namespace Ability
         public RifleCriticalChance(RifleDummy rifleStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _rifleStatus = rifleStatus;
+            _description = "Rifle Critical Chance may change.";
         }
         
         public override void ApplyAbility()
@@ -214,6 +225,7 @@ namespace Ability
         public RifleCriticalDamage(RifleDummy rifleStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _rifleStatus = rifleStatus;
+            _description = "Rifle Critical Damage may change.";
         }
         
         public override void ApplyAbility()
@@ -234,6 +246,7 @@ namespace Ability
         public RifleMagazine(RifleDummy rifleStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _rifleStatus = rifleStatus;
+            _description = "Rifle Magazine may change.";
         }
         
         public override void ApplyAbility()
@@ -254,6 +267,7 @@ namespace Ability
         public GrenadeDamage(GrenadeDummy grenadeStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _grenadeStatus = grenadeStatus;
+            _description = "Grenade Damage may change.";
         }
         
         public override void ApplyAbility()
@@ -273,6 +287,7 @@ namespace Ability
         public GrenadeMagazine(GrenadeDummy grenadeStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
         {
             _grenadeStatus = grenadeStatus;
+            _description = "Grenade Magazine may change.";
         }
         
         public override void ApplyAbility()

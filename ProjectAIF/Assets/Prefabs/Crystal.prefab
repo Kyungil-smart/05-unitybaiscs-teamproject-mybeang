@@ -162,6 +162,8 @@ GameObject:
   - component: {fileID: 8097869810816761410}
   - component: {fileID: 173115398214583736}
   - component: {fileID: 7812850448036238455}
+  - component: {fileID: 9057651130469843024}
+  - component: {fileID: 3438757299258735511}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Untagged
@@ -221,6 +223,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 6557830064443427799}
   _uiCanvas: {fileID: 6426844447984397819}
+--- !u!114 &9057651130469843024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778579432725084982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f58f30e03f4588b96cf85ded9ec7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTag: Enemy
+--- !u!114 &3438757299258735511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778579432725084982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0379fcb60ca1f4c9292df58665fe0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlines: []
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  holdColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &4968604240999838310
 GameObject:
   m_ObjectHideFlags: 0
