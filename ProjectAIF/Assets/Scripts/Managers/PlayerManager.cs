@@ -29,6 +29,22 @@ public class PlayerManager : SingleTon<PlayerManager>
         
     }
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= 5f && timer < 5.2)
+        {
+            Debug.Log("5초경과");
+            Pistol = Resources.Load<GameObject>("Test/Prefab/TestPistol2");
+        }
+
+        if (timer >= 6f && timer < 6.2)
+        {
+            Debug.Log("6초경과");
+            Pistol = Resources.Load<GameObject>("Test/Prefab/TestPistol");
+        }
+    }
 
 
     // 무기 인식 및 탄창 관리기능
