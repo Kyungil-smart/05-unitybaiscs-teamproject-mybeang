@@ -19,7 +19,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
     private Transform _targetTransform;
-    
+
     //private PlayerStatus _playerStatus;
     
     private void Awake()
