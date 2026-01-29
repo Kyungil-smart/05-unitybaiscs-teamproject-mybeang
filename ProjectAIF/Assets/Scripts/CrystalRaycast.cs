@@ -15,12 +15,12 @@ public class CrystalRaycast : MonoBehaviour
 
     private float holdTimer = 0f;
 
-    void Awake()
+    private void Awake()
     {
         cam = GetComponent<Camera>();
     }
 
-    void Update()
+    private void Update()
     {
         CrystalOutline target = RaycastCrystal();
 
@@ -71,7 +71,7 @@ public class CrystalRaycast : MonoBehaviour
         }
     }
 
-    CrystalOutline RaycastCrystal()
+    private CrystalOutline RaycastCrystal()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;

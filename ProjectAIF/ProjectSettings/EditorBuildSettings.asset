@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/WanYong/CGS_Map 1.unity
+    guid: a04d38ead91faea46921ad784419213a
   m_configObjects: {}

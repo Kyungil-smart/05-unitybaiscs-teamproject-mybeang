@@ -18,5 +18,4 @@ public class CrystalSkill : MonoBehaviour
             Destroy(e);
     }
 
-
 }
