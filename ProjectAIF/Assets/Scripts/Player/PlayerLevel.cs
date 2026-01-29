@@ -180,7 +180,7 @@ public class PlayerLevel : MonoBehaviour
             int before = CurrentLevel;
             Debug.Log($"[PlayerLevel] DEBUG AddExp 999 (before level = {before})");
 
-            AddExp(300);
+            AddExp(10);
 
             int after = CurrentLevel;
             Debug.Log($"[PlayerLevel] after level = {after}, level gained = {after - before}");
