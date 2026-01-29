@@ -77,6 +77,7 @@ public class AbilityUIController : MonoBehaviour
         }
 
     }
+    // 이 밑에 있는 코드는 테스트용 코드입니다. 추후에 삭제 가능합니다.
 #if UNITY_EDITOR
     [ContextMenu("DEBUG/Open Ability UI")]
     private void DebugOpenAbilityUI()
