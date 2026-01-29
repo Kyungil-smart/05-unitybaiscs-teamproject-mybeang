@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4319032643990305910}
   - component: {fileID: 2884510086799947950}
   - component: {fileID: 1999175533277862019}
+  - component: {fileID: 2824824535598709023}
+  - component: {fileID: -8524264353484194043}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -105,3 +107,54 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2824824535598709023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808832678336693330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b70aad5121bf243824922d65dc1617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 6
+  <Defence>k__BackingField: 6
+  <Hp>k__BackingField: 6
+  <MoveSpeed>k__BackingField: 6
+  <AttackRate>k__BackingField: 6
+  <AttackRange>k__BackingField: 6
+  <Exp>k__BackingField: 6
+  _detectionHeight: 6
+  _attackTargetLayer:
+    serializedVersion: 2
+    m_Bits: 1073741952
+  _animator: {fileID: 0}
+--- !u!54 &-8524264353484194043
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808832678336693330}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

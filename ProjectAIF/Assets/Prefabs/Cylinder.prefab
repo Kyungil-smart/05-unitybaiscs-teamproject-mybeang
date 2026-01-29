@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1983980864982015960}
   - component: {fileID: 6587983361365101796}
   - component: {fileID: 3976192306894135028}
+  - component: {fileID: 2585357846477439725}
+  - component: {fileID: 4365019873206494300}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -107,3 +109,54 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!54 &2585357846477439725
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125756163155031361}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4365019873206494300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125756163155031361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b70aad5121bf243824922d65dc1617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 5
+  <Defence>k__BackingField: 5
+  <Hp>k__BackingField: 5
+  <MoveSpeed>k__BackingField: 5
+  <AttackRate>k__BackingField: 5
+  <AttackRange>k__BackingField: 5
+  <Exp>k__BackingField: 5
+  _detectionHeight: 5
+  _attackTargetLayer:
+    serializedVersion: 2
+    m_Bits: 1073741952
+  _animator: {fileID: 0}
