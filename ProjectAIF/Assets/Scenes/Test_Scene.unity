@@ -122,6 +122,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &278651444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 278651446}
+  - component: {fileID: 278651445}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &278651445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278651444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25f8c6dfa50041409bfde7d0e5f35f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pistol: {fileID: 0}
+  AR: {fileID: 0}
+  Grenade: {fileID: 0}
+--- !u!4 &278651446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278651444}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.89982015, y: 7.779672, z: 0.6678259}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1321936798
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +263,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!20 &1612868002 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5637130422971372627, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+  m_PrefabInstance: {fileID: 8504300724679416822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1624355535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1705244896542795337, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+  m_PrefabInstance: {fileID: 8504300724679416822}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1821143612
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,9 +436,33 @@ PrefabInstance:
       value: 1.013
       objectReference: {fileID: 0}
     - target: {fileID: 8719255078200078598, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: AR
+      value: 
+      objectReference: {fileID: 6712958816944520016, guid: 1ed966b64b7bc3c45b37ee0e478f4f23, type: 3}
+    - target: {fileID: 8719255078200078598, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: Pistol
+      value: 
+      objectReference: {fileID: 6712958816944520016, guid: 96ce4776307083d4186490ba40669cf5, type: 3}
+    - target: {fileID: 8719255078200078598, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1624355535}
+    - target: {fileID: 8719255078200078598, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: Grenade
+      value: 
+      objectReference: {fileID: 6712958816944520016, guid: d7821e5f0c4b634459cbd838e919e436, type: 3}
+    - target: {fileID: 8719255078200078598, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1612868002}
+    - target: {fileID: 8719255078200078598, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
       propertyPath: GrenadePoint
       value: 
       objectReference: {fileID: 8504300724679416823}
+    - target: {fileID: 8719255078200078598, guid: 1861031d6e1c921459635a85d89187cb, type: 3}
+      propertyPath: _attackTargetLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -399,3 +480,4 @@ SceneRoots:
   - {fileID: 1321936800}
   - {fileID: 1821143616}
   - {fileID: 8504300724679416822}
+  - {fileID: 278651446}
