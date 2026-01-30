@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5360893059519426470}
   - component: {fileID: 2502957599316371846}
   - component: {fileID: 297573130570682386}
-  - component: {fileID: 4855981999268156063}
   m_Layer: 5
   m_Name: GameClear
   m_TagString: Untagged
@@ -122,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4855981999268156063}
-        m_TargetAssemblyTypeName: GameClear, Assembly-CSharp
-        m_MethodName: ClearGame
+      - m_Target: {fileID: 7760590267175694882}
+        m_TargetAssemblyTypeName: GameSceneUIController, Assembly-CSharp
+        m_MethodName: GoToCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -134,18 +133,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4855981999268156063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2273067230797725193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80449cce10a4ebf449add4b3b6e0fad0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3093252966399444607
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,8 +490,9 @@ GameObject:
   - component: {fileID: 1874195322853245282}
   - component: {fileID: 3547812780584800807}
   - component: {fileID: 5586451291642888666}
+  - component: {fileID: 7760590267175694882}
   m_Layer: 5
-  m_Name: EndingScene1Prefab
+  m_Name: GameOverPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -593,3 +581,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7760590267175694882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928521232351115058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 963a2ecd47257d044890878560337748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

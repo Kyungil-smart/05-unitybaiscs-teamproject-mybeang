@@ -10,18 +10,28 @@ public class GameSceneUIController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void GoToEnding()
+    public void GoToStory()
     {
         SceneManager.LoadScene(1);
     }
     
-    public void GoToCredits()
+    public void GoToGameStart()
+    {
+        SceneManager.LoadScene(2);
+    }
+    
+    public void GoToEnding()
     {
         SceneManager.LoadScene(3);
+    }
+    
+    public void GoToCredits()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public void ExitGame()
     {
-        
+        Application.Quit();
     }
 }

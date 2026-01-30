@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 383367685744945873}
   - component: {fileID: 7402441048391389497}
   - component: {fileID: 7066108417121309912}
+  - component: {fileID: 8770029269531679607}
   m_Layer: 5
   m_Name: CreditsPrefab
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8770029269531679607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441509181403176941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 963a2ecd47257d044890878560337748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &886308966278927975
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,7 +759,6 @@ GameObject:
   - component: {fileID: 5609787670296700098}
   - component: {fileID: 7538361015973733958}
   - component: {fileID: 8349349337370862321}
-  - component: {fileID: 5377639875682340797}
   m_Layer: 5
   m_Name: ToTitle
   m_TagString: Untagged
@@ -856,9 +868,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5377639875682340797}
-        m_TargetAssemblyTypeName: GameTitle, Assembly-CSharp
-        m_MethodName: Title
+      - m_Target: {fileID: 8770029269531679607}
+        m_TargetAssemblyTypeName: GameSceneUIController, Assembly-CSharp
+        m_MethodName: GoToTitle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -868,18 +880,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5377639875682340797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6306487417134667373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11279030cdaa6404dbc23c3f8130b1f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7729654328442712808
 GameObject:
   m_ObjectHideFlags: 0
