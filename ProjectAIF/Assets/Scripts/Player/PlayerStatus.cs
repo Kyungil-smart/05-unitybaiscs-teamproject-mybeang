@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : MonoBehaviour, IDamageable
 {
     [Header("Status")]
     public int CurrentHp;
@@ -19,4 +19,13 @@ public class PlayerStatus : MonoBehaviour
     public int MaxMoveSpeed;
     public int MinDefense;
     public int MaxDefense;
+    public void TakeDamage(int damage)
+    {
+        CurrentHp -= damage;
+        if (CurrentHp <= 0)
+        {
+            PlayerManager.Instance.IsDead = true;
+            GameManager.Instance.GameOver();
+        }
+    }
 }

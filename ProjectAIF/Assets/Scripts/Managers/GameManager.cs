@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingleTon<GameManager>
 {
@@ -9,7 +10,6 @@ public class GameManager : SingleTon<GameManager>
     public bool IsGameOver { get; private set; }
     public UnityEvent OnGameOver;
     public int StageNumber { get; private set; }
-
 
     // Game Objects Data
     // ToDo: Player Data
@@ -32,7 +32,13 @@ public class GameManager : SingleTon<GameManager>
     public void GameOver()
     {
         IsGameOver = true;
+        SceneManager.LoadScene(3);
         OnGameOver?.Invoke();
+    }
+
+    public void GameClear()
+    {
+        SceneManager.LoadScene(3);
     }
 
     public void GoToNextStage()
