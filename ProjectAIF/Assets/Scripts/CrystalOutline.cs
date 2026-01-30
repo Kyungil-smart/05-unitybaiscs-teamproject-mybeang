@@ -10,7 +10,7 @@ public class CrystalOutline : MonoBehaviour
     [SerializeField] private Color defaultColor = Color.white; // 기본 흰색
     [SerializeField] private Color holdColor = Color.red;      // F 누르는 동안 빨간색
 
-    void Awake()
+    private void Awake()
     {
         LockOn(false);
     }

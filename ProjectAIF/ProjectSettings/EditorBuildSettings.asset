@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/WanYong/CGS_Map 1.unity
+    guid: a04d38ead91faea46921ad784419213a
+  - enabled: 1
     path: Assets/Scenes/ChoigsWorkSpace/TitleScene.unity
     guid: f5398639dea8705458bdc4e872fef4ea
   - enabled: 1
