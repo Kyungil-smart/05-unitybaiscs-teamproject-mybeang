@@ -15,7 +15,7 @@ public class AbilityManager : SingleTon<AbilityManager>
     // Ability Values
     [Header("Ability Value")]
     public IntRange HpRange;
-    public FloatRange SpeedRange;
+    public FloatRange MoveSpeedRange;
     public IntRange DefenseRange;
     public IntRange PistolDamageRange;
     public FloatRange PistolCriticalChanceRange;
@@ -30,9 +30,9 @@ public class AbilityManager : SingleTon<AbilityManager>
     
     [Header("Data Target")]
     [SerializeField] private PlayerStatus _playerStatus;
-    [SerializeField] private PistolDummy _pistolStatus;
-    [SerializeField] private RifleDummy _rifleStatus;
-    [SerializeField] private GrenadeDummy _grenadeStatus;
+    [SerializeField] private PistolStatus pistolStatusStatus;
+    [SerializeField] private RifleStatus rifleStatusStatus;
+    [SerializeField] private GrenadeStatus grenadeStatusStatus;
     
     // Audio
     AudioSource _audioSource;
@@ -72,25 +72,25 @@ public class AbilityManager : SingleTon<AbilityManager>
         AbilityData.Add(AbilityName.Defense, 
             new Ability.Defense(_playerStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.PistolDamage, 
-            new Ability.PistolDamage(_pistolStatus, _audioSource, _audioClip));
+            new Ability.PistolDamage(pistolStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.PistolCriticalChance, 
-            new Ability.PistolCriticalChance(_pistolStatus, _audioSource, _audioClip));
+            new Ability.PistolCriticalChance(pistolStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.PistolCriticalDamage, 
-            new Ability.PistolCriticalDamage(_pistolStatus, _audioSource, _audioClip));
+            new Ability.PistolCriticalDamage(pistolStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.PistolMagazine, 
-            new Ability.PistolMagazine(_pistolStatus, _audioSource, _audioClip));
+            new Ability.PistolMagazine(pistolStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.RifleDamage, 
-            new Ability.RifleDamage(_rifleStatus, _audioSource, _audioClip));
+            new Ability.RifleDamage(rifleStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.RifleCriticalChance, 
-            new Ability.RifleCriticalChance(_rifleStatus, _audioSource, _audioClip));
+            new Ability.RifleCriticalChance(rifleStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.RifleCriticalDamage, 
-            new Ability.RifleCriticalDamage(_rifleStatus, _audioSource, _audioClip));
+            new Ability.RifleCriticalDamage(rifleStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.RifleMagazine, 
-            new Ability.RifleMagazine(_rifleStatus, _audioSource, _audioClip));
+            new Ability.RifleMagazine(rifleStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.GrenadeMagazine, 
-            new Ability.GrenadeMagazine(_grenadeStatus, _audioSource, _audioClip));
+            new Ability.GrenadeMagazine(grenadeStatusStatus, _audioSource, _audioClip));
         AbilityData.Add(AbilityName.GrenadeDamage, 
-            new Ability.GrenadeDamage(_grenadeStatus, _audioSource, _audioClip));
+            new Ability.GrenadeDamage(grenadeStatusStatus, _audioSource, _audioClip));
     }
 
     /// <summary>

@@ -12,6 +12,7 @@ public class CrystalRaycast : MonoBehaviour
     private Camera _cam;
     private CrystalOutline _current;
     private CrystalSkill _currentSkill;
+    private Ray _ray;
 
     private float holdTimer = 0f;
 
@@ -70,13 +71,19 @@ public class CrystalRaycast : MonoBehaviour
             _current.SetHoldVisual(false);
         }
     }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(_ray.origin, _ray.direction * _maxDistance);
+    }
 
     CrystalOutline RaycastCrystal()
     {
-        Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
+        _ray = _cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, _maxDistance))
+        if (Physics.Raycast(_ray, out hit, _maxDistance))
         {
             return hit.collider.GetComponentInParent<CrystalOutline>();
         }

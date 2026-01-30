@@ -7,275 +7,195 @@ using static PlayerManager;
 public class PlayerWeapon : MonoBehaviour, IAttackable
 {
     [SerializeField] private GameObject _player;
-    [SerializeField] private Camera _camera;
     [SerializeField] private GameObject _grenadePoint;
+    private Camera _camera;
 
     [Header("Weapon")]
-    public GameObject Pistol;
-    public GameObject Rifle;
-    public GameObject Grenade;
+    public PistolStatus PistolStatus;
+    public RifleStatus RifleStatus;
+    public GrenadeStatus GrenadeStatus;
+    private WeaponStatusBase[] _weapons = new WeaponStatusBase[3];
 
-    private int _maxMagazine; // 탄창 Max
-    private int _currentMagazine = 30; // 현재 남은 수
-
-
+    [SerializeField] private GameObject _pistolObject;
+    [SerializeField] private GameObject _rifleObject;
+    [SerializeField] private GameObject _grenadeObject;
+    private GameObject[] _weaponObjects = new GameObject[3];
+    
+    [SerializeField] private Transform _enPistolPos;
+    [SerializeField] private Transform _enRiflePos;
+    [SerializeField] private Transform _enGrenadePos;
+    private Transform[] _enWpPosArr = new Transform[3];
+    
+    [SerializeField] private Transform _disPistolPos;
+    [SerializeField] private Transform _disRiflePos;
+    [SerializeField] private Transform _disGrenadePos;
+    private Transform[] _disWpPosArr = new Transform[3];
+    private int _curWpIndex;
+    
     [Header("Attack")]
     [SerializeField] private float _attackRange;
     [SerializeField] private LayerMask _attackTargetLayer;
-    [SerializeField] private int _attackDamage;
 
     private IDamageable _targetDamagable;
     private Transform _targetTransform;
 
-    [Header("Slot")]
-    private Transform _pistolSlot;
-    private Transform _aRSlot;
-    private Transform _gGrenadeSlot;
-
-    private Vector3 _basePosPistol;
-    private Vector3 _downPosPistol;
-
-    private Vector3 _basePosAR;
-    private Vector3 _downPosAR;
-
-    private Vector3 _basePosGre;
-    private Vector3 _downPosGre;
-
-    private Vector3 _velocityPistol;
-    private Vector3 _velocityAR;
-    private Vector3 _velocityGre;
-
-    private float _smoothTime = 0.15f;
-    private float _roatationSpeed = 2.0f;
-
-    private bool _pickPistol = false;
-    private bool _pickAR = false;
-    private bool _pickGrenade = false;
-    private bool _reLoading = false;
-    private bool _isThrowing = false;
-    private bool _isTrhowCoroutin = false;
-    private bool _isSwapable = true;
-    private Quaternion targetRotation;
-    private Vector3 ArmPos;
-    private Vector3 IdleArmPos;
-
-    PlayerManager _playerManager;
-
-    //============================= 플레이어 무기동작에 관련한 변수목록========================
-    public int PlayerCurrentWeapon = 0;
-    int Damage;
-
+    private Vector3[] _velocityArr = new Vector3[3] {Vector3.zero, Vector3.zero, Vector3.zero};
+    private Vector3 _velocityThrow = Vector3.zero;
     
+    private float _smoothTime;
+    private bool _reLoading;
+    private bool _isThrowing;
+    private bool _isTrhowCoroutin;
+    private bool _isSwapable;
+    private Quaternion _targetRotation;
+    private Vector3 _armPos;
+    private Vector3 _idleArmPos;
+    private Ray _ray;
 
+    private void Awake()
+    {
+        Init();
+    }
+    
     private void Start()
     {
-        WeaponPosCheck();
-        _playerManager = PlayerManager.Instance;
-        GiveBaseWeapon();
+        ReadyWeapon();
     }
     private void Update()
     {
-        if(_playerManager != null) WeaponChange();
-        CheckCurWeapon();
+        DetectTarget();
         OnButton();
-        VisualSwap();
-        if (Input.GetMouseButtonDown(0)) Attack(Damage);
-        
-        if (_isThrowing && !_isTrhowCoroutin)
-        {
-            StartCoroutine(ThrowArmRotation());
-        }
-        
-    }
-
-    void GiveBaseWeapon()
-    {
-        Pistol = _playerManager.Pistol;
-        GameObject pistol = Instantiate(Pistol, _pistolSlot);
-        pistol.transform.SetParent(_pistolSlot);
-
-        Rifle = _playerManager.Rifle;
-        GameObject ar = Instantiate(Rifle, _aRSlot);
-        ar.transform.SetParent(_aRSlot);
-
-        Grenade = _playerManager.Grenade;
-        GameObject grenade = Instantiate(Grenade, _gGrenadeSlot);
-        grenade.transform.SetParent(_gGrenadeSlot);
     }
     
-    void WeaponChange()
+    private void OnDrawGizmos()
     {
-        /*
-        if (Pistol.GetComponent<WeaponID>().ID == _playerManager.Pistol.GetComponent<WeaponID>().ID && 
-            AR.GetComponent<WeaponID>().ID == _playerManager.AR.GetComponent<WeaponID>().ID &&
-            Grenade.GetComponent<WeaponID>().ID == _playerManager.Grenade.GetComponent<WeaponID>().ID)
-        {
-            Debug.Log($"{Pistol.GetComponent<WeaponID>().ID} == {_playerManager.Pistol.GetComponent<WeaponID>().ID}");
-            return; 
-        }
-        */
-
-        Pistol = _playerManager.Pistol;
-        GameObject pistol = Instantiate(Pistol, _pistolSlot);
-        pistol.transform.SetParent(_pistolSlot);
-
-
-        Rifle = _playerManager.Rifle;
-        GameObject ar = Instantiate(Rifle, _aRSlot);
-        ar.transform.SetParent(_aRSlot);
-
-        Grenade = _playerManager.Grenade;
-        GameObject grenade = Instantiate(Grenade, _gGrenadeSlot);
-        grenade.transform.SetParent(_gGrenadeSlot);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(_ray.origin, _ray.direction * _attackRange);
     }
-    
+
+    private void Init()
+    {
+        _weapons[0] = PistolStatus;
+        _weapons[1] = RifleStatus;
+        _weapons[2] = GrenadeStatus;
+        _weaponObjects[0] = _pistolObject;
+        _weaponObjects[1] = _rifleObject;
+        _weaponObjects[2] = _grenadeObject;
+        _enWpPosArr[0] = _enPistolPos;
+        _enWpPosArr[1] = _enRiflePos;
+        _enWpPosArr[2] = _enGrenadePos;
+        _disWpPosArr[0] = _disPistolPos;
+        _disWpPosArr[1] = _disRiflePos;
+        _disWpPosArr[2] = _disGrenadePos;
+        
+        _camera = Camera.main;
+        _curWpIndex = 0;
+        _smoothTime = 0.15f;
+        _reLoading = false;
+        _isThrowing = false;
+        _isTrhowCoroutin = false;
+        _isSwapable = true;
+    }
+
+    void ReadyWeapon()
+    {
+        for (int i = 0; i < _weaponObjects.Length; i++)
+        {
+            _weaponObjects[i].transform.position = _disWpPosArr[i].position;
+        }
+        _weaponObjects[_curWpIndex].transform.position = _enWpPosArr[_curWpIndex].position;
+    }
     
     // 플레이어가 입력하는 모든 버튼입력을 처리하는 함수
     private void OnButton()
     {
+        // 공격
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack(_weapons[0].Damage);
+        }
+        // Reload
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Reload();
-        }
-    }
-
-    // 시작과 동시에 무기슬롯이 어느위치에 놓여야하는지 계산하는 함수입니다
-    // TODO : 간이적으로 수치가 조정되어있으니 차후에 더욱 적절한 값 대입요망
-    void WeaponPosCheck()
-    {
-        foreach (Transform Pistol in _player.GetComponentsInChildren<Transform>())
-        {
-            if (Pistol.name == "PistolSlot")
+            if (_curWpIndex < 2)
             {
-                _pistolSlot = Pistol;
-                break;
+                Reload();    
             }
         }
-        _basePosPistol = _pistolSlot.localPosition;
-        _downPosPistol = _basePosPistol + Vector3.down * 0.7f;
-
-
-        foreach (Transform AR in _player.GetComponentsInChildren<Transform>())
-        {
-            if (AR.name == "ARSlot")
-            {
-                _aRSlot = AR;
-                break;
-            }
-        }
-        _basePosAR = _aRSlot.localPosition;
-        _downPosAR = _basePosAR + Vector3.down * 0.7f;
-
-
-        foreach (Transform Gre in _player.GetComponentsInChildren<Transform>())
-        {
-            if (Gre.name == "GrenadeSlot")
-            {
-                _gGrenadeSlot = Gre;
-                break;
-            }
-        }
-        _basePosGre = _gGrenadeSlot.localPosition;
-        _downPosGre = _basePosGre + Vector3.down * 0.7f;
-
-        IdleArmPos = _gGrenadeSlot.localPosition;
-    }
-
-    // 1,2,3 키입력을 받고 현재 어떤 무기를 선택중인지 저장하는 함수
-    void CheckCurWeapon()
-    {
+        // 아래는 Swap
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            PlayerCurrentWeapon = 1;
-            _pickPistol = true;
-            _pickAR = false ;
-            _pickGrenade = false ;
+            StartCoroutine(VisualSwap(0));
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            PlayerCurrentWeapon = 2;
-            _pickPistol = false;
-            _pickAR = true;
-            _pickGrenade = false;
+            StartCoroutine(VisualSwap(1));
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            PlayerCurrentWeapon = 3;
-            _pickPistol = false;
-            _pickAR = false;
-            _pickGrenade = true;
+            StartCoroutine(VisualSwap(2));
         }
     }
 
     // 무기가 스왑되는 시각적인 효과를 제공한다
-    void VisualSwap()
+    private IEnumerator VisualSwap(int index)
     {
-        if (_isSwapable == false)
+        if (!_isSwapable || index == _curWpIndex)
         {
-            return;
+            yield break;
         }
-
-        Vector3 TargetPistol = _pickPistol ? _basePosPistol : _downPosPistol;
-
-        _pistolSlot.localPosition = Vector3.SmoothDamp
-        (
-        _pistolSlot.localPosition,
-        TargetPistol,
-        ref _velocityPistol,
-        _smoothTime
-        );
-
-        Vector3 TargetAR = _pickAR ? _basePosAR : _downPosAR;
-
-        _aRSlot.localPosition = Vector3.SmoothDamp
-        (
-        _aRSlot.localPosition,
-        TargetAR,
-        ref _velocityAR,
-        _smoothTime
-        );
-
-        Vector3 TargetGre = _pickGrenade ? _basePosGre : _downPosGre;
-
-        _gGrenadeSlot.localPosition = Vector3.SmoothDamp
-        (
-        _gGrenadeSlot.localPosition,
-        TargetGre,
-        ref _velocityGre,
-        _smoothTime
-        );
+        _isSwapable = false;
+        float elapsedTime = 0f;
+        float duration = 0.5f;
+        
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float interval = elapsedTime / duration;
+            _weaponObjects[index].transform.position = 
+                Vector3.Lerp(_disWpPosArr[index].position, _enWpPosArr[index].position, interval);
+            _weaponObjects[_curWpIndex].transform.position = 
+                Vector3.Lerp(_enWpPosArr[_curWpIndex].position, _disWpPosArr[_curWpIndex].position, interval);
+            yield return null;
+        }
+        _isSwapable = true;
+        _curWpIndex = index;
     }
 
     public void Attack(int damage)
     {
-        if (_currentMagazine <= 0)
+        _isSwapable = false;
+        if (_curWpIndex < 2)
         {
-            Reload();
-        }
-
-        if (PlayerCurrentWeapon == 1 || PlayerCurrentWeapon == 2)
-        {
-            DetectTarget();
-            if (_reLoading != true)
+            if (_weapons[_curWpIndex].CurrentMagazine <= 0)
             {
-                Fire();
+                Reload();
+            }
+            if (!_reLoading)
+            {
+                Fire(damage);
             }
         }
-
-        if (PlayerCurrentWeapon == 3)
+        else
         {
-            if (_isThrowing == false) Throw();
+            if (!_isThrowing)
+            {
+                Throw();
+                if (_isThrowing && !_isTrhowCoroutin)
+                {
+                    StartCoroutine(ThrowArmRotation());    
+                }
+            }
         }
+        _isSwapable = true;
     }
 
     private void DetectTarget()
     {
-        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        _ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, _attackRange, _attackTargetLayer))
+        if (Physics.Raycast(_ray, out hit, _attackRange, _attackTargetLayer))
         {
             if (_targetTransform != hit.transform)
             {
@@ -290,21 +210,15 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         }
     }
 
-    //권총 AR의 경우 데미지를줌
-    private void Fire()
+    private void Fire(int damage)
     {
         _isSwapable = false;
-        if (_targetDamagable == null)
+        _weapons[_curWpIndex].CurrentMagazine--;
+        if (_targetDamagable == null || !(_targetDamagable is IDamageable) || _curWpIndex == 2)
         {
             return;
         }
-        if (PlayerCurrentWeapon == 3)
-        {
-            return;
-        }
-
-        // TODO : 몬스터에게 데미지를 주는 기능
-
+        (_targetDamagable as IDamageable).TakeDamage(damage);
         _isSwapable = true;
     }
 
@@ -315,136 +229,60 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
         _reLoading = true;
         _isSwapable = false;
-        StartCoroutine(ReLoadRoutine());
+        StartCoroutine(ReloadCoroutine());
     }
-
-    // 장전하는 모션 총구를 살짝 플레이쪽으로 돌리며 현재 총알수가 장전됩니다
-    private IEnumerator ReLoadRoutine()
+    
+    private IEnumerator ReloadCoroutine()
     {
+        _isSwapable = false;
+        float elapsedTime = 0f;
+        float duration = 0.3f;
 
-        if (PlayerCurrentWeapon == 1)
+        Quaternion origin = _weaponObjects[_curWpIndex].transform.localRotation;
+        Quaternion target = origin * Quaternion.Euler(0, 0, 45);
+        
+        while (elapsedTime < duration)
         {
-            targetRotation = _pistolSlot.localRotation * Quaternion.Euler(0, -45, 0);
-            
-            // TODO : 사운드 입력  철컥! 장전소리!
-
-
-            while (Quaternion.Angle(_pistolSlot.localRotation, targetRotation) > 0.1f)
-            {
-                _pistolSlot.localRotation = Quaternion.RotateTowards
-                (
-                _pistolSlot.localRotation,
-                targetRotation,
-                100f * Time.deltaTime
-                );
-
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(1f);
-            _currentMagazine = _maxMagazine;
-
-            targetRotation = _pistolSlot.localRotation * Quaternion.Euler(0, 45, 0);
-            while (Quaternion.Angle(_pistolSlot.localRotation, targetRotation) > 0.1f)
-            {
-                _pistolSlot.localRotation = Quaternion.RotateTowards
-                (
-                _pistolSlot.localRotation,
-                targetRotation,
-                100f * Time.deltaTime
-                );
-
-                yield return null;
-            }
-
-            _reLoading = false;
-            _isSwapable = true;
+            elapsedTime += Time.deltaTime;
+            float interval = elapsedTime / duration;
+            _weaponObjects[_curWpIndex].transform.localRotation = Quaternion.Slerp(origin, target, interval);
+            yield return null;
+        }
+        
+        yield return new WaitForSeconds(1f);
+        _weapons[_curWpIndex].CurrentMagazine = _weapons[_curWpIndex].TotalMagazine;
+        
+        elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float interval = elapsedTime / duration;
+            _weaponObjects[_curWpIndex].transform.localRotation = Quaternion.Slerp(target, origin, interval);
+            yield return null;
         }
 
-        if (PlayerCurrentWeapon == 2)
-        {
-            targetRotation = _aRSlot.localRotation * Quaternion.Euler(0, -45, 0);
-
-            // TODO : 사운드 입력  철컥! 장전소리!
-
-
-            while (Quaternion.Angle(_aRSlot.localRotation, targetRotation) > 0.1f)
-            {
-                _aRSlot.localRotation = Quaternion.RotateTowards
-                (
-                _aRSlot.localRotation,
-                targetRotation,
-                100f * Time.deltaTime
-                );
-
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(1f);
-            _currentMagazine = _maxMagazine;
-
-            targetRotation = _aRSlot.localRotation * Quaternion.Euler(0, 45, 0);
-            while (Quaternion.Angle(_aRSlot.localRotation, targetRotation) > 0.1f)
-            {
-                _aRSlot.localRotation = Quaternion.RotateTowards
-                (
-                _aRSlot.localRotation,
-                targetRotation,
-                100f * Time.deltaTime
-                );
-
-                yield return null;
-            }
-
-            _reLoading = false;
-            _isSwapable = true;
-        }
-
-
+        _reLoading = false;
+        _isSwapable = true;
     }
 
     // 수류탄을 던지는 모션과 수류탄생성및 포물선 각도로 발사하는 기능을 담은 함수
-    void Throw()
+    private void Throw()
     {
         _isThrowing = true;
-        _isSwapable = false;
         // 수류탄 투척시 팔회전 각도 계산
-        ArmPos = _gGrenadeSlot.localPosition + new Vector3(0.6f, 1.6f, -0.45f);
+        _armPos = _enGrenadePos.localPosition + new Vector3(0.6f, 1.6f, -0.45f);
     }
 
     IEnumerator ThrowArmRotation()
     {
         _isTrhowCoroutin = true;
-
-        while (Vector3.Distance(_gGrenadeSlot.localPosition, ArmPos) > 0.01f)
-        {
-            _gGrenadeSlot.localPosition = Vector3.SmoothDamp
-            (
-                _gGrenadeSlot.localPosition,
-                ArmPos,
-                ref _velocityGre,
-                _smoothTime
-            );
-
-            yield return null;
-        }
+        Vector3 origin = _grenadeObject.transform.position;
+        _grenadeObject.transform.position = _grenadePoint.transform.position;
 
         GrenadeInstantiate();
-        yield return new WaitForSeconds(0.5f);
-        _velocityGre = Vector3.down * 0.5f;
+        yield return new WaitForSeconds(2f);
 
-        while (Vector3.Distance(_gGrenadeSlot.localPosition, IdleArmPos) > 0.01f)
-        {
-            _gGrenadeSlot.localPosition = Vector3.SmoothDamp
-            (
-                _gGrenadeSlot.localPosition,
-                IdleArmPos,
-                ref _velocityGre,
-                _smoothTime
-            );
-
-            yield return null;
-        }
+        _grenadeObject.transform.position = origin;
 
         _isThrowing = false;
         _isTrhowCoroutin = false;
@@ -453,8 +291,9 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
     void GrenadeInstantiate()
     {
-        GameObject grenadeObj = Instantiate(Grenade, _grenadePoint.transform.position, _grenadePoint.transform.rotation);
-
+        GameObject grenadeObj = Instantiate(_grenadeObject, 
+            _grenadePoint.transform.position, _grenadePoint.transform.rotation);
+        
         Rigidbody rb = grenadeObj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
 
@@ -466,6 +305,4 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
         rb.AddForce(throwDir, ForceMode.Impulse);
     }
-
-    
 }

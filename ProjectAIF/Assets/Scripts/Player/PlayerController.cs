@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _maxPitch = 80f;
 
     private Rigidbody _rb;
-    private Vector2 _moveInput;     // (x: 좌우, y: 앞뒤)
+    private Vector3 _dir = Vector3.zero;
     private float _pitch;           // 카메라 상하 각도 누적
 
 
@@ -31,20 +31,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ReadMoveInput();
         MouseLook();
     }
 
     private void FixedUpdate()
     {
         MoveRigidbody();
-    }
-
-    private void ReadMoveInput()
-    {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        _moveInput = new Vector2(h, v).normalized;
     }
 
     private void MouseLook()
@@ -65,13 +57,11 @@ public class PlayerController : MonoBehaviour
 
     private void MoveRigidbody()
     {
-        Vector3 moveDir = (transform.right * _moveInput.x) + (transform.forward * _moveInput.y);
-        Vector3 targetVel = moveDir * _moveSpeed;
-
-        targetVel.y = _rb.velocity.y;
-        _rb.velocity = targetVel;
+        _dir.x = Input.GetAxisRaw("Horizontal");
+        _dir.z = Input.GetAxisRaw("Vertical");
+        
+        Vector3 moveDir = transform.TransformDirection(_dir);
+        _rb.MovePosition(transform.position + moveDir.normalized * (_moveSpeed * Time.deltaTime));
     }
-
-    
 }
 

@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 7812850448036238455}
   - component: {fileID: 9057651130469843024}
   - component: {fileID: 3438757299258735511}
+  - component: {fileID: 5768816440425244149}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Untagged
@@ -249,8 +250,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlines: []
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  defaultColor: {r: 0.07971382, g: 0, b: 1, a: 1}
   holdColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &5768816440425244149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778579432725084982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4968604240999838310
 GameObject:
   m_ObjectHideFlags: 0
