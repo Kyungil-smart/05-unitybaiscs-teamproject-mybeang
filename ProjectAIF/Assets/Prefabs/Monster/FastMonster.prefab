@@ -104,6 +104,7 @@ MonoBehaviour:
   <AttackRate>k__BackingField: 1.5
   <AttackRange>k__BackingField: 3
   <Exp>k__BackingField: 0
+  Player: {fileID: 1026817363066699652, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
   _detectionHeight: 1
   _attackTargetLayer:
     serializedVersion: 2

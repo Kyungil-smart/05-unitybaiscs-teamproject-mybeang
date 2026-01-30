@@ -15,7 +15,7 @@ public class PauseGameUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             StopGame(); // 토글 처리
         }
@@ -38,7 +38,7 @@ public class PauseGameUI : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(1); // 게임 재시작
+        SceneManager.LoadScene(2); // 게임 재시작
     }
 
     public void QuitGame()

@@ -1848,6 +1848,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3649574189936716284, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649574189936716284, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_Color.g
+      value: 0.0000001748403
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649574189936716284, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4879249512560884578, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: m_Name
       value: BattleFieldUICanvas
@@ -1930,6 +1942,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4980876918530795296, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306915458359477310, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317701330471983622, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2289,14 +2309,6 @@ PrefabInstance:
     - target: {fileID: 1705244896542795337, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4733190268835526754, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4733190268835526754, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -19,6 +19,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     public int MaxMoveSpeed;
     public int MinDefense;
     public int MaxDefense;
+    
     public void TakeDamage(int damage)
     {
         CurrentHp -= damage;

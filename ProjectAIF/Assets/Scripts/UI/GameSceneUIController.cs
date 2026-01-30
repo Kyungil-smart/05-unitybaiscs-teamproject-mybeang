@@ -17,6 +17,7 @@ public class GameSceneUIController : MonoBehaviour
     
     public void GoToGameStart()
     {
+        Debug.Log("Start Game");
         SceneManager.LoadScene(2);
     }
     

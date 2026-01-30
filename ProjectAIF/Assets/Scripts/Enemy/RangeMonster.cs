@@ -131,6 +131,7 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         _animator.SetTrigger("SetDeath");
         yield return YieldContainer.WaitForSeconds(1f);
+        Player.Exp += Exp;
         Destroy(gameObject);
     }
 
