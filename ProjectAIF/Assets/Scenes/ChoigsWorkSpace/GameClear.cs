@@ -7,7 +7,6 @@ public class GameClear : MonoBehaviour
 {
     public void ClearGame()
     {
-        Debug.Log("ClearGame 버튼 눌림");
         SceneManager.LoadScene("Cradit");
     }
 }
