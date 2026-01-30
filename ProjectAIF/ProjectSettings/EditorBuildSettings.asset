@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WanYong/CGS_Map 1.unity
     guid: a04d38ead91faea46921ad784419213a
+  - enabled: 1
+    path: Assets/Scenes/ChoigsWorkSpace/TitleScene.unity
+    guid: f5398639dea8705458bdc4e872fef4ea
+  - enabled: 1
+    path: Assets/Scenes/ChoigsWorkSpace/CGS_Map.unity
+    guid: 9c83c6d3a858ee64abcbec8ffa259e91
+  - enabled: 1
+    path: Assets/Scenes/ChoigsWorkSpace/EndingScene.unity
+    guid: 36bd1b006378d3146833800f56aeb2e0
+  - enabled: 1
+    path: Assets/Scenes/ChoigsWorkSpace/Cradit.unity
+    guid: 6b7f603bc76bbb1439bed22741ebdd59
   m_configObjects: {}

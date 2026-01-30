@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
+using static PlayerManager;
 
 public class PlayerWeapon : MonoBehaviour, IAttackable
 {
@@ -9,9 +11,10 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     [SerializeField] private GameObject GrenadePoint;
 
     [Header("Weapon")]
-    [SerializeField] GameObject Pistol;
-    [SerializeField] GameObject AR;
-    [SerializeField] GameObject Grenade;
+    public GameObject Pistol;
+    public GameObject AR;
+    public GameObject Grenade;
+
     private int _maxMagazine; // 탄창 Max
     private int _currentMagazine = 30; // 현재 남은 수
 
@@ -56,23 +59,23 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     Vector3 ArmPos;
     Vector3 IdleArmPos;
 
+    PlayerManager _playerManager;
+
+    //============================= 플레이어 무기동작에 관련한 변수목록========================
     public int PlayerCurrentWeapon = 0;
     int Damage;
 
-    private void Awake()
+    
+
+    private void Start()
     {
         WeaponPosCheck();
-        UpgradeWeapon();
-        init();
+        _playerManager = PlayerManager.Instance;
+        GiveBaseWeapon();
     }
-
-    private void init()
-    {
-        IdleArmPos = _gGrenadeSlot.localPosition;
-    }
-
     private void Update()
     {
+        if(_playerManager != null) WeaponChange();
         CheckCurWeapon();
         OnButton();
         VisualSwap();
@@ -85,6 +88,48 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         
     }
 
+    void GiveBaseWeapon()
+    {
+        Pistol = _playerManager.Pistol;
+        GameObject pistol = Instantiate(Pistol, _pistolSlot);
+        pistol.transform.SetParent(_pistolSlot);
+
+        AR = _playerManager.AR;
+        GameObject ar = Instantiate(AR, _aRSlot);
+        ar.transform.SetParent(_aRSlot);
+
+        Grenade = _playerManager.Grenade;
+        GameObject grenade = Instantiate(Grenade, _gGrenadeSlot);
+        grenade.transform.SetParent(_gGrenadeSlot);
+    }
+    
+    void WeaponChange()
+    {
+        /*
+        if (Pistol.GetComponent<WeaponID>().ID == _playerManager.Pistol.GetComponent<WeaponID>().ID && 
+            AR.GetComponent<WeaponID>().ID == _playerManager.AR.GetComponent<WeaponID>().ID &&
+            Grenade.GetComponent<WeaponID>().ID == _playerManager.Grenade.GetComponent<WeaponID>().ID)
+        {
+            Debug.Log($"{Pistol.GetComponent<WeaponID>().ID} == {_playerManager.Pistol.GetComponent<WeaponID>().ID}");
+            return; 
+        }
+        */
+
+        Pistol = _playerManager.Pistol;
+        GameObject pistol = Instantiate(Pistol, _pistolSlot);
+        pistol.transform.SetParent(_pistolSlot);
+
+
+        AR = _playerManager.AR;
+        GameObject ar = Instantiate(AR, _aRSlot);
+        ar.transform.SetParent(_aRSlot);
+
+        Grenade = _playerManager.Grenade;
+        GameObject grenade = Instantiate(Grenade, _gGrenadeSlot);
+        grenade.transform.SetParent(_gGrenadeSlot);
+    }
+    
+    
     // 플레이어가 입력하는 모든 버튼입력을 처리하는 함수
     private void OnButton()
     {
@@ -132,6 +177,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         }
         _basePosGre = _gGrenadeSlot.localPosition;
         _downPosGre = _basePosGre + Vector3.down * 0.7f;
+
+        IdleArmPos = _gGrenadeSlot.localPosition;
     }
 
     // 1,2,3 키입력을 받고 현재 어떤 무기를 선택중인지 저장하는 함수
@@ -201,19 +248,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         );
     }
 
-    // 장착되는 피스톨,AR,수류탄등의 무기를 바꾼다
-    // TODO : 추후에 무기의 종류가 다양해질경우 수정되어야하는 함수입니다.
-    void UpgradeWeapon()
-    {
-        GameObject pistol = Instantiate(Pistol, _pistolSlot);
-        pistol.transform.SetParent(_pistolSlot);
-
-        GameObject ar = Instantiate(AR, _aRSlot);
-        ar.transform.SetParent(_aRSlot);
-
-        GameObject grenade = Instantiate(Grenade, _gGrenadeSlot);
-        grenade.transform.SetParent(_gGrenadeSlot);
-    }
+    
 
     public void Attack(int damage)
     {
@@ -364,6 +399,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
             }
 
             _reLoading = false;
+            _isSwapable = true;
         }
 
 
@@ -375,7 +411,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _isThrowing = true;
         _isSwapable = false;
         // 수류탄 투척시 팔회전 각도 계산
-        ArmPos = _gGrenadeSlot.localPosition + new Vector3(1.3f, 1f, -0.45f);
+        ArmPos = _gGrenadeSlot.localPosition + new Vector3(0.6f, 1.6f, -0.45f);
     }
 
     IEnumerator ThrowArmRotation()
@@ -422,13 +458,16 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         GameObject grenadeObj = Instantiate(Grenade, GrenadePoint.transform.position, GrenadePoint.transform.rotation);
 
         Rigidbody rb = grenadeObj.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
 
         SphereCollider col = grenadeObj.AddComponent<SphereCollider>();
         col.radius = 0.15f;      
         col.isTrigger = false;
 
-        Vector3 throwDir = GrenadePoint.transform.forward * 8f + GrenadePoint.transform.up * 4f;
+        Vector3 throwDir = GrenadePoint.transform.forward * 14f + GrenadePoint.transform.up * 8f;
 
         rb.AddForce(throwDir, ForceMode.Impulse);
     }
+
+    
 }
