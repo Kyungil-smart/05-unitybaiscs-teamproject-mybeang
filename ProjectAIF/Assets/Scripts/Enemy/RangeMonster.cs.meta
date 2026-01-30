@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:ProjectAIF/Assets/Scripts/Enemy/RangeMonster.cs.meta
+guid: 254ea02b966b4e64997362f71ba768bc
+========
+guid: 6ffae6b2f0d55bf4eab8baeeb35abdd8
+>>>>>>>> 862b05f360e5e9aa2a6cd7c0688bc7b23a3faad3:ProjectAIF/Assets/Scenes/ChoigsWorkSpace/GameStart.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

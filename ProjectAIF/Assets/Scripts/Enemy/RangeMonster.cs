@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.Events;
 
-public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
+public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
 {
     private int _currentHp;
     [Tooltip("0이면 Transform의 현재 y값에서 감지, 숫자 바뀌면 y값 보정")] 
@@ -13,11 +14,14 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     [FormerlySerializedAs("_attackAnimationTime")]
     [Tooltip("공격모션 길이에 따라서 타격 순간까지 공격판정 대기함")] 
     [SerializeField] private float _attackAnimationDelay;
-    
+    [Tooltip("공격에 사용하는 투사체 선택")] 
+    [SerializeField] private GameObject _projectile;
+
     private Coroutine _attackCoroutine;
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
-    private Transform _targetTransform;
+    
+    public Transform _targetTransform { get; private set; }
 
     //private PlayerStatus _playerStatus;
     
@@ -48,6 +52,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     private void Init()
     {
         _currentHp = Hp;
+        _projectile.SetActive(false);
     }
     
     public void Attack(int damage)
@@ -59,7 +64,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
         _attackCoroutine = StartCoroutine(AttackCoroutine(damage));
     }
 
-    private int DamageCalc(int attValue)
+    public int DamageCalc(int attValue)
     {
         //TODO : 플레이어/크리스탈 방어력 들어있는 컴포넌트 지정해서 삽입
         int targetDef = 0;
@@ -93,10 +98,11 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
                 yield break;
             }
             
-            (_targetable as IDamageable).TakeDamage(damage);
-            Debug.Log($"{transform.name}: {_targetTransform.name}을/를 {damage} 로 공격");
+            Fire();
+            Debug.Log($"{transform.name}: 발사");
             
             yield return YieldContainer.WaitForSeconds(AttackRate);
+            _projectile.SetActive(false);
         }
     }
 
@@ -107,6 +113,11 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
         Debug.Log($"{transform.name}: {damage} 피격");
 
         if (_currentHp <= 0) Death();
+    }
+
+    private void Fire()
+    {
+        _projectile.SetActive(true);
     }
 
     private void Death()

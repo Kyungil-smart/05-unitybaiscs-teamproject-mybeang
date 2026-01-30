@@ -109,7 +109,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1073741952
   _attackAnimationDelay: 1
-  _animator: {fileID: 266776744421449005}
 --- !u!195 &9170352172763397653
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -144,9 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fef78b414d744d28d1cd7ad5246146f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _crystalTF: {fileID: 0}
-  _playerTF: {fileID: 0}
-  _navMeshAgent: {fileID: 9170352172763397653}
+  _crystalTF: {fileID: 8097869810816761410, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
+  _playerTF: {fileID: 1457970132235383509, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
   _monster: {fileID: 3369057268982050658}
 --- !u!1001 &6775743016021118168
 PrefabInstance:

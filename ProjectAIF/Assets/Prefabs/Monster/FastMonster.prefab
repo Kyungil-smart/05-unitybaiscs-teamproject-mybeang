@@ -109,7 +109,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1073741952
   _attackAnimationDelay: 0.25
-  _animator: {fileID: 9174002997345964999}
 --- !u!195 &4932542204739329217
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -144,9 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fef78b414d744d28d1cd7ad5246146f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _crystalTF: {fileID: 0}
-  _playerTF: {fileID: 0}
-  _navMeshAgent: {fileID: 4932542204739329217}
+  _crystalTF: {fileID: 8097869810816761410, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
+  _playerTF: {fileID: 1457970132235383509, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
   _monster: {fileID: 3502268246150228675}
 --- !u!1001 &8083606507787217047
 PrefabInstance:
@@ -348,10 +346,5 @@ PrefabInstance:
 --- !u!4 &5939684398565228232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
-  m_PrefabInstance: {fileID: 8083606507787217047}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &9174002997345964999 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1116371902028168016, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
   m_PrefabInstance: {fileID: 8083606507787217047}
   m_PrefabAsset: {fileID: 0}
