@@ -26,3 +26,4 @@ public class BasicPistol : MonoBehaviour
 
     public virtual void Fire() { } 
 }
+

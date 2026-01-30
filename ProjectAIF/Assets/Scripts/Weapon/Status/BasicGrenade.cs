@@ -26,7 +26,7 @@ public class BasicGrenade : MonoBehaviour
 
     private bool hasExploded = false; // 두 번 방지
     
-    // 충돌시 폭발
+    // 충돌하면 폭발
     private void OnCollisionEnter(Collision collision)
     {
         // 닿았을 때 터지기

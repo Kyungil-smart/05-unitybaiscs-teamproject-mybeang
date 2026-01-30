@@ -13,7 +13,8 @@ public class Grenade : MonoBehaviour
     // 나중에 혹시모를 '특수 수류탄'
     public virtual void Explode()
     {
-        // 기본 폭발
+        // 폭발
         Debug.Log(EffectRange);
     }
 }
+

@@ -6,7 +6,7 @@ public class BasicAR : Rifle
 {
     private void Start()
     {
-	// 안에 
+	// 안에 조정 가능
     }
 
     private void Update()

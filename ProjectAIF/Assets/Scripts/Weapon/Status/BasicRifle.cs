@@ -26,3 +26,4 @@ public class BasicRifle : MonoBehaviour
 
     public virtual void Fire() { }
 }
+

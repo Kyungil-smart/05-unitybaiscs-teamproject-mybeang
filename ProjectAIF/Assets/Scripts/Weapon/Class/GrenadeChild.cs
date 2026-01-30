@@ -12,7 +12,8 @@ public class BasicGrenade : Grenade
     // 혹시모를 내용을 추가 부분
     private void OnCollisionEnter(Collision collision)
     {
-        Explode(); // 폭발 실행
+        Explode(); // 폭발실행
         Destroy(gameObject); // 사용 후 삭제
     }
 }
+

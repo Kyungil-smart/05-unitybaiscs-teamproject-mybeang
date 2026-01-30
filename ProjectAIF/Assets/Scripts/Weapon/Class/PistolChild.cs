@@ -11,7 +11,7 @@ public class BasicPistol : Pistol
 
     private void Update()
     {
-        // 마우스 클릭 시 발사
+        // 마우스 클릭 발사
         if (Input.GetButtonDown("Fire1"))
         {
             Fire(); 
