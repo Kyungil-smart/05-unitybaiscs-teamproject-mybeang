@@ -24,13 +24,13 @@ public class BasicGrenade : MonoBehaviour
     public float ExplosionForce = 700f; // 폭발
     public GameObject explosionEffectPrefab; // 이펙트
 
-    private bool hasExploded = false; // 두 번 방지
+    private bool _hasExploded = false; // 두 번 방지
     
     // 충돌하면 폭발
     private void OnCollisionEnter(Collision collision)
     {
         // 닿았을 때 터지기
-        if (hasExploded) return; 
+        if (_hasExploded) return; 
         if (collision.gameObject.CompareTag("Player")) return; 
 
         Explode();
@@ -38,7 +38,7 @@ public class BasicGrenade : MonoBehaviour
 
     public virtual void Explode()
     {
-        hasExploded = true; // 터지는 거 체크
+        _hasExploded = true; // 터지는 거 체크
 
         // 이펙트 미리 준비
         if (explosionEffectPrefab != null)
