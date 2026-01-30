@@ -15703,26 +15703,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 791965477}
-    - target: {fileID: 2141923354207550625, guid: 4c7a0c57dfefecf4aaf7c036ffd479dd, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClickLeftSelectBt
-      objectReference: {fileID: 0}
     - target: {fileID: 2886705990085355908, guid: 4c7a0c57dfefecf4aaf7c036ffd479dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 791965477}
-    - target: {fileID: 2886705990085355908, guid: 4c7a0c57dfefecf4aaf7c036ffd479dd, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClickRightSelectBt
-      objectReference: {fileID: 0}
     - target: {fileID: 5244282596397767059, guid: 4c7a0c57dfefecf4aaf7c036ffd479dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 791965477}
-    - target: {fileID: 5244282596397767059, guid: 4c7a0c57dfefecf4aaf7c036ffd479dd, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClickCenterSelectBt
-      objectReference: {fileID: 0}
     - target: {fileID: 6186556129144018144, guid: 4c7a0c57dfefecf4aaf7c036ffd479dd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
