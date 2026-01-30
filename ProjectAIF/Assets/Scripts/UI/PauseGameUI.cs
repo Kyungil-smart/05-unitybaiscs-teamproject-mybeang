@@ -38,14 +38,14 @@ public class PauseGameUI : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("CGS_Map 1"); // 게임 재시작
+        SceneManager.LoadScene(1); // 게임 재시작
     }
 
     public void QuitGame()
     {
         isPaused = false;
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("TitleScene"); // 타이틀 씬으로
+        SceneManager.LoadScene(0); // 타이틀 씬으로
     }
 
     private void StopGame()
