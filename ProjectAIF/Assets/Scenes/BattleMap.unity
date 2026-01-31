@@ -1531,63 +1531,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
   m_PrefabInstance: {fileID: 895448724}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &960901760
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 83.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -34.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 295452162900622139, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-      propertyPath: m_Name
-      value: WarlikeMonster(Orc)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 066535a7a27401346a62a54955ee0408, type: 3}
 --- !u!1001 &991816334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3214,4 +3157,3 @@ SceneRoots:
   - {fileID: 1412424166}
   - {fileID: 1578313740}
   - {fileID: 172378463}
-  - {fileID: 960901760}
