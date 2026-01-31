@@ -14,6 +14,9 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     [Tooltip("공격모션 길이에 따라서 타격 순간까지 공격판정 대기함")] 
     [SerializeField] private float _attackAnimationDelay;
     
+    private bool _isScreaming;
+    private MonsterMovement _monsterMovement;
+    private Coroutine _screamCoroutine;
     private Coroutine _attackCoroutine;
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
@@ -38,6 +41,16 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
             Attack(DamageCalc(Damage));
         }
     }
+    
+    private void OnEnable()
+    {
+        _monsterMovement.OnMovingEvent.AddListener(Scream);
+    }
+    
+    private void OnDisable()
+    {
+        _monsterMovement.OnMovingEvent.RemoveListener(Scream);
+    }
 
     private void OnDrawGizmos()
     {
@@ -48,6 +61,8 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     private void Init()
     {
         _currentHp = Hp;
+        _monsterMovement = GetComponent<MonsterMovement>();
+        
     }
     
     public void Attack(int damage)
@@ -77,6 +92,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
             }
             
             _animator.SetTrigger("SetAttack");
+            AudioManager.Instance.PlaySound(AttackAc);
             Debug.Log($"{gameObject.name} : 공격모션 출력");
 
             if (_targetTransform == null)
@@ -103,7 +119,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     public void TakeDamage(int damage)
     {
         _currentHp -= damage;
-        
+        AudioManager.Instance.PlaySound(DamagedAc);
         Debug.Log($"{transform.name}: {damage} 피격");
 
         if (_currentHp <= 0) Death();
@@ -118,6 +134,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
 
     private IEnumerator DeathCoroutine()
     {
+        AudioManager.Instance.PlaySound(DeadAc);
         _animator.SetTrigger("SetDeath");
         yield return YieldContainer.WaitForSeconds(1f);
         Player.Exp += Exp;
@@ -147,6 +164,21 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
             _targetTransform = null;
             //_targetDef = 0;
             Debug.Log($"{gameObject.name} : 목표 수색중");
+        }
+    }
+
+    private void Scream(bool isMoving)
+    {
+        if (ScreamAc == null || _isScreaming) return;
+        if (isMoving)
+        {
+            _screamCoroutine = AudioManager.Instance.StartPlaySoundContinuous(ScreamAc);
+            _isScreaming = true;
+        }
+        else
+        {
+            AudioManager.Instance.StopPlaySoundContinuous(_screamCoroutine);
+            _isScreaming = false;
         }
     }
     

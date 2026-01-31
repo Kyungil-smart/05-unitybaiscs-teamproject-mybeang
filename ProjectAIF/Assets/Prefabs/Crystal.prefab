@@ -249,7 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0379fcb60ca1f4c9292df58665fe0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlines: []
+  outlines:
+  - {fileID: 5768816440425244149}
   defaultColor: {r: 0.07971382, g: 0, b: 1, a: 1}
   holdColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &5768816440425244149
@@ -265,8 +266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineColor: {r: 0.56030446, g: 1, b: 0.48584908, a: 1}
+  outlineWidth: 2.64
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

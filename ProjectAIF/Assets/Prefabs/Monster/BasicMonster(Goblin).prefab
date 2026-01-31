@@ -3426,7 +3426,7 @@ GameObject:
   - component: {fileID: 7864831627169627841}
   - component: {fileID: -8016320348504053375}
   m_Layer: 6
-  m_Name: BasicMonster
+  m_Name: BasicMonster(Goblin)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PauseGameUI : MonoBehaviour
 {
     [SerializeField] private GameObject _pausePanel;
+    [SerializeField] private AudioClip _uIBt;
 
     private bool isPaused = false;
 
@@ -29,7 +30,8 @@ public class PauseGameUI : MonoBehaviour
 
         if (_pausePanel != null)
             _pausePanel.SetActive(false);
-
+        
+        AudioManager.Instance.PlaySound(_uIBt);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -37,6 +39,7 @@ public class PauseGameUI : MonoBehaviour
     public void RetstartGame()
     {
         isPaused = false;
+        AudioManager.Instance.PlaySound(_uIBt);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(2); // 게임 재시작
     }
@@ -44,6 +47,7 @@ public class PauseGameUI : MonoBehaviour
     public void QuitGame()
     {
         isPaused = false;
+        AudioManager.Instance.PlaySound(_uIBt);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(0); // 타이틀 씬으로
     }

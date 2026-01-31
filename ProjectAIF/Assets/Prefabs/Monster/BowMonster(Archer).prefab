@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6033771536591465119}
   - component: {fileID: 6403168424411031479}
   m_Layer: 6
-  m_Name: BowMonster
+  m_Name: BowMonster(Archer)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

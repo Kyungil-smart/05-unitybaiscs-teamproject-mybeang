@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9170352172763397653}
   - component: {fileID: 5688913138672305816}
   m_Layer: 6
-  m_Name: NimbleMonster
+  m_Name: NimbleMonster(Spider)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

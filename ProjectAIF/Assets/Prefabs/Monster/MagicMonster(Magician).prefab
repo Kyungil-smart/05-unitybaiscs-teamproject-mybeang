@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6783861647833831221}
   - component: {fileID: 8994762844079218669}
   m_Layer: 0
-  m_Name: MagicMonster
+  m_Name: MagicMonster(Magician)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

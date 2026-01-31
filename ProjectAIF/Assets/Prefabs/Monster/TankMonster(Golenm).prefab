@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 939091977173092379}
   - component: {fileID: 7748149156818810268}
   m_Layer: 6
-  m_Name: TankMonster
+  m_Name: TankMonster(Golenm)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

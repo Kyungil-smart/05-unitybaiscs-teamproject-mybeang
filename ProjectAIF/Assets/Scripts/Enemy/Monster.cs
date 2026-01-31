@@ -29,6 +29,12 @@ public abstract class Monster : MonoBehaviour
     [field:SerializeField]public int Exp {get; protected set;}
 
     [SerializeField] public PlayerStatus Player;
+    
+    [SerializeField] public AudioClip ScreamAc;
+    [SerializeField] public AudioClip DeadAc;
+    [SerializeField] public AudioClip AttackAc;
+    [SerializeField] public AudioClip DamagedAc;
+    
     // 그 밖에 연산을 위해 공통으로 갖고 있어야할 변수
     protected Animator _animator;
     public Animator MonsterAnimator => _animator;

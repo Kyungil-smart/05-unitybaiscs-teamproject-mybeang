@@ -518,6 +518,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8477262669837876156, guid: 4add83a87282877428ff364069ce5392, type: 3}
+      propertyPath: _uIBtClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bf22e30e9629f6a46aaf171c2fc3fd5b, type: 3}
+    - target: {fileID: 9156442216090856843, guid: 4add83a87282877428ff364069ce5392, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156442216090856843, guid: 4add83a87282877428ff364069ce5392, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156442216090856843, guid: 4add83a87282877428ff364069ce5392, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.56078434
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -536,6 +552,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297573130570682386, guid: 7cbfbadf346e1a44f8b8c0d739ef25b5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 297573130570682386, guid: 7cbfbadf346e1a44f8b8c0d739ef25b5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 297573130570682386, guid: 7cbfbadf346e1a44f8b8c0d739ef25b5, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.56078434
+      objectReference: {fileID: 0}
     - target: {fileID: 967390842305241125, guid: 7cbfbadf346e1a44f8b8c0d739ef25b5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -624,6 +652,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7760590267175694882, guid: 7cbfbadf346e1a44f8b8c0d739ef25b5, type: 3}
+      propertyPath: _uIBtClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bf22e30e9629f6a46aaf171c2fc3fd5b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
