@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class GrenadeStatus : WeaponStatusBase
 {
@@ -22,6 +23,8 @@ public class GrenadeStatus : WeaponStatusBase
     
     private void Awake()
     {
+        OnCurrentMagazineChanged = new UnityEvent<int, int>();
+        OnTotalMagazineChanged = new UnityEvent<int, int>();
         Damage = 50;
         TotalMagazine = 3;
         CurrentMagazine = TotalMagazine;

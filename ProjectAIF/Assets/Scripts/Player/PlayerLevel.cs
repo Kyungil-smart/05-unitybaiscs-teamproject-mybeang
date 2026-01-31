@@ -56,7 +56,6 @@ public class PlayerLevel : MonoBehaviour
         PendingLevel = 0;
         isOpenAblity = false;
 
-        // TODO(UI): 게임 시작 시 경험치바/레벨 텍스트 초기화 필요
         // - OnExpbarChange(int curExp, int maxExp) -> EXP 게이지/텍스트 갱신 함수 연결
         // - OnLevelChange(int level) -> 레벨 텍스트 갱신 함수 연결
         // UI 갱신 이벤트
@@ -80,9 +79,7 @@ public class PlayerLevel : MonoBehaviour
             TryProcessOneLevelUp();
         }
 
-
         // 최종 경험치 바 갱신
-        // TODO(UI): 경험치 획득 시 경험치바 갱신 필요
         OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
     }
 

@@ -29,6 +29,7 @@ public abstract class Monster : MonoBehaviour
     [field:SerializeField]public int Exp {get; protected set;}
 
     [SerializeField] public PlayerStatus Player;
+    [SerializeField] public PlayerLevel PlayerLevel;
     
     [SerializeField] public AudioClip ScreamAc;
     [SerializeField] public AudioClip DeadAc;

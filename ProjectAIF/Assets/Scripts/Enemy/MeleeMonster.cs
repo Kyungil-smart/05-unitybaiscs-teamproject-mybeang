@@ -137,7 +137,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
         AudioManager.Instance.PlaySound(DeadAc);
         _animator.SetTrigger("SetDeath");
         yield return YieldContainer.WaitForSeconds(1f);
-        Player.Exp += Exp;
+        PlayerLevel.AddExp(Exp);
         Destroy(gameObject);
     }
 

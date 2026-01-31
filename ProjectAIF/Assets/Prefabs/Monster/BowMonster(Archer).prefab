@@ -155,6 +155,9 @@ MonoBehaviour:
   _crystalTF: {fileID: 8097869810816761410, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
   _playerTF: {fileID: 1457970132235383509, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
   _monster: {fileID: 6403168424411031479}
+  OnMovingEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6403168424411031479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +178,11 @@ MonoBehaviour:
   <AttackRange>k__BackingField: 0
   <Exp>k__BackingField: 0
   Player: {fileID: 1026817363066699652, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+  PlayerLevel: {fileID: 2846247506866570063, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+  ScreamAc: {fileID: 0}
+  DeadAc: {fileID: 0}
+  AttackAc: {fileID: 0}
+  DamagedAc: {fileID: 0}
   _detectionHeight: 0
   _attackTargetLayer:
     serializedVersion: 2

@@ -38,11 +38,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
     private IDamageable _targetDamagable;
     private Transform _targetTransform;
-
-    private Vector3[] _velocityArr = new Vector3[3] {Vector3.zero, Vector3.zero, Vector3.zero};
-    private Vector3 _velocityThrow = Vector3.zero;
     
-    private float _smoothTime;
     private bool _reLoading;
     private bool _isThrowing;
     private bool _isTrhowCoroutin;
@@ -90,7 +86,6 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         
         _camera = Camera.main;
         _curWpIndex = 0;
-        _smoothTime = 0.15f;
         _reLoading = false;
         _isThrowing = false;
         _isTrhowCoroutin = false;
