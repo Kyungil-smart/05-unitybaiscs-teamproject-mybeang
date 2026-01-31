@@ -1198,6 +1198,7 @@ MonoBehaviour:
   OnGameOver:
     m_PersistentCalls:
       m_Calls: []
+  IsPaused: 0
   _maxPlayerLevel: 100
   IsCrystalNearPlayer: 1
 --- !u!4 &789013472
@@ -2393,7 +2394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1457970132235383509, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.97
+      value: 2.221
       objectReference: {fileID: 0}
     - target: {fileID: 1457970132235383509, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2430,6 +2431,10 @@ PrefabInstance:
     - target: {fileID: 1705244896542795337, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015272921681521995, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _runSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3038,6 +3043,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -7.92
       objectReference: {fileID: 0}
+    - target: {fileID: 2951883601730034963, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 3217401730327223786, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.95
@@ -3061,6 +3070,18 @@ PrefabInstance:
     - target: {fileID: 3612504385326348195, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 5.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150339859195677784, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153658467879751137, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289753276903238216, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4411644876377771773, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3122,6 +3143,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5789149905902165131, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 6129406377290551391, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350160287936119158, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 6621649397078520277, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.62
@@ -3146,6 +3179,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.11
       objectReference: {fileID: 0}
+    - target: {fileID: 7328451792570866483, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345131822658946837, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 7690238812841964791, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.06
@@ -3161,6 +3202,14 @@ PrefabInstance:
     - target: {fileID: 7828846527432552762, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
       propertyPath: m_LocalPosition.z
       value: -4.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044333891469918004, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229464749024393089, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 9222182551117090408, guid: e03c125398511bd49ba4fb88fb810d2c, type: 3}
       propertyPath: m_LocalPosition.x

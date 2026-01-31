@@ -10,6 +10,7 @@ public class GameManager : SingleTon<GameManager>
     public bool IsGameOver { get; private set; }
     public UnityEvent OnGameOver;
     public int StageNumber { get; private set; }
+    public bool IsPaused;
 
     // Game Objects Data
     // ToDo: Player Data
@@ -26,6 +27,7 @@ public class GameManager : SingleTon<GameManager>
     
     private void Awake()
     {
+        IsPaused = false;
         SingleTonInit();
     }
     

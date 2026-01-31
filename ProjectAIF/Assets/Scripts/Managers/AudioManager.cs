@@ -1,13 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
-public class AudioManager : SingleTon<AudioManager>
+public class AudioManager : MonoBehaviour
 {
     private AudioSource _audioSource;
-    
+    private static AudioManager _instance;
+    public static AudioManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<AudioManager>();
+            }
+            return _instance;
+        }
+    }
     private void Awake()
     {
-        SingleTonInit();
         Init();
     }
 

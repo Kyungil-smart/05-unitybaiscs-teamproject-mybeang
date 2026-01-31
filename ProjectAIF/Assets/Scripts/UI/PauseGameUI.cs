@@ -6,10 +6,9 @@ public class PauseGameUI : MonoBehaviour
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private AudioClip _uIBt;
 
-    private bool isPaused = false;
-
     private void Awake()
     {
+        GameManager.Instance.IsPaused = false;
         if (_pausePanel != null)
             _pausePanel.SetActive(false);
     }
@@ -25,7 +24,7 @@ public class PauseGameUI : MonoBehaviour
     // 진행중인 게임을 돌아가기
     public void ReturnGame()
     {
-        isPaused = false;
+        GameManager.Instance.IsPaused = false;
         Time.timeScale = 1f;
 
         if (_pausePanel != null)
@@ -38,7 +37,7 @@ public class PauseGameUI : MonoBehaviour
 
     public void RetstartGame()
     {
-        isPaused = false;
+        GameManager.Instance.IsPaused = false;
         AudioManager.Instance.PlaySound(_uIBt);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(2); // 게임 재시작
@@ -46,7 +45,7 @@ public class PauseGameUI : MonoBehaviour
 
     public void QuitGame()
     {
-        isPaused = false;
+        GameManager.Instance.IsPaused = false;
         AudioManager.Instance.PlaySound(_uIBt);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(0); // 타이틀 씬으로
@@ -55,14 +54,14 @@ public class PauseGameUI : MonoBehaviour
     private void StopGame()
     {
         //토글
-        isPaused = !isPaused;
+        GameManager.Instance.IsPaused = !GameManager.Instance.IsPaused;
 
-        Time.timeScale = isPaused ? 0f : 1f;
+        Time.timeScale = GameManager.Instance.IsPaused ? 0f : 1f;
 
         if (_pausePanel != null)
-            _pausePanel.SetActive(isPaused);
+            _pausePanel.SetActive(GameManager.Instance.IsPaused);
 
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isPaused;
+        Cursor.lockState = GameManager.Instance.IsPaused ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = GameManager.Instance.IsPaused;
     }
 }
