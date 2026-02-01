@@ -5,6 +5,7 @@ public class PauseGameUI : MonoBehaviour
 {
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private AudioClip _uIBt;
+    [SerializeField] private AudioClip _openPenalSound;
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class PauseGameUI : MonoBehaviour
 
     private void StopGame()
     {
+        AudioManager.Instance.PlaySound(_openPenalSound);
         //토글
         GameManager.Instance.IsPaused = !GameManager.Instance.IsPaused;
 

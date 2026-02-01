@@ -200,6 +200,8 @@ MonoBehaviour:
   _mouseSensitivity: 2
   _minPitch: -45
   _maxPitch: 45
+  _walkSound: {fileID: 8300000, guid: 675d68d1370cd374f879ab98ae225429, type: 3}
+  _jumpSound: {fileID: 8300000, guid: 5c01447f79fc505478c7935e8a474497, type: 3}
 --- !u!136 &2864745500135204832
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -259,6 +261,7 @@ MonoBehaviour:
   _pistolSwapSound: {fileID: 0}
   _rifleSwapSound: {fileID: 8300000, guid: 2d3e9db96ca929a439f7103510396542, type: 3}
   _ReloadSound: {fileID: 8300000, guid: ad8e1c6fb2a6fba499ef5e75a2f613b9, type: 3}
+  _attackSound: {fileID: 8300000, guid: b4c95e1edebe87b47bab5d7d2a090742, type: 3}
 --- !u!114 &1026817363066699652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +290,7 @@ MonoBehaviour:
   MaxMoveSpeed: 15
   MinDefense: 0
   MaxDefense: 5
+  _damagedSound: {fileID: 0}
 --- !u!114 &2846247506866570063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +306,7 @@ MonoBehaviour:
   _startLevel: 1
   _playerLevelupExp: 100
   _playerExpIncrease: 100
+  _levelUpSound: {fileID: 8300000, guid: 9997289a2258247458aece86e54686b9, type: 3}
   OnLevelChange:
     m_PersistentCalls:
       m_Calls: []

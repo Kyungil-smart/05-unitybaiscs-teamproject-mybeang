@@ -6,40 +6,27 @@ namespace Ability
 {
     public abstract class AbilityBase
     {
-        public bool IsUnlucky = false;
         protected string _description;
         public string Description => _description;
-        protected AudioSource _audioSource;
-        protected AudioClip _audioClip;
 
-        public AbilityBase(AudioSource audioSource, AudioClip audioClip)
-        {
-            _audioSource = audioSource;
-            _audioClip = audioClip;
-        }
-        
-        protected void PlaySound()
-        {
-            if (IsUnlucky && _audioClip != null)
-            {
-                _audioSource?.PlayOneShot(_audioClip);
-            }
-        }
-
-        public abstract void ApplyAbility();
+        /// <summary>
+        /// 플레이어 어빌리티 적용
+        /// </summary>
+        /// <returns>Unlucky 면 false, Lucky 면 True</returns>
+        public abstract bool ApplyAbility();
     }
 
     public class Hp : AbilityBase
     {
         private PlayerStatus _playerStatus;
         
-        public Hp(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public Hp(PlayerStatus playerStatus)
         {
             _playerStatus = playerStatus;
             _description = "Maximum HP may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()  
         {
             int value = Random.Range(
                 AbilityManager.Instance.HpRange.min,
@@ -48,13 +35,14 @@ namespace Ability
             value += _playerStatus.TotalHp;
             if (value < _playerStatus.MinHp || value > _playerStatus.MaxHp)
             {
-                return;
+                return true;
             }
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _playerStatus.TotalHp = value;
+            return true;
         }
     }
 
@@ -62,13 +50,13 @@ namespace Ability
     {
         private PlayerStatus _playerStatus;
         
-        public MoveSpeed(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public MoveSpeed(PlayerStatus playerStatus) 
         {
             _playerStatus = playerStatus;
             _description = "Move speed may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             float value = 1 + Random.Range(
                 AbilityManager.Instance.MoveSpeedRange.min,
@@ -77,14 +65,15 @@ namespace Ability
             value *= _playerStatus.MoveSpeed;
             if (value < _playerStatus.MinMoveSpeed || value > _playerStatus.MaxMoveSpeed)
             {
-                return;
+                return true;
             }
 
             if (value < 1)
             {
-                PlaySound();
+                return false;
             }
             _playerStatus.MoveSpeed = value;
+            return true;
         }
     }
 
@@ -92,13 +81,13 @@ namespace Ability
     {
         private PlayerStatus _playerStatus;
         
-        public Defense(PlayerStatus playerStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public Defense(PlayerStatus playerStatus)
         {
             _playerStatus = playerStatus;
             _description = "Defense may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.DefenseRange.min,
@@ -107,14 +96,15 @@ namespace Ability
             value += _playerStatus.Defense;
             if (value < _playerStatus.MinDefense || value > _playerStatus.MaxDefense)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _playerStatus.Defense = value;
+            return true;
         }
     }
     
@@ -122,13 +112,13 @@ namespace Ability
     {
         private PistolStatus _pistolStatusStatus;
         
-        public PistolDamage(PistolStatus pistolStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public PistolDamage(PistolStatus pistolStatusStatus)
         {
             _pistolStatusStatus = pistolStatusStatus;
             _description = "Pistol Damage may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.PistolDamageRange.min,
@@ -137,14 +127,15 @@ namespace Ability
             value += _pistolStatusStatus.Damage;
             if (value < _pistolStatusStatus.MinDamage || value > _pistolStatusStatus.MaxDamage)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _pistolStatusStatus.Damage = value;
+            return true;
         }
     }
     
@@ -152,13 +143,13 @@ namespace Ability
     {
         private PistolStatus _pistolStatusStatus;
         
-        public PistolCriticalChance(PistolStatus pistolStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public PistolCriticalChance(PistolStatus pistolStatusStatus)
         {
             _pistolStatusStatus = pistolStatusStatus;
             _description = "Pistol Critical Chance may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             float value = 1 + Random.Range(
                 AbilityManager.Instance.PistolCriticalChanceRange.min,
@@ -167,14 +158,15 @@ namespace Ability
             value *= _pistolStatusStatus.CriticalChance;
             if (value < _pistolStatusStatus.MinCritChance || value > _pistolStatusStatus.MaxCritChance)
             {
-                return;
+                return true;
             }
 
             if (value < 1)
             {
-                PlaySound();
+                return false;
             }
             _pistolStatusStatus.CriticalChance = value;
+            return true;
         }
     }
     
@@ -182,13 +174,13 @@ namespace Ability
     {
         private PistolStatus _pistolStatusStatus;
         
-        public PistolCriticalDamage(PistolStatus pistolStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public PistolCriticalDamage(PistolStatus pistolStatusStatus)
         {
             _pistolStatusStatus = pistolStatusStatus;
             _description = "Pistol Critical Damage may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.PistolCriticalDamageRange.min,
@@ -197,14 +189,15 @@ namespace Ability
             value += _pistolStatusStatus.Damage;
             if (value < _pistolStatusStatus.MinCritDamage || value > _pistolStatusStatus.MaxCritDamage)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _pistolStatusStatus.Damage = value;
+            return true;
         }
     }
     
@@ -212,13 +205,13 @@ namespace Ability
     {
         private PistolStatus _pistolStatusStatus;
         
-        public PistolMagazine(PistolStatus pistolStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public PistolMagazine(PistolStatus pistolStatusStatus)
         {
             _pistolStatusStatus = pistolStatusStatus;
             _description = "Pistol Magazine may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.PistolMagazineRange.min,
@@ -227,14 +220,15 @@ namespace Ability
             value += _pistolStatusStatus.TotalMagazine;
             if (value < _pistolStatusStatus.MinMagazine || value > _pistolStatusStatus.MaxMagazine)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _pistolStatusStatus.TotalMagazine = value;
+            return true;
         }
     }
     
@@ -242,13 +236,13 @@ namespace Ability
     {
         private RifleStatus _rifleStatusStatus;
         
-        public RifleDamage(RifleStatus rifleStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public RifleDamage(RifleStatus rifleStatusStatus)
         {
             _rifleStatusStatus = rifleStatusStatus;
             _description = "Rifle Damage may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.RifleDamageRange.min,
@@ -257,14 +251,15 @@ namespace Ability
             value += _rifleStatusStatus.Damage;
             if (value < _rifleStatusStatus.MinDamage || value > _rifleStatusStatus.MaxDamage)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _rifleStatusStatus.Damage = value;
+            return true;
         }
     }
     
@@ -272,13 +267,13 @@ namespace Ability
     {
         private RifleStatus _rifleStatusStatus;
         
-        public RifleCriticalChance(RifleStatus rifleStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public RifleCriticalChance(RifleStatus rifleStatusStatus)
         {
             _rifleStatusStatus = rifleStatusStatus;
             _description = "Rifle Critical Chance may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             float value = 1 + Random.Range(
                 AbilityManager.Instance.RifleCriticalChanceRange.min,
@@ -287,14 +282,15 @@ namespace Ability
             value *= _rifleStatusStatus.CriticalChance;
             if (value < _rifleStatusStatus.MinCritChance || value > _rifleStatusStatus.MaxCritChance)
             {
-                return;
+                return true;
             }
 
             if (value < 1)
             {
-                PlaySound();
+                return false;
             }
             _rifleStatusStatus.CriticalChance = value;
+            return true;
         }
     }
     
@@ -302,13 +298,13 @@ namespace Ability
     {
         private RifleStatus _rifleStatusStatus;
         
-        public RifleCriticalDamage(RifleStatus rifleStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public RifleCriticalDamage(RifleStatus rifleStatusStatus)
         {
             _rifleStatusStatus = rifleStatusStatus;
             _description = "Rifle Critical Damage may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.RifleCriticalDamageRange.min,
@@ -317,14 +313,15 @@ namespace Ability
             value += _rifleStatusStatus.CriticalDamage;
             if (value < _rifleStatusStatus.MinCritDamage || value > _rifleStatusStatus.MaxCritDamage)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _rifleStatusStatus.CriticalDamage = value;
+            return true;
         }
     }
     
@@ -332,13 +329,13 @@ namespace Ability
     {
         private RifleStatus _rifleStatusStatus;
         
-        public RifleMagazine(RifleStatus rifleStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public RifleMagazine(RifleStatus rifleStatusStatus)
         {
             _rifleStatusStatus = rifleStatusStatus;
             _description = "Rifle Magazine may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.RifleMagazineRange.min,
@@ -347,14 +344,15 @@ namespace Ability
             value += _rifleStatusStatus.TotalMagazine;
             if (value < _rifleStatusStatus.MinMagazine || value > _rifleStatusStatus.MaxMagazine)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _rifleStatusStatus.TotalMagazine = value;
+            return true;
         }
     }
     
@@ -362,13 +360,13 @@ namespace Ability
     {
         private GrenadeStatus _grenadeStatusStatus;
         
-        public GrenadeDamage(GrenadeStatus grenadeStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public GrenadeDamage(GrenadeStatus grenadeStatusStatus)
         {
             _grenadeStatusStatus = grenadeStatusStatus;
             _description = "Grenade Damage may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.GrenadeDamageRange.min,
@@ -377,27 +375,28 @@ namespace Ability
             value += _grenadeStatusStatus.Damage;
             if (value < _grenadeStatusStatus.MinDamage || value > _grenadeStatusStatus.MaxDamage)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _grenadeStatusStatus.Damage += value;
+            return true;
         }
     }
     public class GrenadeMagazine : AbilityBase
     {
         private GrenadeStatus _grenadeStatusStatus;
         
-        public GrenadeMagazine(GrenadeStatus grenadeStatusStatus, AudioSource aSrc, AudioClip aClip) : base(aSrc, aClip)
+        public GrenadeMagazine(GrenadeStatus grenadeStatusStatus)
         {
             _grenadeStatusStatus = grenadeStatusStatus;
             _description = "Grenade Magazine may change.";
         }
         
-        public override void ApplyAbility()
+        public override bool ApplyAbility()
         {
             int value = Random.Range(
                 AbilityManager.Instance.GrenadeMagazineRange.min,
@@ -406,14 +405,15 @@ namespace Ability
             value += _grenadeStatusStatus.TotalMagazine;
             if (value < _grenadeStatusStatus.MinMagazine || value > _grenadeStatusStatus.MaxMagazine)
             {
-                return;
+                return true;
             }
 
             if (value < 0)
             {
-                PlaySound();
+                return false;
             }
             _grenadeStatusStatus.TotalMagazine += value;
+            return true;
         }
     }
 }

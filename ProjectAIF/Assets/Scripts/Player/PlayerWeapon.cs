@@ -46,6 +46,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
     [SerializeField] private AudioClip _ReloadSound;
     
+    [SerializeField] private AudioClip _attackSound;
+    
     private IDamageable _targetDamagable;
     private Transform _targetTransform;
     
@@ -171,6 +173,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     public void Attack(int damage)
     {
         _isSwapable = false;
+        AudioManager.Instance.PlaySound(_attackSound);
         if (_curWpIndex < 2)
         {
             if (_weapons[_curWpIndex].CurrentMagazine <= 0)

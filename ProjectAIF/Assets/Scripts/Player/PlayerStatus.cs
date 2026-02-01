@@ -38,6 +38,9 @@ public class PlayerStatus : MonoBehaviour, IDamageable, ITargetable
     public int MaxMoveSpeed;
     public int MinDefense;
     public int MaxDefense;
+    
+    [Header("Sounds")]
+    [SerializeField] private AudioClip _damagedSound;
 
     private void Awake()
     {
@@ -48,6 +51,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable, ITargetable
     public void TakeDamage(int damage)
     {
         CurrentHp -= damage;
+        AudioManager.Instance.PlaySound(_damagedSound);
         if (CurrentHp <= 0)
         {
             PlayerManager.Instance.IsDead = true;

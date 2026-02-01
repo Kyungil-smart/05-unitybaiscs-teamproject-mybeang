@@ -1317,9 +1317,11 @@ MonoBehaviour:
     min: -1
     max: 1
   _playerStatus: {fileID: 1590381679}
-  pistolStatusStatus: {fileID: 0}
-  rifleStatusStatus: {fileID: 0}
-  grenadeStatusStatus: {fileID: 0}
+  pistolStatusStatus: {fileID: 594676766}
+  rifleStatusStatus: {fileID: 890688404}
+  grenadeStatusStatus: {fileID: 1139509833}
+  _disSound: {fileID: 8300000, guid: e4a2b1998a75ff9438009ef0bbd24947, type: 3}
+  _incSound: {fileID: 8300000, guid: 4d54b3032b630be41869b5fb81b867f9, type: 3}
   _leftAbilityText: {fileID: 450863340}
   _centerAbilityText: {fileID: 450863339}
   _rightAbilityText: {fileID: 450863338}
@@ -1500,6 +1502,7 @@ MonoBehaviour:
   _playerLevel: {fileID: 1590381681}
   _abilityPanel: {fileID: 450863341}
   _pauseGameWhileSelecting: 1
+  _popUpSound: {fileID: 8300000, guid: 11d0a47a0de9c44418c776b8eef4cb7a, type: 3}
 --- !u!4 &877886387
 Transform:
   m_ObjectHideFlags: 0
@@ -1954,6 +1957,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2464071977496999976, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: _uIBt
+      value: 
+      objectReference: {fileID: 8300000, guid: bf22e30e9629f6a46aaf171c2fc3fd5b, type: 3}
+    - target: {fileID: 2464071977496999976, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: _openPenalSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0684ae5497742024e947aa3b15883258, type: 3}
     - target: {fileID: 2669356983189600888, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: _playerLevel
       value: 
@@ -2415,14 +2426,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1397382285296847526, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 1397382285296847526, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.431
-      objectReference: {fileID: 0}
     - target: {fileID: 1457970132235383509, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 155.65
@@ -2467,18 +2470,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3808155420964871707, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.104
-      objectReference: {fileID: 0}
-    - target: {fileID: 5390310269833549545, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8719255078200078598, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-      propertyPath: _ReloadSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ad8e1c6fb2a6fba499ef5e75a2f613b9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -14,10 +16,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _minPitch = -80f;
     [SerializeField] private float _maxPitch = 80f;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip _walkSound;
+    [SerializeField] private AudioClip _jumpSound;
+    
     private Rigidbody _rb;
     private Vector3 _dir = Vector3.zero;
     private float _pitch;           // 카메라 상하 각도 누적
     private bool _isJumping;
+    private bool _isWalking;
+    private Coroutine _walkCoroutine;
 
     private void Awake()
     {
@@ -30,6 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         // FPS처럼 마우스 커서 잠그기
         CursorLook();
+        StartCoroutine(PlayWalkSoundCoroutine());
     }
 
     private void Update()
@@ -41,7 +50,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             CursorLook();
-            MouseLook();    
+            MouseLook();
         }
     }
 
@@ -58,6 +67,7 @@ public class PlayerController : MonoBehaviour
         }
         Jump();
         MoveRigidbody();
+        Debug.Log(_isWalking);
     }
 
     private void CursorLook()
@@ -90,11 +100,27 @@ public class PlayerController : MonoBehaviour
 
     private void MoveRigidbody()
     {
+        _dir = Vector3.zero;
         _dir.x = Input.GetAxisRaw("Horizontal");
         _dir.z = Input.GetAxisRaw("Vertical");
-        
+        if (_dir == Vector3.zero)
+        {
+            _isWalking = false;
+            return;
+        }
         Vector3 moveDir = transform.TransformDirection(_dir);
         _rb.MovePosition(transform.position + moveDir.normalized * (_moveSpeed * Time.deltaTime));
+        _isWalking = true;
+    }
+
+    private IEnumerator PlayWalkSoundCoroutine()
+    {
+        while (true)
+        {
+            if (_isWalking) AudioManager.Instance.PlaySound(_walkSound);
+            yield return YieldContainer.WaitForSeconds((1f / _moveSpeed) * 10f);
+        }
+        yield return null;
     }
     
     private void Jump()
@@ -102,6 +128,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && !_isJumping)
         {
             _isJumping = true;
+            AudioManager.Instance.PlaySound(_jumpSound);
             _rb.AddForce(transform.up * 7, ForceMode.Impulse);
         }
     }

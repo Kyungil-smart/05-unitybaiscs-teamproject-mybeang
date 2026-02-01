@@ -35,8 +35,9 @@ public class AbilityManager : SingleTon<AbilityManager>
     [SerializeField] private GrenadeStatus grenadeStatusStatus;
     
     // Audio
-    AudioSource _audioSource;
-    AudioClip _audioClip;
+    private AudioSource _audioSource;
+    [SerializeField] AudioClip _disSound;
+    [SerializeField] AudioClip _incSound;
     
     // Data 
     public Dictionary<AbilityName, Ability.AbilityBase> AbilityData = new ();
@@ -65,32 +66,19 @@ public class AbilityManager : SingleTon<AbilityManager>
     private void InitAbilityData()
     {
         AbilityData.Clear();
-        AbilityData.Add(AbilityName.Hp, 
-            new Ability.Hp(_playerStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.MoveSpeed, 
-            new Ability.MoveSpeed(_playerStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.Defense, 
-            new Ability.Defense(_playerStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.PistolDamage, 
-            new Ability.PistolDamage(pistolStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.PistolCriticalChance, 
-            new Ability.PistolCriticalChance(pistolStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.PistolCriticalDamage, 
-            new Ability.PistolCriticalDamage(pistolStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.PistolMagazine, 
-            new Ability.PistolMagazine(pistolStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.RifleDamage, 
-            new Ability.RifleDamage(rifleStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.RifleCriticalChance, 
-            new Ability.RifleCriticalChance(rifleStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.RifleCriticalDamage, 
-            new Ability.RifleCriticalDamage(rifleStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.RifleMagazine, 
-            new Ability.RifleMagazine(rifleStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.GrenadeMagazine, 
-            new Ability.GrenadeMagazine(grenadeStatusStatus, _audioSource, _audioClip));
-        AbilityData.Add(AbilityName.GrenadeDamage, 
-            new Ability.GrenadeDamage(grenadeStatusStatus, _audioSource, _audioClip));
+        AbilityData.Add(AbilityName.Hp, new Ability.Hp(_playerStatus));
+        AbilityData.Add(AbilityName.MoveSpeed, new Ability.MoveSpeed(_playerStatus));
+        AbilityData.Add(AbilityName.Defense, new Ability.Defense(_playerStatus));
+        AbilityData.Add(AbilityName.PistolDamage, new Ability.PistolDamage(pistolStatusStatus));
+        AbilityData.Add(AbilityName.PistolCriticalChance, new Ability.PistolCriticalChance(pistolStatusStatus));
+        AbilityData.Add(AbilityName.PistolCriticalDamage, new Ability.PistolCriticalDamage(pistolStatusStatus));
+        AbilityData.Add(AbilityName.PistolMagazine, new Ability.PistolMagazine(pistolStatusStatus));
+        AbilityData.Add(AbilityName.RifleDamage, new Ability.RifleDamage(rifleStatusStatus));
+        AbilityData.Add(AbilityName.RifleCriticalChance, new Ability.RifleCriticalChance(rifleStatusStatus));
+        AbilityData.Add(AbilityName.RifleCriticalDamage, new Ability.RifleCriticalDamage(rifleStatusStatus));
+        AbilityData.Add(AbilityName.RifleMagazine, new Ability.RifleMagazine(rifleStatusStatus));
+        AbilityData.Add(AbilityName.GrenadeMagazine, new Ability.GrenadeMagazine(grenadeStatusStatus));
+        AbilityData.Add(AbilityName.GrenadeDamage, new Ability.GrenadeDamage(grenadeStatusStatus));
     }
 
     /// <summary>
@@ -101,9 +89,20 @@ public class AbilityManager : SingleTon<AbilityManager>
     {
         if (_isSelectAbility)
         {
-            CurrentAbilityData[_selectedAbilityName].ApplyAbility();
+            PlaySound(CurrentAbilityData[_selectedAbilityName].ApplyAbility());
             Debug.Log("Applying Ability: " + _selectedAbilityName);
             // TODO: Apply 후 본래의 게임 화면으로 돌아가는 내용 추가 구현 필요    
+        }
+    }
+    
+    private void PlaySound(bool isLucky)
+    {
+        if (isLucky && _incSound != null)
+        {
+            _audioSource?.PlayOneShot(_incSound);
+        } else if (_disSound != null)
+        {
+            _audioSource?.PlayOneShot(_disSound);
         }
     }
     

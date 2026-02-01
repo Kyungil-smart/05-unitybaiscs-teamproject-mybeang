@@ -9,6 +9,8 @@ public class AbilityUIController : MonoBehaviour
 
     [SerializeField] private bool _pauseGameWhileSelecting = true;
 
+    [SerializeField] private AudioClip _popUpSound;
+    
     private void Awake()
     {
         if(_playerLevel == null)
@@ -39,12 +41,12 @@ public class AbilityUIController : MonoBehaviour
     {
         Debug.Log("[AbilityUIController] OpenAbilityUI called");
         Debug.Log($"[AbilityUIController] OpenAbilityUI param level = {level}");
-
+        
         AbilityManager.Instance.ReadyToThreeAbilities();
-
         if(_abilityPanel != null)
         {
             _abilityPanel.enabled = true;
+            AudioManager.Instance.PlaySound(_popUpSound);
         }
         if (_pauseGameWhileSelecting)
         {

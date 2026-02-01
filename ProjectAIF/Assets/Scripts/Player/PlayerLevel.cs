@@ -15,6 +15,9 @@ public class PlayerLevel : MonoBehaviour
     [Tooltip("증가량")]
     [SerializeField] private int _playerExpIncrease;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip _levelUpSound;
+    
     //레벨
     public int CurrentLevel { get; private set; }
     //현재 누적된 경험치
@@ -33,14 +36,6 @@ public class PlayerLevel : MonoBehaviour
 
     // 어빌리티 선택창이 열려있는 동안 true (열려있으면 다음 레벨업 진행 X)
     public bool isOpenAblity { get; private set; }
-
-    // private void Awake()
-    // {
-    //     // 인스펙터에서 이벤트를 비워둬도 NullReference 안 나게 초기화
-    //     if (OnLevelChange == null) OnLevelChange = new UnityEvent<int>();
-    //     if (OnExpbarChange == null) OnExpbarChange = new UnityEvent<int, int>();
-    //     if (OnLevelUp == null) OnLevelUp = new UnityEvent<int>();
-    // }
 
     private void Start()
     {
@@ -130,7 +125,7 @@ public class PlayerLevel : MonoBehaviour
         // 레벨업 1번 적용
         CurrentExp -= CurrentMaxExp;
         CurrentLevel++;
-
+        AudioManager.Instance.PlaySound(_levelUpSound);
         CurrentMaxExp = ExpCalc(CurrentLevel);
 
         // Pending 다시 계산
