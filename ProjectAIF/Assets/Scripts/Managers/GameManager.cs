@@ -11,6 +11,19 @@ public class GameManager : SingleTon<GameManager>
     public UnityEvent OnGameOver;
     public int StageNumber { get; private set; }
     public bool IsPaused;
+    private bool _isGameStart;
+    private int _timerSeconds;
+    public UnityEvent OnTimerSecondsChanged = new UnityEvent();
+    public int TimerSeconds
+    {
+        get { return _timerSeconds; }
+        set
+        {
+            _timerSeconds = value;
+            OnTimerSecondsChanged?.Invoke();
+        }
+    }
+    public int GameTime;
 
     // Game Objects Data
     // ToDo: Player Data
@@ -24,27 +37,63 @@ public class GameManager : SingleTon<GameManager>
     // 결정하게 됨.
     public bool IsCrystalNearPlayer = true;
 
-    
     private void Awake()
     {
         IsPaused = false;
+        IsGameOver = false;
+        GameTime = 600;
+        _isGameStart = false;
         SingleTonInit();
+    }
+
+    private void Update()
+    {
+        // 한 게임당 시간 600 초
+        if (_isGameStart && _timerSeconds <= 0)
+        {
+            StartCoroutine(WaitSomeSeconds());
+            GameClear();
+        }
     }
     
     public void GameOver()
     {
         IsGameOver = true;
+        StopAllCoroutines();
         SceneManager.LoadScene(3);
         OnGameOver?.Invoke();
     }
 
     public void GameClear()
     {
+        StopAllCoroutines();
         SceneManager.LoadScene(3);
     }
 
     public void GoToNextStage()
     {
         StageNumber++;
+    }
+
+    public void GameStart()
+    {
+        TimerSeconds = GameTime;
+        _isGameStart = true;
+        StartCoroutine(GameTimer());
+    }
+    
+    private IEnumerator GameTimer()
+    {
+        while (!IsGameOver)
+        {
+            yield return YieldContainer.WaitForRealSeconds(1f);
+            if (!IsPaused) TimerSeconds--;
+        }
+        yield return null;
+    }
+
+    private IEnumerator WaitSomeSeconds()
+    {
+        yield return YieldContainer.WaitForRealSeconds(1f);
     }
 }

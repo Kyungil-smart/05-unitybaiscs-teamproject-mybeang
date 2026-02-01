@@ -1227,6 +1227,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   IsPaused: 0
+  OnTimerSecondsChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  GameTime: 0
   _maxPlayerLevel: 100
   IsCrystalNearPlayer: 1
 --- !u!4 &789013472
@@ -2471,6 +2475,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8719255078200078598, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _ReloadSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ad8e1c6fb2a6fba499ef5e75a2f613b9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

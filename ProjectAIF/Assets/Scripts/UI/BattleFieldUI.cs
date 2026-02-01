@@ -17,6 +17,7 @@ public class BattleFieldUI : MonoBehaviour
     [SerializeField] private Image _expBarFill;           // ExpBarFill
     [SerializeField] private TextMeshProUGUI _expText;    // ExpText (선택)
     [SerializeField] private TextMeshProUGUI _levelText;
+    [SerializeField] private TextMeshProUGUI _remainTimeText;
 
     [Header("Weapon")]
     [SerializeField] private PistolStatus _pistolStatus;
@@ -30,14 +31,16 @@ public class BattleFieldUI : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.GameStart();
         SetHp(_playerStatus.CurrentHp, _playerStatus.TotalHp);
         SetPistolMegazine(_pistolStatus.CurrentMagazine, _pistolStatus.TotalMagazine);
         SetRifleMegazine(_rifleStatus.CurrentMagazine, _rifleStatus.TotalMagazine);
         SetGrenadeMegazine(_grenadeStatus.CurrentMagazine, _grenadeStatus.TotalMagazine);
     }
-    
+
     private void OnEnable()
     {
+        GameManager.Instance.OnTimerSecondsChanged.AddListener(SetRemainTime);
         _playerStatus.OnCurrentHpChanged.AddListener(SetHp);
         _playerStatus.OnTotalHpChanged.AddListener(SetHp);
         _playerLevel.OnExpbarChange.AddListener(SetExp);
@@ -52,6 +55,7 @@ public class BattleFieldUI : MonoBehaviour
 
     private void OnDisable()
     {
+        GameManager.Instance.OnTimerSecondsChanged.RemoveListener(SetRemainTime);
         _playerStatus.OnCurrentHpChanged.RemoveListener(SetHp);
         _playerStatus.OnTotalHpChanged.RemoveListener(SetHp);
         _playerLevel.OnExpbarChange.RemoveListener(SetExp);
@@ -106,5 +110,12 @@ public class BattleFieldUI : MonoBehaviour
     public void SetGrenadeMegazine(int current, int max)
     {
         _grenadeText.text = $"Grenade: {current} / {max}";
+    }
+
+    private void SetRemainTime()
+    {
+        int t = GameManager.Instance.TimerSeconds;
+        string timer = $"{(t / 60):D2}:{(t % 60):D2}"; 
+        _remainTimeText.text = timer;
     }
 }

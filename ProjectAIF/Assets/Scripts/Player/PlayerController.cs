@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !_isJumping)
+        if (Input.GetKey(KeyCode.Space) && !_isJumping)
         {
             _isJumping = true;
             _rb.AddForce(transform.up * 7, ForceMode.Impulse);

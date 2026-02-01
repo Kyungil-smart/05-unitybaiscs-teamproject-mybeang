@@ -258,6 +258,7 @@ MonoBehaviour:
   _grenadeAttackSound: {fileID: 0}
   _pistolSwapSound: {fileID: 0}
   _rifleSwapSound: {fileID: 8300000, guid: 2d3e9db96ca929a439f7103510396542, type: 3}
+  _ReloadSound: {fileID: 8300000, guid: ad8e1c6fb2a6fba499ef5e75a2f613b9, type: 3}
 --- !u!114 &1026817363066699652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +577,7 @@ Transform:
   m_GameObject: {fileID: 5929583391565113436}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.104, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -797,7 +798,7 @@ Transform:
   m_GameObject: {fileID: 8628022921040327192}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13, y: 1.05, z: 0.19}
+  m_LocalPosition: {x: 0.015, y: 1.05, z: 0.431}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
