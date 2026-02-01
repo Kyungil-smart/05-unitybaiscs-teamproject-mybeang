@@ -8,6 +8,8 @@ public class EndingUIController : MonoBehaviour
     [SerializeField] GameObject _gameClearUI;
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         if (GameManager.Instance.IsGameOver)
         {
             _gameOverUI.gameObject.SetActive(true);

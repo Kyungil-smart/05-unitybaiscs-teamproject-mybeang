@@ -257,7 +257,7 @@ MonoBehaviour:
     m_Bits: 64
   _pistolAttackSound: {fileID: 0}
   _rifleAttackSound: {fileID: 8300000, guid: f552514d7e35bbf488fed4d35d98be25, type: 3}
-  _grenadeAttackSound: {fileID: 0}
+  _grenadeAttackSound: {fileID: 8300000, guid: f730b1270553ff54f8f5c6cd70fb3b98, type: 3}
   _pistolSwapSound: {fileID: 0}
   _rifleSwapSound: {fileID: 8300000, guid: 2d3e9db96ca929a439f7103510396542, type: 3}
   _ReloadSound: {fileID: 8300000, guid: ad8e1c6fb2a6fba499ef5e75a2f613b9, type: 3}

@@ -67,7 +67,6 @@ public class PlayerController : MonoBehaviour
         }
         Jump();
         MoveRigidbody();
-        Debug.Log(_isWalking);
     }
 
     private void CursorLook()
@@ -137,7 +136,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Debug.Log($"OnCollisionEnter");
             _isJumping = false;
         }
     }

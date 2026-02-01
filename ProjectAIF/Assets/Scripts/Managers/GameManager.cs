@@ -12,6 +12,7 @@ public class GameManager : SingleTon<GameManager>
     public int StageNumber { get; private set; }
     public bool IsPaused;
     private bool _isGameStart;
+    private bool _isGameOverScene;
     private int _timerSeconds;
     public UnityEvent OnTimerSecondsChanged = new UnityEvent();
     public int TimerSeconds
@@ -41,15 +42,16 @@ public class GameManager : SingleTon<GameManager>
     {
         IsPaused = false;
         IsGameOver = false;
-        GameTime = 600;
+        GameTime = 10;
         _isGameStart = false;
+        _isGameOverScene = false;
         SingleTonInit();
     }
 
     private void Update()
     {
         // 한 게임당 시간 600 초
-        if (_isGameStart && _timerSeconds <= 0)
+        if (_isGameStart && _timerSeconds <= 0 && !_isGameOverScene)
         {
             StartCoroutine(WaitSomeSeconds());
             GameClear();
@@ -59,6 +61,7 @@ public class GameManager : SingleTon<GameManager>
     public void GameOver()
     {
         IsGameOver = true;
+        _isGameOverScene = true;
         StopAllCoroutines();
         SceneManager.LoadScene(3);
         OnGameOver?.Invoke();
@@ -67,6 +70,7 @@ public class GameManager : SingleTon<GameManager>
     public void GameClear()
     {
         StopAllCoroutines();
+        _isGameOverScene = true;
         SceneManager.LoadScene(3);
     }
 
