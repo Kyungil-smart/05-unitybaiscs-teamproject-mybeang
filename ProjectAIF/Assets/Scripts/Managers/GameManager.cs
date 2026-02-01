@@ -42,7 +42,7 @@ public class GameManager : SingleTon<GameManager>
     {
         IsPaused = false;
         IsGameOver = false;
-        GameTime = 10;
+        GameTime = 600;
         _isGameStart = false;
         _isGameOverScene = false;
         SingleTonInit();
