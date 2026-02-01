@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
 {
@@ -17,6 +16,9 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     [Tooltip("공격에 사용하는 투사체 선택")] 
     [SerializeField] private GameObject _projectile;
 
+    private bool _isScreaming;
+    private MonsterMovement _monsterMovement;
+    private Coroutine _screamCoroutine;
     private Coroutine _attackCoroutine;
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
@@ -42,6 +44,16 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
             Attack(DamageCalc(Damage));
         }
     }
+    
+    private void OnEnable()
+    {
+        _monsterMovement.OnMovingEvent.AddListener(Scream);
+    }
+    
+    private void OnDisable()
+    {
+        _monsterMovement.OnMovingEvent.RemoveListener(Scream);
+    }
 
     private void OnDrawGizmos()
     {
@@ -53,6 +65,25 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         _currentHp = Hp;
         _projectile.SetActive(false);
+        _monsterMovement = GetComponent<MonsterMovement>();
+        _animator = GetComponentInChildren<Animator>();
+        _playerLevel = GameObject.FindWithTag("Player").GetComponent<PlayerLevel>();
+    }
+    
+    private void Scream(bool isMoving)
+    {
+        if (ScreamAc == null || _isScreaming) return;
+        if (isMoving)
+        {
+            float screamInterval = Random.Range(3f, 15f);
+            _screamCoroutine = AudioManager.Instance.StartPlaySoundContinuous(ScreamAc, screamInterval);
+            _isScreaming = true;
+        }
+        else
+        {
+            AudioManager.Instance.StopPlaySoundContinuous(_screamCoroutine);
+            _isScreaming = false;
+        }
     }
     
     public void Attack(int damage)
@@ -131,7 +162,7 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         _animator.SetTrigger("SetDeath");
         yield return YieldContainer.WaitForSeconds(1f);
-        PlayerLevel.AddExp(Exp);
+        _playerLevel.AddExp(Exp);
         Destroy(gameObject);
     }
 

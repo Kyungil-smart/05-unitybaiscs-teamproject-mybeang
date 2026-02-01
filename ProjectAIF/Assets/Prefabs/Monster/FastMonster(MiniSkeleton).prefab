@@ -61,7 +61,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &4057882078391396200
@@ -103,13 +103,14 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 15
   <AttackRate>k__BackingField: 1.5
   <AttackRange>k__BackingField: 3
-  <Exp>k__BackingField: 0
+  <Exp>k__BackingField: 10
   Player: {fileID: 1026817363066699652, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
   PlayerLevel: {fileID: 2846247506866570063, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-  ScreamAc: {fileID: 0}
-  DeadAc: {fileID: 0}
-  AttackAc: {fileID: 0}
-  DamagedAc: {fileID: 0}
+  ScreamAc: {fileID: 8300000, guid: 7729c927c5610d249b105dd45bfb0e42, type: 3}
+  DeadAc: {fileID: 8300000, guid: 7108f7549a1c3b741a4378fd886c6637, type: 3}
+  AttackAc: {fileID: 8300000, guid: 8a67cd189abcc48428d89ef8f72385f6, type: 3}
+  DamagedAc: {fileID: 8300000, guid: af392a5a179d9ff4bad71d633488752a, type: 3}
+  _animator: {fileID: 0}
   _detectionHeight: 1
   _attackTargetLayer:
     serializedVersion: 2
@@ -124,7 +125,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1771822946396319837}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -133,7 +134,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

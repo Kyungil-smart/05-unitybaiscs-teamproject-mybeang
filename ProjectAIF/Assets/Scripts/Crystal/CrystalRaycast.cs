@@ -9,6 +9,10 @@ public class CrystalRaycast : MonoBehaviour
     [Header("Hold Settings")]
     [SerializeField] private float _holdSeconds = 5f;
 
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip _holdSound;
+    [SerializeField] private AudioClip _skillSound;
+    
     private Camera _cam;
     private CrystalOutline _current;
     private CrystalSkill _currentSkill;
@@ -54,15 +58,21 @@ public class CrystalRaycast : MonoBehaviour
         if (Input.GetKey(KeyCode.F))
         {
             _current.SetHoldVisual(true);
+            AudioManager.Instance.PlaySound(_holdSound);
             holdTimer += Time.deltaTime;
 
             if (holdTimer >= _holdSeconds)
             {
                 if (_currentSkill != null)
-                    _currentSkill.Activate(); //맵 전체 몬스터 제거
+                {
+                    AudioManager.Instance.PlaySound(_skillSound);
+                    //맵 전체 몬스터 제거
+                    _currentSkill.Activate(); 
+                } 
 
                 holdTimer = 0f;
-                _current.SetHoldVisual(false); // 발동 후 흰색으로 복귀(원하면 유지로 바꿔도 됨)
+                // 발동 후 흰색으로 복귀(원하면 유지로 바꿔도 됨)
+                _current.SetHoldVisual(false); 
             }
         }
         else

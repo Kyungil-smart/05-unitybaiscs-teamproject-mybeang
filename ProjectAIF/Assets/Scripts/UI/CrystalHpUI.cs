@@ -31,6 +31,5 @@ public class CrystalHpUI : MonoBehaviour
     private void RefreshUI()
     {
         _hpBar.fillAmount = _crystal.CurrentHp / (float)_crystal.MaxHp;
-        Debug.Log(_crystal.CurrentHp);
     }
 }

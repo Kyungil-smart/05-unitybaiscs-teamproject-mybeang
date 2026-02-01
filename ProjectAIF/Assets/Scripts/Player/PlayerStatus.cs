@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerStatus : MonoBehaviour, IDamageable
+public class PlayerStatus : MonoBehaviour, IDamageable, ITargetable
 {
     [Header("Status")]
     [SerializeField] private int _currentHp;
@@ -54,4 +54,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable
             GameManager.Instance.GameOver();
         }
     }
+
+    public void SetTarget() { }
+
+    public void UnsetTarget() { }
 }

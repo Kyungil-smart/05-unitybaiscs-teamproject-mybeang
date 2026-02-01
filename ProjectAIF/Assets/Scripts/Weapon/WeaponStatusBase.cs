@@ -6,7 +6,7 @@ public abstract class WeaponStatusBase : MonoBehaviour
     [Header("기본 성능")]
     public int Damage;
     [SerializeField] private int _currentMagazine;
-    public UnityEvent<int, int> OnCurrentMagazineChanged;
+    public UnityEvent<int, int> OnCurrentMagazineChanged = new UnityEvent<int, int>();
     public int CurrentMagazine
     {
         get { return _currentMagazine; }
@@ -17,7 +17,7 @@ public abstract class WeaponStatusBase : MonoBehaviour
         }
     }
     [SerializeField] private int _totalMagazine;
-    public UnityEvent<int, int> OnTotalMagazineChanged;
+    public UnityEvent<int, int> OnTotalMagazineChanged = new UnityEvent<int, int>();
     public int TotalMagazine
     {
         get { return _totalMagazine; }

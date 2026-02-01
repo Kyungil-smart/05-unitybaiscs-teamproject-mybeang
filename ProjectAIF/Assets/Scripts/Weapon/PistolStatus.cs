@@ -23,8 +23,6 @@ public class PistolStatus : WeaponStatusBase
     
     private void Awake()
     {
-        OnCurrentMagazineChanged = new UnityEvent<int, int>();
-        OnTotalMagazineChanged = new UnityEvent<int, int>();
         Damage = 5;
         TotalMagazine = 7;
         CurrentMagazine = TotalMagazine;

@@ -194,7 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28026da13ac3d4b439c4caa1d3a207c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _walkSpeed: 5
+  _runSpeed: 10
   _cameraTr: {fileID: 1397382285296847526}
   _mouseSensitivity: 2
   _minPitch: -45
@@ -252,6 +253,11 @@ MonoBehaviour:
   _attackTargetLayer:
     serializedVersion: 2
     m_Bits: 64
+  _pistolAttackSound: {fileID: 0}
+  _rifleAttackSound: {fileID: 8300000, guid: f552514d7e35bbf488fed4d35d98be25, type: 3}
+  _grenadeAttackSound: {fileID: 0}
+  _pistolSwapSound: {fileID: 0}
+  _rifleSwapSound: {fileID: 8300000, guid: 2d3e9db96ca929a439f7103510396542, type: 3}
 --- !u!114 &1026817363066699652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,12 +270,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0d438a92f49994c9760d53cd87bffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHp: 100
-  TotalHp: 100
+  _currentHp: 100
+  OnCurrentHpChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _totalHp: 100
+  OnTotalHpChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MoveSpeed: 10
   Defense: 0
-  Exp: 0
-  Level: 1
   MinHp: 50
   MaxHp: 100
   MinMoveSpeed: 7
@@ -314,6 +324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxDistance: 8
   _holdSeconds: 5
+  _holdSound: {fileID: 8300000, guid: 9bad68323ced3444c8740c59f666dd6f, type: 3}
+  _skillSound: {fileID: 8300000, guid: f2bf62fae3d743c4b926583bb2cb38b3, type: 3}
 --- !u!1 &1843000932351162937
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +813,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6470778968985763865}
     m_Modifications:
+    - target: {fileID: -4840179865428048159, guid: 5a2bf64643e1fb0439ea39c0fc9b00ff, type: 3}
+      propertyPath: _explodeSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 536210f557417ee46941a14dc423bebb, type: 3}
+    - target: {fileID: -4840179865428048159, guid: 5a2bf64643e1fb0439ea39c0fc9b00ff, type: 3}
+      propertyPath: ExplosionEffectPrefab
+      value: 
+      objectReference: {fileID: 4994997792314849709, guid: 3dd50886582244645be87adb42aa8528, type: 3}
     - target: {fileID: 1698056052845220, guid: 5a2bf64643e1fb0439ea39c0fc9b00ff, type: 3}
       propertyPath: m_Name
       value: Grenade
@@ -909,6 +929,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6470778968985763865}
     m_Modifications:
+    - target: {fileID: -1810111812126477280, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: _totalMagazine
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -1810111812126477280, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: _currentMagazine
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1117582899397640, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_Name
       value: Rifle
@@ -987,6 +1015,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6470778968985763865}
     m_Modifications:
+    - target: {fileID: -834989092353826985, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: _totalMagazine
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -834989092353826985, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: _currentMagazine
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: m_Name
       value: Pistol

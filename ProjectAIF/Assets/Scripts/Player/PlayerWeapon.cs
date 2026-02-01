@@ -36,6 +36,16 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     [SerializeField] private float _attackRange;
     [SerializeField] private LayerMask _attackTargetLayer;
 
+    [Header("Sounds")] 
+    [SerializeField] private AudioClip _pistolAttackSound;
+    [SerializeField] private AudioClip _rifleAttackSound;
+    [SerializeField] private AudioClip _grenadeAttackSound;
+    
+    [SerializeField] private AudioClip _pistolSwapSound;
+    [SerializeField] private AudioClip _rifleSwapSound;
+
+    [SerializeField] private AudioClip _ReloadSound;
+    
     private IDamageable _targetDamagable;
     private Transform _targetTransform;
     
@@ -44,7 +54,6 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     private bool _isTrhowCoroutin;
     private bool _isSwapable;
     private Quaternion _targetRotation;
-    private Vector3 _armPos;
     private Vector3 _idleArmPos;
     private Ray _ray;
 
@@ -65,8 +74,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(_ray.origin, _ray.direction * _attackRange);
+        // Gizmos.color = Color.yellow;
+        // Gizmos.DrawRay(_ray.origin, _ray.direction * _attackRange);
     }
 
     private void Init()
@@ -120,10 +129,12 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         // 아래는 Swap
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            AudioManager.Instance.PlaySound(_pistolSwapSound);
             StartCoroutine(VisualSwap(0));
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            AudioManager.Instance.PlaySound(_rifleSwapSound);
             StartCoroutine(VisualSwap(1));
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -189,14 +200,12 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     {
         _ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+        
         if (Physics.Raycast(_ray, out hit, _attackRange, _attackTargetLayer))
         {
-            if (_targetTransform != hit.transform)
-            {
-                _targetTransform = hit.transform;
-                _targetDamagable = hit.transform.GetComponent<IDamageable>();
-            }
+            if (_targetTransform == hit.transform) return;
+            _targetTransform = hit.transform;
+            _targetDamagable = hit.transform.GetComponent<IDamageable>();
         }
         else
         {
@@ -208,12 +217,22 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     private void Fire(int damage)
     {
         _isSwapable = false;
+        if (_curWpIndex == 0)
+        {
+            // pistol
+            AudioManager.Instance.PlaySound(_pistolAttackSound);
+        }
+        else
+        {
+            // rifle
+            AudioManager.Instance.PlaySound(_rifleAttackSound);
+        }
         _weapons[_curWpIndex].CurrentMagazine--;
         if (_targetDamagable == null || !(_targetDamagable is IDamageable) || _curWpIndex == 2)
         {
             return;
         }
-        (_targetDamagable as IDamageable).TakeDamage(damage);
+        _targetDamagable.TakeDamage(damage);
         _isSwapable = true;
     }
 
@@ -224,6 +243,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
         _reLoading = true;
         _isSwapable = false;
+        AudioManager.Instance.PlaySound(_ReloadSound);
         StartCoroutine(ReloadCoroutine());
     }
     
@@ -265,7 +285,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     {
         _isThrowing = true;
         // 수류탄 투척시 팔회전 각도 계산
-        _armPos = _enGrenadePos.localPosition + new Vector3(0.6f, 1.6f, -0.45f);
+        AudioManager.Instance.PlaySound(_grenadeAttackSound);
     }
 
     IEnumerator ThrowArmRotation()

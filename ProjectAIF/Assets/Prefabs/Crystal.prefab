@@ -165,9 +165,9 @@ GameObject:
   - component: {fileID: 9057651130469843024}
   - component: {fileID: 3438757299258735511}
   - component: {fileID: 5768816440425244149}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Crystal
-  m_TagString: Untagged
+  m_TagString: Crystal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
       m_Calls: []
   _maxHp: 100
   _playerTF: {fileID: 0}
-  _distance: 10
+  _distance: 30
   _playerLayer:
     serializedVersion: 2
     m_Bits: 128

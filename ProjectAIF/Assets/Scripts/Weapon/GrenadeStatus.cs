@@ -18,13 +18,11 @@ public class GrenadeStatus : WeaponStatusBase
     [Header("터지기")]
     public float ExplosionForce = 700f; // 폭발
     public GameObject ExplosionEffectPrefab; // 이펙트
-
+    [SerializeField] AudioClip _explodeSound;
     private bool _hasExploded = false; // 두 번 방지
     
     private void Awake()
     {
-        OnCurrentMagazineChanged = new UnityEvent<int, int>();
-        OnTotalMagazineChanged = new UnityEvent<int, int>();
         Damage = 50;
         TotalMagazine = 3;
         CurrentMagazine = TotalMagazine;
@@ -48,12 +46,13 @@ public class GrenadeStatus : WeaponStatusBase
 
     public void Explode()
     {
+        GameObject explosion = null;
         _hasExploded = true; // 터지는 거 체크
-
+        
         // 이펙트 미리 준비
         if (ExplosionEffectPrefab != null)
         {
-            Instantiate(ExplosionEffectPrefab, transform.position, Quaternion.identity);
+            explosion = Instantiate(ExplosionEffectPrefab, transform.position, Quaternion.identity);
         }
 
         // 주변 물체 밀기
@@ -66,13 +65,15 @@ public class GrenadeStatus : WeaponStatusBase
                 // 터질 때 밀어내기
                 rb.AddExplosionForce(ExplosionForce, transform.position, EffectRange, 2.0f);
             }
-            
-
         }
 
         Debug.Log("수류탄 폭발");
-
+        AudioManager.Instance.PlaySound(_explodeSound);
         // 수류탄 삭제
         Destroy(gameObject);
+        if (explosion != null)
+        {
+            Destroy(explosion, 1f);
+        }
     }
 }

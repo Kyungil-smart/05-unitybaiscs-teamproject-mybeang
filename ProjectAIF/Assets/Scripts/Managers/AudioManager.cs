@@ -36,9 +36,9 @@ public class AudioManager : MonoBehaviour
         _audioSource.PlayOneShot(_audioClip);
     }
 
-    public Coroutine StartPlaySoundContinuous(AudioClip _audioClip)
+    public Coroutine StartPlaySoundContinuous(AudioClip _audioClip, float interval = 3f)
     {
-        float interval = _audioClip.length + 3f;
+        interval += _audioClip.length;
         return StartCoroutine(PlaySoundCoroutine(_audioClip, interval));
     }
 

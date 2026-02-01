@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
 {
@@ -22,7 +22,6 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     private ITargetable _targetable;
     private Transform _targetTransform;
 
-    //private PlayerStatus _playerStatus;
     
     private void Awake()
     {
@@ -62,7 +61,8 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         _currentHp = Hp;
         _monsterMovement = GetComponent<MonsterMovement>();
-        
+        _animator = GetComponentInChildren<Animator>();
+        _playerLevel = GameObject.FindWithTag("Player").GetComponent<PlayerLevel>();
     }
     
     public void Attack(int damage)
@@ -119,25 +119,30 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     public void TakeDamage(int damage)
     {
         _currentHp -= damage;
-        AudioManager.Instance.PlaySound(DamagedAc);
         Debug.Log($"{transform.name}: {damage} 피격");
-
-        if (_currentHp <= 0) Death();
+        if (_currentHp <= 0)
+        {
+            Death();
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound(DamagedAc);    
+        }
     }
 
     private void Death()
     {
-        if (_deathCoroutine  != null) return;
-        
+        if (_deathCoroutine != null) return;
+        AudioManager.Instance.StopPlaySoundContinuous(_screamCoroutine);
         _deathCoroutine = StartCoroutine(DeathCoroutine());
     }
 
     private IEnumerator DeathCoroutine()
     {
-        AudioManager.Instance.PlaySound(DeadAc);
         _animator.SetTrigger("SetDeath");
+        AudioManager.Instance.PlaySound(DeadAc);
         yield return YieldContainer.WaitForSeconds(1f);
-        PlayerLevel.AddExp(Exp);
+        _playerLevel.AddExp(Exp);
         Destroy(gameObject);
     }
 
@@ -172,7 +177,8 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
         if (ScreamAc == null || _isScreaming) return;
         if (isMoving)
         {
-            _screamCoroutine = AudioManager.Instance.StartPlaySoundContinuous(ScreamAc);
+            float screamInterval = Random.Range(3f, 15f);
+            _screamCoroutine = AudioManager.Instance.StartPlaySoundContinuous(ScreamAc, screamInterval);
             _isScreaming = true;
         }
         else

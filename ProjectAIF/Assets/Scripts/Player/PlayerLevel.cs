@@ -22,9 +22,9 @@ public class PlayerLevel : MonoBehaviour
     //현재레벨에서 필요한 경험치
     public int CurrentMaxExp { get; private set; }
 
-    public UnityEvent<int> OnLevelChange;
-    public UnityEvent<int, int> OnExpbarChange;
-    public UnityEvent<int> OnLevelUp;
+    [HideInInspector] public UnityEvent<int> OnLevelChange = new UnityEvent<int>();
+    [HideInInspector] public UnityEvent<int, int> OnExpbarChange = new UnityEvent<int, int>();
+    [HideInInspector] public UnityEvent<int> OnLevelUp = new UnityEvent<int>();
 
     private int MaxPlayerLevel => GameManager.Instance.MaxPlayerLevel;
 
@@ -34,13 +34,13 @@ public class PlayerLevel : MonoBehaviour
     // 어빌리티 선택창이 열려있는 동안 true (열려있으면 다음 레벨업 진행 X)
     public bool isOpenAblity { get; private set; }
 
-    private void Awake()
-    {
-        // 인스펙터에서 이벤트를 비워둬도 NullReference 안 나게 초기화
-        if (OnLevelChange == null) OnLevelChange = new UnityEvent<int>();
-        if (OnExpbarChange == null) OnExpbarChange = new UnityEvent<int, int>();
-        if (OnLevelUp == null) OnLevelUp = new UnityEvent<int>();
-    }
+    // private void Awake()
+    // {
+    //     // 인스펙터에서 이벤트를 비워둬도 NullReference 안 나게 초기화
+    //     if (OnLevelChange == null) OnLevelChange = new UnityEvent<int>();
+    //     if (OnExpbarChange == null) OnExpbarChange = new UnityEvent<int, int>();
+    //     if (OnLevelUp == null) OnLevelUp = new UnityEvent<int>();
+    // }
 
     private void Start()
     {
@@ -67,7 +67,7 @@ public class PlayerLevel : MonoBehaviour
     {
         if (Value <= 0) return;
         if (CurrentLevel >= MaxPlayerLevel) return;
-
+        
         CurrentExp += Value;
 
         // 현재 경험치로 가능한 레벨업 횟수 계산
@@ -78,7 +78,6 @@ public class PlayerLevel : MonoBehaviour
         {
             TryProcessOneLevelUp();
         }
-
         // 최종 경험치 바 갱신
         OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
     }
