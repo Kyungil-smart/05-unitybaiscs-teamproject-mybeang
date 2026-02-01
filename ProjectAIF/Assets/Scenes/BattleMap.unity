@@ -2470,6 +2470,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8719255078200078598, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _pistolSwapSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 915d146be9c47154b8567e56a0931665, type: 3}
+    - target: {fileID: 8719255078200078598, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _pistolAttackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 93970a9788d69e442997f758451d5fa8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

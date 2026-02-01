@@ -3515,12 +3515,11 @@ MonoBehaviour:
   <AttackRate>k__BackingField: 1
   <AttackRange>k__BackingField: 3
   <Exp>k__BackingField: 0
-  Player: {fileID: 1026817363066699652, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-  PlayerLevel: {fileID: 2846247506866570063, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-  ScreamAc: {fileID: 0}
-  DeadAc: {fileID: 0}
-  AttackAc: {fileID: 0}
-  DamagedAc: {fileID: 0}
+  ScreamAc: {fileID: 8300000, guid: 934126bb761feca4d846e9ab2c5b4ba3, type: 3}
+  DeadAc: {fileID: 8300000, guid: c1ab8021f199d7545a646252533386d3, type: 3}
+  AttackAc: {fileID: 8300000, guid: c5b441f42e2306945b5f7f115f973649, type: 3}
+  DamagedAc: {fileID: 8300000, guid: c1ab8021f199d7545a646252533386d3, type: 3}
+  _animator: {fileID: 0}
   _detectionHeight: 1
   _attackTargetLayer:
     serializedVersion: 2
