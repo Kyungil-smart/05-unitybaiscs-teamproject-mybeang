@@ -101,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 10
   <Defence>k__BackingField: 0
-  <Hp>k__BackingField: 10
-  <MoveSpeed>k__BackingField: 5
+  <Hp>k__BackingField: 100
+  <MoveSpeed>k__BackingField: 10
   <AttackRate>k__BackingField: 3
   <AttackRange>k__BackingField: 10
   <Exp>k__BackingField: 50

@@ -100,10 +100,10 @@ MonoBehaviour:
   <Damage>k__BackingField: 5
   <Defence>k__BackingField: 0
   <Hp>k__BackingField: 10
-  <MoveSpeed>k__BackingField: 15
+  <MoveSpeed>k__BackingField: 30
   <AttackRate>k__BackingField: 1.5
   <AttackRange>k__BackingField: 3
-  <Exp>k__BackingField: 50
+  <Exp>k__BackingField: 5
   ScreamAc: {fileID: 8300000, guid: 7729c927c5610d249b105dd45bfb0e42, type: 3}
   DeadAc: {fileID: 8300000, guid: 7108f7549a1c3b741a4378fd886c6637, type: 3}
   AttackAc: {fileID: 8300000, guid: 8a67cd189abcc48428d89ef8f72385f6, type: 3}

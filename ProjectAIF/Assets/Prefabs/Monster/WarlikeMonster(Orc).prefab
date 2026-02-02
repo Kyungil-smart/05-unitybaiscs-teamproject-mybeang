@@ -97,13 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b70aad5121bf243824922d65dc1617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 15
+  <Damage>k__BackingField: 20
   <Defence>k__BackingField: 0
-  <Hp>k__BackingField: 25
-  <MoveSpeed>k__BackingField: 8
-  <AttackRate>k__BackingField: 1
+  <Hp>k__BackingField: 35
+  <MoveSpeed>k__BackingField: 12
+  <AttackRate>k__BackingField: 2
   <AttackRange>k__BackingField: 3
-  <Exp>k__BackingField: 50
+  <Exp>k__BackingField: 10
   ScreamAc: {fileID: 8300000, guid: 9585d86a2ee98eb49a3ae5c75fb51a5d, type: 3}
   DeadAc: {fileID: 8300000, guid: b9084cbdfebffc64daae98d25c68eab3, type: 3}
   AttackAc: {fileID: 8300000, guid: e2a17b3c4248f774b8f32360441e8edc, type: 3}
