@@ -1989,6 +1989,10 @@ PrefabInstance:
       propertyPath: _grenadeStatus
       value: 
       objectReference: {fileID: 1590381683}
+    - target: {fileID: 3677167303488250529, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 41
+      objectReference: {fileID: 0}
     - target: {fileID: 4879249512560884578, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: m_Name
       value: BattleFieldUICanvas
@@ -2072,6 +2076,18 @@ PrefabInstance:
     - target: {fileID: 4980876918530795296, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5317701330471983622, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7103254866766533718, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -63
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122135803337003502, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

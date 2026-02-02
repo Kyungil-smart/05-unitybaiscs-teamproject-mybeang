@@ -49,6 +49,7 @@ public class PauseGameUI : MonoBehaviour
         GameManager.Instance.IsPaused = false;
         AudioManager.Instance.PlaySound(_uIBt);
         Time.timeScale = 1.0f;
+        UnlockMouse();
         SceneManager.LoadScene(0); // 타이틀 씬으로
     }
 
@@ -63,7 +64,25 @@ public class PauseGameUI : MonoBehaviour
         if (_pausePanel != null)
             _pausePanel.SetActive(GameManager.Instance.IsPaused);
 
-        Cursor.lockState = GameManager.Instance.IsPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = GameManager.Instance.IsPaused;
+        if (GameManager.Instance.IsPaused)
+        {
+            UnlockMouse();
+        }
+        else
+        {
+            LockMouse();
+        }
+    }
+
+    private void LockMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void UnlockMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
