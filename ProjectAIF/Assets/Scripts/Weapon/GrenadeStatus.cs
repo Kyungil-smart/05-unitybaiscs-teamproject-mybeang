@@ -24,17 +24,13 @@ public class GrenadeStatus : WeaponStatusBase
     [SerializeField] private float _explosionDestroyTime;
     [SerializeField] AudioClip _explodeSound;
     
-    // TODO : 필요는 없을 것 같은데 적어놓으셔서...의도파악이 힘들어서 주석으로 처리해놓겠습니다
-    // private bool _hasExploded = false; // 두 번 방지
-    
-    // TODO : 기초적인 스테이터스들을 Awake에서 고정값으로 두고 있는데, 만약 인스펙터에서 수정 가능하길 원하는거면 초기화 내용도 손볼필요는 있을 것 같아요
-    private void Awake()
-    {
-        Damage = 50;
-        TotalMagazine = 3;
-        AttackRate = 10f;
-        CurrentMagazine = TotalMagazine;
-    }
+    //private void Awake()
+    //{
+    //    Damage = 50;
+    //    TotalMagazine = 3;
+    //    AttackRate = 10f;
+    //    CurrentMagazine = TotalMagazine;
+    //}
     
     // 충돌하면 폭발
     private void OnCollisionEnter(Collision collision)

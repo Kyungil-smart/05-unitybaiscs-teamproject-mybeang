@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class PistolStatus : WeaponStatusBase
@@ -20,12 +20,12 @@ public class PistolStatus : WeaponStatusBase
     public int MinMagazine = 7;
     public int MaxMagazine = 15;
     
-    private void Awake()
-    {
-        Damage = 5;
-        TotalMagazine = 7;
-        AttackRate = 3f;
-        CurrentMagazine = TotalMagazine;
-    }
+    //private void Awake()
+    //{
+    //    Damage = 5;
+    //    TotalMagazine = 7;
+    //    AttackRate = 3f;
+    //    CurrentMagazine = TotalMagazine;
+    //}
 }
 
