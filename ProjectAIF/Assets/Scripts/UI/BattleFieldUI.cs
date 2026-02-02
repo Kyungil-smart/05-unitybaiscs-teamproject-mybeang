@@ -72,7 +72,7 @@ public class BattleFieldUI : MonoBehaviour
     {
         maxHP = Mathf.Max(1, maxHP);
         currentHp = Mathf.Clamp(currentHp, 0, maxHP);
-        Debug.Log("HP 갱신");
+        
         if (_playerHPbar != null)
             _playerHPbar.fillAmount = currentHp / (float)maxHP;
 

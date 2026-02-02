@@ -45,7 +45,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable, ITargetable
     public void TakeDamage(int damage)
     {
         CurrentHp -= damage;
-        Debug.Log($"아프다: {CurrentHp}");
         AudioManager.Instance.PlaySound(_damagedSound);
         if (CurrentHp <= 0)
         {
