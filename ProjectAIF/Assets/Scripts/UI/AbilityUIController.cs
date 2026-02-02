@@ -56,7 +56,6 @@ public class AbilityUIController : MonoBehaviour
         }
     }
 
-    //이거 없어도됨 : AbilityManager에서 apply버튼을 가지고있어서 필요가없어졋음
     public void Confirm()
     {
         AbilityManager.Instance.ApplyAbility();
