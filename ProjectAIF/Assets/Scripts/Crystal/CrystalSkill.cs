@@ -6,12 +6,12 @@ public class CrystalSkill : MonoBehaviour
 {
     [SerializeField] private string enemyTag = "Enemy";
 
-    private bool used = false;
+    public bool IsUsed;
 
     public void Activate()
     {
-        if (used) return;
-        used = true;
+        if (IsUsed) return;
+        IsUsed = true;
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         foreach (var e in enemies)
