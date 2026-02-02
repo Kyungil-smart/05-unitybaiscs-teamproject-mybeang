@@ -181,8 +181,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 50
+  _currentMagazine: 0
+  OnCurrentMagazineChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _totalMagazine: 0
+  OnTotalMagazineChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  AttackRate: 0
   EffectRange: 10
-  Magazine: 3
   ChargeTime: 3
   MinDamage: 25
   MaxDamage: 100
@@ -191,7 +199,8 @@ MonoBehaviour:
   MinMagazine: 0
   MaxMagazine: 6
   ExplosionForce: 700
-  explosionEffectPrefab: {fileID: 0}
+  ExplosionEffectPrefab: {fileID: 0}
+  _explodeSound: {fileID: 0}
 --- !u!1 &1793803600195958
 GameObject:
   m_ObjectHideFlags: 0

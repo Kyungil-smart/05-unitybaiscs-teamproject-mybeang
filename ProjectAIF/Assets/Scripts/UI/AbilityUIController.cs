@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityUIController : MonoBehaviour
 {
     [SerializeField] private PlayerLevel _playerLevel;
-    [SerializeField] private Canvas _abilityPanel;
+    [SerializeField] private GameObject _abilityPanel;
 
     [SerializeField] private bool _pauseGameWhileSelecting = true;
 
@@ -22,6 +22,7 @@ public class AbilityUIController : MonoBehaviour
         {
             return;
         }
+        _abilityPanel.SetActive(false);
     }
 
     private void OnEnable()
@@ -39,17 +40,24 @@ public class AbilityUIController : MonoBehaviour
 
     public void OpenAbilityUI(int level)
     {
-        Debug.Log("[AbilityUIController] OpenAbilityUI called");
-        Debug.Log($"[AbilityUIController] OpenAbilityUI param level = {level}");
-        
+        //로그 나중에 없어도됨
+        Debug.Log($"[AbilityUI] OpenAbilityUI | LevelUp Level={level}");
+
         AbilityManager.Instance.ReadyToThreeAbilities();
-        if(_abilityPanel != null)
+        //로그 나중에 없에도됨
+        AbilityManager.Instance.Debug_LogCurrentChoices("UI Open");
+
+        if (_abilityPanel != null)
         {
-            _abilityPanel.enabled = true;
+            _abilityPanel.SetActive(true);
             AudioManager.Instance.PlaySound(_popUpSound);
         }
+
         if (_pauseGameWhileSelecting)
         {
+            // 핵심: PlayerController가 Update에서 CursorLook 못 하게 막음
+            GameManager.Instance.IsPaused = true;
+
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -60,25 +68,23 @@ public class AbilityUIController : MonoBehaviour
     {
         AbilityManager.Instance.ApplyAbility();
 
-
         if (_abilityPanel != null)
-        {
-            _abilityPanel.enabled = false;
-        }
+            _abilityPanel.SetActive(false);
 
         if (_pauseGameWhileSelecting)
         {
+            // 핵심: 다시 플레이로 복귀
+            GameManager.Instance.IsPaused = false;
+
             Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
         if (_playerLevel != null)
-        {
             _playerLevel.ConfirmAbility();
-        }
-
     }
+
     // 이 밑에 있는 코드는 테스트용 코드입니다. 추후에 삭제 가능합니다.
 #if UNITY_EDITOR
     [ContextMenu("DEBUG/Open Ability UI")]
@@ -89,7 +95,7 @@ public class AbilityUIController : MonoBehaviour
 
         if (_abilityPanel != null)
         {
-            _abilityPanel.enabled = true;
+            _abilityPanel.SetActive(true);
         }
 
         if (_pauseGameWhileSelecting)
@@ -107,7 +113,7 @@ public class AbilityUIController : MonoBehaviour
     {
         if (_abilityPanel != null)
         {
-            _abilityPanel.enabled = false;
+            _abilityPanel.SetActive(false);
         }
 
         if (_pauseGameWhileSelecting)

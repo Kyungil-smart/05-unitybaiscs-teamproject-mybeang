@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class GrenadeStatus : WeaponStatusBase
@@ -21,13 +21,13 @@ public class GrenadeStatus : WeaponStatusBase
     [SerializeField] AudioClip _explodeSound;
     private bool _hasExploded = false; // 두 번 방지
     
-    private void Awake()
-    {
-        Damage = 50;
-        TotalMagazine = 3;
-        AttackRate = 10f;
-        CurrentMagazine = TotalMagazine;
-    }
+    //private void Awake()
+    //{
+    //    Damage = 50;
+    //    TotalMagazine = 3;
+    //    AttackRate = 10f;
+    //    CurrentMagazine = TotalMagazine;
+    //}
     
     // 충돌하면 폭발
     private void OnCollisionEnter(Collision collision)

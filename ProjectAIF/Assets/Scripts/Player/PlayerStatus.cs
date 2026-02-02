@@ -25,7 +25,8 @@ public class PlayerStatus : MonoBehaviour, IDamageable, ITargetable
         set
         {
             _totalHp = value;
-            OnCurrentHpChanged?.Invoke(_currentHp, _totalHp);
+            //OnCurrentHpChanged?.Invoke(_currentHp, _totalHp);
+            OnTotalHpChanged?.Invoke(_currentHp, _totalHp);
         }
     }
     public float MoveSpeed;
