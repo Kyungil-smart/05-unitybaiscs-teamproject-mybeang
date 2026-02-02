@@ -130,7 +130,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
         }
     }
 
-    private void Death()
+    public void Death()
     {
         if (_deathCoroutine != null) return;
         AudioManager.Instance.StopPlaySoundContinuous(_screamCoroutine);

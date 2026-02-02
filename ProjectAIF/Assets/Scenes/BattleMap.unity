@@ -913,17 +913,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
   m_PrefabInstance: {fileID: 581267420}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &594676766 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4688750135259525040, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-  m_PrefabInstance: {fileID: 1590381677}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8debf3a42c85c5442bb82a6b88e2d79f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &682582847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1317,9 +1306,9 @@ MonoBehaviour:
     min: -1
     max: 1
   _playerStatus: {fileID: 1590381679}
-  pistolStatusStatus: {fileID: 594676766}
-  rifleStatusStatus: {fileID: 890688404}
-  grenadeStatusStatus: {fileID: 1139509833}
+  pistolStatusStatus: {fileID: 0}
+  rifleStatusStatus: {fileID: 0}
+  grenadeStatusStatus: {fileID: 0}
   _disSound: {fileID: 8300000, guid: e4a2b1998a75ff9438009ef0bbd24947, type: 3}
   _incSound: {fileID: 8300000, guid: 4d54b3032b630be41869b5fb81b867f9, type: 3}
   _leftAbilityText: {fileID: 450863340}
@@ -1519,17 +1508,6 @@ Transform:
   - {fileID: 450863342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &890688404 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4926432658929243538, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-  m_PrefabInstance: {fileID: 1590381677}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac3ef6b5f01fab408fa7d546c5079f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &895448724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1716,17 +1694,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
   m_PrefabInstance: {fileID: 1059758002}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1139509833 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3718167558744666746, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-  m_PrefabInstance: {fileID: 1590381677}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3c81ca0f4784f04d8341a2b6e8e3936, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1166239070
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1972,11 +1939,11 @@ PrefabInstance:
     - target: {fileID: 2669356983189600888, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: _rifleStatus
       value: 
-      objectReference: {fileID: 890688404}
+      objectReference: {fileID: 0}
     - target: {fileID: 2669356983189600888, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: _pistolStatus
       value: 
-      objectReference: {fileID: 594676766}
+      objectReference: {fileID: 0}
     - target: {fileID: 2669356983189600888, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: _playerStatus
       value: 
@@ -1984,7 +1951,7 @@ PrefabInstance:
     - target: {fileID: 2669356983189600888, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: _grenadeStatus
       value: 
-      objectReference: {fileID: 1139509833}
+      objectReference: {fileID: 0}
     - target: {fileID: 4879249512560884578, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: m_Name
       value: BattleFieldUICanvas

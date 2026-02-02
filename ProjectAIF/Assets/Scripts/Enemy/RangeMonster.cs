@@ -151,7 +151,7 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
         _projectile.SetActive(true);
     }
 
-    private void Death()
+    public void Death()
     {
         if (_deathCoroutine  != null) return;
         
