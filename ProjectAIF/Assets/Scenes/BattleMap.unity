@@ -986,34 +986,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
   m_PrefabInstance: {fileID: 682582847}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &720386260 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4778579432725084982, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
-  m_PrefabInstance: {fileID: 846893817}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &720386267
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720386260}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Height: 5
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.8, z: 0}
 --- !u!1001 &722202508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1411,13 +1383,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
-      propertyPath: _maxHp
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
       propertyPath: _playerTF
       value: 
       objectReference: {fileID: 1590381692}
+    - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
+      propertyPath: _nonsenseSounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
+      propertyPath: _nonsenseSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b46049239e30fa64ca7da4e283c29ec7, type: 3}
+    - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
+      propertyPath: _nonsenseSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f9af449e3f28f44fb895ef556d747b5, type: 3}
+    - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
+      propertyPath: _nonsenseSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: f289eb56d99e2e443a87c60f57866b33, type: 3}
+    - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
+      propertyPath: _nonsenseSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 343c545e9a8781c4487e3964303f374b, type: 3}
+    - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
+      propertyPath: _nonsenseSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: cf5846b0038f6f149b53a8cb659dfec1, type: 3}
     - target: {fileID: 4778579432725084982, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
       propertyPath: m_Name
       value: Crystal
@@ -1465,10 +1457,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4778579432725084982, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 720386267}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
 --- !u!1 &877886385
 GameObject:
