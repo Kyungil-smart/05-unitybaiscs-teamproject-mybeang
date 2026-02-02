@@ -24,7 +24,8 @@ public abstract class WeaponStatusBase : MonoBehaviour
         set
         {
             _totalMagazine = value;
-            OnCurrentMagazineChanged?.Invoke(_currentMagazine, _totalMagazine);
+            //OnCurrentMagazineChanged?.Invoke(_currentMagazine, _totalMagazine);
+            OnTotalMagazineChanged?.Invoke(_currentMagazine, _totalMagazine);
         }
     }
     public float AttackRate;

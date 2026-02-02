@@ -244,10 +244,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 5
+  _currentMagazine: 0
+  OnCurrentMagazineChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _totalMagazine: 0
+  OnTotalMagazineChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  AttackRate: 1
   CriticalChance: 0
   CriticalDamage: 15
-  Magazine: 7
-  AttackRate: 1
   MinDamage: 2
   MaxDamage: 10
   MinCritChance: 0

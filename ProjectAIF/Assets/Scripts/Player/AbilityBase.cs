@@ -23,7 +23,7 @@ namespace Ability
         public Hp(PlayerStatus playerStatus)
         {
             _playerStatus = playerStatus;
-            _description = "Maximum HP may change.";
+            //_description = "Maximum HP may change.";
         }
         
         public override bool ApplyAbility()  
@@ -53,7 +53,7 @@ namespace Ability
         public MoveSpeed(PlayerStatus playerStatus) 
         {
             _playerStatus = playerStatus;
-            _description = "Move speed may change.";
+           // _description = "Move speed may change.";
         }
         
         public override bool ApplyAbility()
@@ -84,7 +84,7 @@ namespace Ability
         public Defense(PlayerStatus playerStatus)
         {
             _playerStatus = playerStatus;
-            _description = "Defense may change.";
+            //_description = "Defense may change.";
         }
         
         public override bool ApplyAbility()
@@ -110,12 +110,12 @@ namespace Ability
     
     public class PistolDamage : AbilityBase
     {
-        private PistolStatus _pistolStatusStatus;
+        private PistolStatus _pistolStatus;
         
         public PistolDamage(PistolStatus pistolStatusStatus)
         {
-            _pistolStatusStatus = pistolStatusStatus;
-            _description = "Pistol Damage may change.";
+            _pistolStatus = pistolStatusStatus;
+           // _description = "Pistol Damage may change.";
         }
         
         public override bool ApplyAbility()
@@ -124,8 +124,8 @@ namespace Ability
                 AbilityManager.Instance.PistolDamageRange.min,
                 AbilityManager.Instance.PistolDamageRange.max);
 
-            value += _pistolStatusStatus.Damage;
-            if (value < _pistolStatusStatus.MinDamage || value > _pistolStatusStatus.MaxDamage)
+            value += _pistolStatus.Damage;
+            if (value < _pistolStatus.MinDamage || value > _pistolStatus.MaxDamage)
             {
                 return true;
             }
@@ -134,19 +134,19 @@ namespace Ability
             {
                 return false;
             }
-            _pistolStatusStatus.Damage = value;
+            _pistolStatus.Damage = value;
             return true;
         }
     }
     
     public class PistolCriticalChance : AbilityBase
     {
-        private PistolStatus _pistolStatusStatus;
+        private PistolStatus _pistolStatus;
         
         public PistolCriticalChance(PistolStatus pistolStatusStatus)
         {
-            _pistolStatusStatus = pistolStatusStatus;
-            _description = "Pistol Critical Chance may change.";
+            _pistolStatus = pistolStatusStatus;
+            //_description = "Pistol Critical Chance may change.";
         }
         
         public override bool ApplyAbility()
@@ -155,8 +155,8 @@ namespace Ability
                 AbilityManager.Instance.PistolCriticalChanceRange.min,
                 AbilityManager.Instance.PistolCriticalChanceRange.max);
 
-            value *= _pistolStatusStatus.CriticalChance;
-            if (value < _pistolStatusStatus.MinCritChance || value > _pistolStatusStatus.MaxCritChance)
+            value *= _pistolStatus.CriticalChance;
+            if (value < _pistolStatus.MinCritChance || value > _pistolStatus.MaxCritChance)
             {
                 return true;
             }
@@ -165,19 +165,19 @@ namespace Ability
             {
                 return false;
             }
-            _pistolStatusStatus.CriticalChance = value;
+            _pistolStatus.CriticalChance = value;
             return true;
         }
     }
     
     public class PistolCriticalDamage : AbilityBase
     {
-        private PistolStatus _pistolStatusStatus;
+        private PistolStatus _pistolStatus;
         
         public PistolCriticalDamage(PistolStatus pistolStatusStatus)
         {
-            _pistolStatusStatus = pistolStatusStatus;
-            _description = "Pistol Critical Damage may change.";
+            _pistolStatus = pistolStatusStatus;
+           // _description = "Pistol Critical Damage may change.";
         }
         
         public override bool ApplyAbility()
@@ -186,8 +186,8 @@ namespace Ability
                 AbilityManager.Instance.PistolCriticalDamageRange.min,
                 AbilityManager.Instance.PistolCriticalDamageRange.max);
 
-            value += _pistolStatusStatus.Damage;
-            if (value < _pistolStatusStatus.MinCritDamage || value > _pistolStatusStatus.MaxCritDamage)
+            value += _pistolStatus.CriticalDamage;
+            if (value < _pistolStatus.MinCritDamage || value > _pistolStatus.MaxCritDamage)
             {
                 return true;
             }
@@ -196,19 +196,19 @@ namespace Ability
             {
                 return false;
             }
-            _pistolStatusStatus.Damage = value;
+            _pistolStatus.CriticalDamage = value;
             return true;
         }
     }
     
     public class PistolMagazine : AbilityBase
     {
-        private PistolStatus _pistolStatusStatus;
+        private PistolStatus _pistolStatus;
         
         public PistolMagazine(PistolStatus pistolStatusStatus)
         {
-            _pistolStatusStatus = pistolStatusStatus;
-            _description = "Pistol Magazine may change.";
+            _pistolStatus = pistolStatusStatus;
+            //_description = "Pistol Magazine may change.";
         }
         
         public override bool ApplyAbility()
@@ -217,8 +217,8 @@ namespace Ability
                 AbilityManager.Instance.PistolMagazineRange.min,
                 AbilityManager.Instance.PistolMagazineRange.max);
 
-            value += _pistolStatusStatus.TotalMagazine;
-            if (value < _pistolStatusStatus.MinMagazine || value > _pistolStatusStatus.MaxMagazine)
+            value += _pistolStatus.TotalMagazine;
+            if (value < _pistolStatus.MinMagazine || value > _pistolStatus.MaxMagazine)
             {
                 return true;
             }
@@ -227,19 +227,19 @@ namespace Ability
             {
                 return false;
             }
-            _pistolStatusStatus.TotalMagazine = value;
+            _pistolStatus.TotalMagazine = value;
             return true;
         }
     }
     
     public class RifleDamage : AbilityBase
     {
-        private RifleStatus _rifleStatusStatus;
+        private RifleStatus _rifleStatus;
         
         public RifleDamage(RifleStatus rifleStatusStatus)
         {
-            _rifleStatusStatus = rifleStatusStatus;
-            _description = "Rifle Damage may change.";
+            _rifleStatus = rifleStatusStatus;
+           // _description = "Rifle Damage may change.";
         }
         
         public override bool ApplyAbility()
@@ -248,8 +248,8 @@ namespace Ability
                 AbilityManager.Instance.RifleDamageRange.min,
                 AbilityManager.Instance.RifleDamageRange.max);
             
-            value += _rifleStatusStatus.Damage;
-            if (value < _rifleStatusStatus.MinDamage || value > _rifleStatusStatus.MaxDamage)
+            value += _rifleStatus.Damage;
+            if (value < _rifleStatus.MinDamage || value > _rifleStatus.MaxDamage)
             {
                 return true;
             }
@@ -258,19 +258,19 @@ namespace Ability
             {
                 return false;
             }
-            _rifleStatusStatus.Damage = value;
+            _rifleStatus.Damage = value;
             return true;
         }
     }
     
     public class RifleCriticalChance : AbilityBase
     {
-        private RifleStatus _rifleStatusStatus;
+        private RifleStatus _rifleStatus;
         
         public RifleCriticalChance(RifleStatus rifleStatusStatus)
         {
-            _rifleStatusStatus = rifleStatusStatus;
-            _description = "Rifle Critical Chance may change.";
+            _rifleStatus = rifleStatusStatus;
+            //_description = "Rifle Critical Chance may change.";
         }
         
         public override bool ApplyAbility()
@@ -279,8 +279,8 @@ namespace Ability
                 AbilityManager.Instance.RifleCriticalChanceRange.min,
                 AbilityManager.Instance.RifleCriticalChanceRange.max);
             
-            value *= _rifleStatusStatus.CriticalChance;
-            if (value < _rifleStatusStatus.MinCritChance || value > _rifleStatusStatus.MaxCritChance)
+            value *= _rifleStatus.CriticalChance;
+            if (value < _rifleStatus.MinCritChance || value > _rifleStatus.MaxCritChance)
             {
                 return true;
             }
@@ -289,19 +289,19 @@ namespace Ability
             {
                 return false;
             }
-            _rifleStatusStatus.CriticalChance = value;
+            _rifleStatus.CriticalChance = value;
             return true;
         }
     }
     
     public class RifleCriticalDamage : AbilityBase
     {
-        private RifleStatus _rifleStatusStatus;
+        private RifleStatus _rifleStatus;
         
         public RifleCriticalDamage(RifleStatus rifleStatusStatus)
         {
-            _rifleStatusStatus = rifleStatusStatus;
-            _description = "Rifle Critical Damage may change.";
+            _rifleStatus = rifleStatusStatus;
+           // _description = "Rifle Critical Damage may change.";
         }
         
         public override bool ApplyAbility()
@@ -310,8 +310,8 @@ namespace Ability
                 AbilityManager.Instance.RifleCriticalDamageRange.min,
                 AbilityManager.Instance.RifleCriticalDamageRange.max);
             
-            value += _rifleStatusStatus.CriticalDamage;
-            if (value < _rifleStatusStatus.MinCritDamage || value > _rifleStatusStatus.MaxCritDamage)
+            value += _rifleStatus.CriticalDamage;
+            if (value < _rifleStatus.MinCritDamage || value > _rifleStatus.MaxCritDamage)
             {
                 return true;
             }
@@ -320,19 +320,19 @@ namespace Ability
             {
                 return false;
             }
-            _rifleStatusStatus.CriticalDamage = value;
+            _rifleStatus.CriticalDamage = value;
             return true;
         }
     }
     
     public class RifleMagazine : AbilityBase
     {
-        private RifleStatus _rifleStatusStatus;
+        private RifleStatus _rifleStatus;
         
         public RifleMagazine(RifleStatus rifleStatusStatus)
         {
-            _rifleStatusStatus = rifleStatusStatus;
-            _description = "Rifle Magazine may change.";
+            _rifleStatus = rifleStatusStatus;
+           // _description = "Rifle Magazine may change.";
         }
         
         public override bool ApplyAbility()
@@ -341,8 +341,8 @@ namespace Ability
                 AbilityManager.Instance.RifleMagazineRange.min,
                 AbilityManager.Instance.RifleMagazineRange.max);
             
-            value += _rifleStatusStatus.TotalMagazine;
-            if (value < _rifleStatusStatus.MinMagazine || value > _rifleStatusStatus.MaxMagazine)
+            value += _rifleStatus.TotalMagazine;
+            if (value < _rifleStatus.MinMagazine || value > _rifleStatus.MaxMagazine)
             {
                 return true;
             }
@@ -351,19 +351,19 @@ namespace Ability
             {
                 return false;
             }
-            _rifleStatusStatus.TotalMagazine = value;
+            _rifleStatus.TotalMagazine = value;
             return true;
         }
     }
     
     public class GrenadeDamage : AbilityBase
     {
-        private GrenadeStatus _grenadeStatusStatus;
+        private GrenadeStatus _grenadeStatus;
         
         public GrenadeDamage(GrenadeStatus grenadeStatusStatus)
         {
-            _grenadeStatusStatus = grenadeStatusStatus;
-            _description = "Grenade Damage may change.";
+            _grenadeStatus = grenadeStatusStatus;
+            //_description = "Grenade Damage may change.";
         }
         
         public override bool ApplyAbility()
@@ -372,8 +372,8 @@ namespace Ability
                 AbilityManager.Instance.GrenadeDamageRange.min,
                 AbilityManager.Instance.GrenadeDamageRange.max);
             
-            value += _grenadeStatusStatus.Damage;
-            if (value < _grenadeStatusStatus.MinDamage || value > _grenadeStatusStatus.MaxDamage)
+            value += _grenadeStatus.Damage;
+            if (value < _grenadeStatus.MinDamage || value > _grenadeStatus.MaxDamage)
             {
                 return true;
             }
@@ -382,18 +382,18 @@ namespace Ability
             {
                 return false;
             }
-            _grenadeStatusStatus.Damage += value;
+            _grenadeStatus.Damage += value;
             return true;
         }
     }
     public class GrenadeMagazine : AbilityBase
     {
-        private GrenadeStatus _grenadeStatusStatus;
+        private GrenadeStatus _grenadeStatus;
         
         public GrenadeMagazine(GrenadeStatus grenadeStatusStatus)
         {
-            _grenadeStatusStatus = grenadeStatusStatus;
-            _description = "Grenade Magazine may change.";
+            _grenadeStatus = grenadeStatusStatus;
+            //_description = "Grenade Magazine may change.";
         }
         
         public override bool ApplyAbility()
@@ -402,8 +402,8 @@ namespace Ability
                 AbilityManager.Instance.GrenadeMagazineRange.min,
                 AbilityManager.Instance.GrenadeMagazineRange.max);
             
-            value += _grenadeStatusStatus.TotalMagazine;
-            if (value < _grenadeStatusStatus.MinMagazine || value > _grenadeStatusStatus.MaxMagazine)
+            value += _grenadeStatus.TotalMagazine;
+            if (value < _grenadeStatus.MinMagazine || value > _grenadeStatus.MaxMagazine)
             {
                 return true;
             }
@@ -412,7 +412,7 @@ namespace Ability
             {
                 return false;
             }
-            _grenadeStatusStatus.TotalMagazine += value;
+            _grenadeStatus.TotalMagazine += value;
             return true;
         }
     }

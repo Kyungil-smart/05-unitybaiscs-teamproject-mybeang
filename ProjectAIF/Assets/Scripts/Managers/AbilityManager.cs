@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
+using System.Linq;
 
 /// <summary>
 /// 어빌리티 추가시,
@@ -28,6 +29,7 @@ public class AbilityManager : SingleTon<AbilityManager>
     public IntRange GrenadeDamageRange;
     public IntRange GrenadeMagazineRange;
     
+    // 여기가 혹시 하이라이키 프리팹
     [Header("Data Target")]
     [SerializeField] private PlayerStatus _playerStatus;
     [SerializeField] private PistolStatus pistolStatusStatus;
@@ -85,6 +87,8 @@ public class AbilityManager : SingleTon<AbilityManager>
     /// 버튼에서 클릭시
     /// </summary>
     /// <param name="name">Ability 이름</param>
+    /// 
+    // 디버깅 로그 확인용 코드 추가
     public void ApplyAbility()
     {
         if (_isSelectAbility)
@@ -94,7 +98,9 @@ public class AbilityManager : SingleTon<AbilityManager>
             // TODO: Apply 후 본래의 게임 화면으로 돌아가는 내용 추가 구현 필요    
         }
     }
-    
+
+
+
     private void PlaySound(bool isLucky)
     {
         if (isLucky && _incSound != null)
@@ -131,6 +137,130 @@ public class AbilityManager : SingleTon<AbilityManager>
         _centerAbilityText.text = $"{selected[1].ToString()}\n\n{CurrentAbilityData[selected[1]].Description}";
         _rightAbilityText.text = $"{selected[2].ToString()}\n\n{CurrentAbilityData[selected[2]].Description}";
     }
+    public void Debug_LogCurrentChoices(string tag)
+    {
+        if (CurrentAbilityData == null || CurrentAbilityData.Count == 0)
+        {
+            Debug.LogWarning($"[Ability] Choices ({tag}) => (empty)");
+            return;
+        }
+
+        string keys = string.Join(", ", CurrentAbilityData.Keys.Select(k => k.ToString()));
+        Debug.Log($"[Ability] Choices ({tag}) => {keys}");
+    }
+    //로도 확인용 로그 로그 확인후 삭제할꺼임
+    private string Debug_GetValueByAbilityName(AbilityName name)
+    {
+        switch (name)
+        {
+            case AbilityName.Hp:
+                return _playerStatus != null ? $"_playerStatus.TotalHp={_playerStatus.TotalHp}" : "_playerStatus=null";
+
+            case AbilityName.MoveSpeed:
+                return _playerStatus != null ? $"_playerStatus.MoveSpeed={_playerStatus.MoveSpeed}" : "_playerStatus=null";
+
+            case AbilityName.Defense:
+                return _playerStatus != null ? $"_playerStatus.Defense={_playerStatus.Defense}" : "_playerStatus=null";
+
+            case AbilityName.PistolDamage:
+                return pistolStatusStatus != null ? $"pistolStatusStatus.Damage={pistolStatusStatus.Damage}" : "pistolStatusStatus=null";
+
+            case AbilityName.PistolCriticalChance:
+                return pistolStatusStatus != null ? $"pistolStatusStatus.CriticalChance={pistolStatusStatus.CriticalChance}" : "pistolStatusStatus=null";
+
+            case AbilityName.PistolCriticalDamage:
+                // 현재 AbilityBase.cs에서 PistolCriticalDamage가 Damage를 건드리는 구조라 우선 Damage 기준으로 확인
+                return pistolStatusStatus != null ? $"pistolStatusStatus.Damage={pistolStatusStatus.Damage}" : "pistolStatusStatus=null";
+
+            case AbilityName.PistolMagazine:
+                return pistolStatusStatus != null ? $"pistolStatusStatus.TotalMagazine={pistolStatusStatus.TotalMagazine}" : "pistolStatusStatus=null";
+
+            case AbilityName.RifleDamage:
+                return rifleStatusStatus != null ? $"rifleStatusStatus.Damage={rifleStatusStatus.Damage}" : "rifleStatusStatus=null";
+
+            case AbilityName.RifleCriticalChance:
+                return rifleStatusStatus != null ? $"rifleStatusStatus.CriticalChance={rifleStatusStatus.CriticalChance}" : "rifleStatusStatus=null";
+
+            case AbilityName.RifleCriticalDamage:
+                return rifleStatusStatus != null ? $"rifleStatusStatus.CriticalDamage={rifleStatusStatus.CriticalDamage}" : "rifleStatusStatus=null";
+
+            case AbilityName.RifleMagazine:
+                return rifleStatusStatus != null ? $"rifleStatusStatus.TotalMagazine={rifleStatusStatus.TotalMagazine}" : "rifleStatusStatus=null";
+
+            case AbilityName.GrenadeDamage:
+                return grenadeStatusStatus != null ? $"grenadeStatusStatus.Damage={grenadeStatusStatus.Damage}" : "grenadeStatusStatus=null";
+
+            case AbilityName.GrenadeMagazine:
+                return grenadeStatusStatus != null ? $"grenadeStatusStatus.TotalMagazine={grenadeStatusStatus.TotalMagazine}" : "grenadeStatusStatus=null";
+
+            default:
+                return "(unknown ability)";
+        }
+    }
+    //이것도 로그 확인용 코드이다 확인후 삭제 예정
+    private float Debug_GetNumericValueByAbilityName(AbilityName name)
+    {
+        switch (name)
+        {
+            case AbilityName.Hp:
+                return _playerStatus != null ? _playerStatus.TotalHp : 0f;
+
+            case AbilityName.MoveSpeed:
+                return _playerStatus != null ? _playerStatus.MoveSpeed : 0f;
+
+            case AbilityName.Defense:
+                return _playerStatus != null ? _playerStatus.Defense : 0f;
+
+            case AbilityName.PistolDamage:
+                return pistolStatusStatus != null ? pistolStatusStatus.Damage : 0f;
+
+            case AbilityName.PistolCriticalChance:
+                return pistolStatusStatus != null ? pistolStatusStatus.CriticalChance : 0f;
+
+            case AbilityName.PistolCriticalDamage:
+                // 현재 AbilityBase에서 PistolCriticalDamage는 pistolStatusStatus.Damage를 변경하고 있음
+                return pistolStatusStatus != null ? pistolStatusStatus.Damage : 0f;
+
+            case AbilityName.PistolMagazine:
+                return pistolStatusStatus != null ? pistolStatusStatus.TotalMagazine : 0f;
+
+            case AbilityName.RifleDamage:
+                return rifleStatusStatus != null ? rifleStatusStatus.Damage : 0f;
+
+            case AbilityName.RifleCriticalChance:
+                return rifleStatusStatus != null ? rifleStatusStatus.CriticalChance : 0f;
+
+            case AbilityName.RifleCriticalDamage:
+                return rifleStatusStatus != null ? rifleStatusStatus.CriticalDamage : 0f;
+
+            case AbilityName.RifleMagazine:
+                return rifleStatusStatus != null ? rifleStatusStatus.TotalMagazine : 0f;
+
+            case AbilityName.GrenadeDamage:
+                return grenadeStatusStatus != null ? grenadeStatusStatus.Damage : 0f;
+
+            case AbilityName.GrenadeMagazine:
+                return grenadeStatusStatus != null ? grenadeStatusStatus.TotalMagazine : 0f;
+
+            default:
+                return 0f;
+        }
+    }
+
+    private bool Debug_IsFloatAbility(AbilityName name)
+    {
+        switch (name)
+        {
+            case AbilityName.MoveSpeed:
+            case AbilityName.PistolCriticalChance:
+            case AbilityName.RifleCriticalChance:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+
 
     public void ClickLeftSelectBt()
     {
@@ -169,6 +299,7 @@ public enum AbilityName
     GrenadeMagazine,
 }
 
+
 [Serializable]
 public struct IntRange
 {
@@ -182,3 +313,5 @@ public struct FloatRange
     [Range(-1f, 1f)] public float min;
     [Range(-1f, 1f)] public float max;
 }
+
+
