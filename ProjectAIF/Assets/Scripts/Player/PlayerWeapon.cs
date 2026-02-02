@@ -333,6 +333,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         
         Rigidbody rb = grenadeObj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        rb.useGravity = true;
 
         SphereCollider col = grenadeObj.AddComponent<SphereCollider>();
         col.radius = 0.15f;      
