@@ -25,6 +25,7 @@ public class GrenadeStatus : WeaponStatusBase
     {
         Damage = 50;
         TotalMagazine = 3;
+        AttackRate = 10f;
         CurrentMagazine = TotalMagazine;
     }
     

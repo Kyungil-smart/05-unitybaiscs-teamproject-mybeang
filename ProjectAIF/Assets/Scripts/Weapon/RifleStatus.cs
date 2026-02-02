@@ -5,7 +5,6 @@ public class RifleStatus : WeaponStatusBase
 {
     [Range(0, 1)] public float CriticalChance = 0;
     public int CriticalDamage = 15;
-    public float AttackRate = 0.3f;
 
     [Header("강화 제한")]
     public int MinDamage = 5;
@@ -24,6 +23,7 @@ public class RifleStatus : WeaponStatusBase
     {
         Damage = 10;
         TotalMagazine = 30;
+        AttackRate = 0.1f;
         CurrentMagazine = TotalMagazine;
     }
 }

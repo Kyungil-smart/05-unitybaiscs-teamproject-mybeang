@@ -72,7 +72,7 @@ public class BattleFieldUI : MonoBehaviour
     {
         maxHP = Mathf.Max(1, maxHP);
         currentHp = Mathf.Clamp(currentHp, 0, maxHP);
-
+        
         if (_playerHPbar != null)
             _playerHPbar.fillAmount = currentHp / (float)maxHP;
 
@@ -85,7 +85,7 @@ public class BattleFieldUI : MonoBehaviour
     {
         maxExp = Mathf.Max(1, maxExp);
         curExp = Mathf.Clamp(curExp, 0, maxExp);
-        Debug.Log("경험치바 이미지 갱신");
+        
         if (_expBarFill != null)
             _expBarFill.fillAmount = curExp / (float)maxExp;
 
