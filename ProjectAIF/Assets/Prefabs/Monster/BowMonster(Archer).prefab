@@ -132,11 +132,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 15
   <Defence>k__BackingField: 0
-  <Hp>k__BackingField: 15
-  <MoveSpeed>k__BackingField: 10
+  <Hp>k__BackingField: 25
+  <MoveSpeed>k__BackingField: 20
   <AttackRate>k__BackingField: 1
   <AttackRange>k__BackingField: 15
-  <Exp>k__BackingField: 50
+  <Exp>k__BackingField: 15
   ScreamAc: {fileID: 8300000, guid: 9be7f2b969f0a544b89ba17d060f9558, type: 3}
   DeadAc: {fileID: 8300000, guid: ac14f452bc7e6c74880604d6f46af64b, type: 3}
   AttackAc: {fileID: 8300000, guid: c6e476bb7fe4b08458a752179404b9f1, type: 3}

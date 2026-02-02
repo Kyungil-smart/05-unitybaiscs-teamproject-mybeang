@@ -60,8 +60,8 @@ public class PenetrateType : MonoBehaviour
             
             if (!other.gameObject.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_shootingMonster.DamageCalc(_shootingMonster.Damage));
-                Debug.Log($"{_shootingMonster.name} : 명중! {_shootingMonster.DamageCalc(_shootingMonster.Damage)} 피해");
+                other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_shootingMonster.DamageCalc());
+                Debug.Log($"{_shootingMonster.name} : 명중! {_shootingMonster.DamageCalc()} 피해");
             }
             
             yield return YieldContainer.WaitForSeconds(_damageRate);
