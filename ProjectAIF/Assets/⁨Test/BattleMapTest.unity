@@ -178,30 +178,21 @@ MonoBehaviour:
   - {fileID: 497813897}
   - {fileID: 1166239071}
   _monster:
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 755825375291484649, guid: 4a44607357cdde14fb509dc0ef9702d7, type: 3}
     MonsterLevel: 0
     Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 4255552051480737237, guid: 4d15cfc5ec738e946a131e61dd6cea06, type: 3}
     MonsterLevel: 1
     Monsterweigth: 1
-  - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
+  - Monster: {fileID: 2875748347370138448, guid: 9e2c5de6f8b5db7498a9f66a0d167a27, type: 3}
     MonsterLevel: 2
     Monsterweigth: 2
-  - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
+  - Monster: {fileID: 1862700129162560927, guid: 704c802d0b42f0e4eb1cff9c5b6a88fa, type: 3}
     MonsterLevel: 3
     Monsterweigth: 3
-  - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
-    MonsterLevel: 4
-    Monsterweigth: 4
-  - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
-    MonsterLevel: 5
-    Monsterweigth: 5
-  - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
-    MonsterLevel: 6
-    Monsterweigth: 6
-  - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-    MonsterLevel: 7
-    Monsterweigth: 7
+  - Monster: {fileID: 7267098481191964096, guid: c45afa5170e9dde418e55bf84e5b0821, type: 3}
+    MonsterLevel: 3
+    Monsterweigth: 3
 --- !u!1001 &96363466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -433,6 +424,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840158493}
     m_Modifications:
+    - target: {fileID: 65632601171244530, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990815218076169686, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.32
@@ -476,6 +475,14 @@ PrefabInstance:
     - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_Name
       value: Point0102
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275681469945861091, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -651,6 +658,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840158493}
     m_Modifications:
+    - target: {fileID: 65632601171244530, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990815218076169686, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.96
@@ -694,6 +709,14 @@ PrefabInstance:
     - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_Name
       value: Point0104
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275681469945861091, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -777,7 +800,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.52
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -958,7 +981,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -966,7 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1048,7 +1071,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.59
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1218,30 +1241,21 @@ MonoBehaviour:
   - {fileID: 529786419}
   - {fileID: 682582848}
   _monster:
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 755825375291484649, guid: 4a44607357cdde14fb509dc0ef9702d7, type: 3}
     MonsterLevel: 0
     Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 7267098481191964096, guid: c45afa5170e9dde418e55bf84e5b0821, type: 3}
     MonsterLevel: 1
     Monsterweigth: 1
-  - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
+  - Monster: {fileID: 1862700129162560927, guid: 704c802d0b42f0e4eb1cff9c5b6a88fa, type: 3}
     MonsterLevel: 2
     Monsterweigth: 2
-  - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
+  - Monster: {fileID: 2875748347370138448, guid: 9e2c5de6f8b5db7498a9f66a0d167a27, type: 3}
     MonsterLevel: 3
     Monsterweigth: 3
-  - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
-    MonsterLevel: 4
-    Monsterweigth: 4
-  - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
-    MonsterLevel: 5
-    Monsterweigth: 5
-  - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
-    MonsterLevel: 6
-    Monsterweigth: 6
-  - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-    MonsterLevel: 7
-    Monsterweigth: 7
+  - Monster: {fileID: 4255552051480737237, guid: 4d15cfc5ec738e946a131e61dd6cea06, type: 3}
+    MonsterLevel: 3
+    Monsterweigth: 3
 --- !u!1 &789013470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1474,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
       propertyPath: _maxHp
-      value: 1000
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 173115398214583736, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
       propertyPath: _playerTF
@@ -1650,7 +1664,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1658,7 +1672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1845,6 +1859,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840158493}
     m_Modifications:
+    - target: {fileID: 65632601171244530, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990815218076169686, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.95
@@ -1863,15 +1885,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1888,6 +1910,14 @@ PrefabInstance:
     - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_Name
       value: Point0101
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275681469945861091, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1907,6 +1937,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840158493}
     m_Modifications:
+    - target: {fileID: 65632601171244530, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990815218076169686, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.4
@@ -1950,6 +1988,14 @@ PrefabInstance:
     - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_Name
       value: Point0103
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275681469945861091, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2005,6 +2051,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1093692448254349483, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 425
+      objectReference: {fileID: 0}
     - target: {fileID: 2464071977496999976, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: _uIBt
       value: 
@@ -2013,6 +2063,10 @@ PrefabInstance:
       propertyPath: _openPenalSound
       value: 
       objectReference: {fileID: 8300000, guid: 0684ae5497742024e947aa3b15883258, type: 3}
+    - target: {fileID: 2519373488581775933, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 2669356983189600888, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: _playerLevel
       value: 
@@ -2116,6 +2170,10 @@ PrefabInstance:
     - target: {fileID: 4980876918530795296, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928628461713741929, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 418
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2254,6 +2312,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1840158493}
     m_Modifications:
+    - target: {fileID: 65632601171244530, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990815218076169686, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.39
@@ -2298,6 +2364,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Point0105
       objectReference: {fileID: 0}
+    - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275681469945861091, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2338,11 +2412,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scaling:
-    _maxScalingLevel: 0
-    _secDifficultyLevel: 0
-    _spwanInterval: 0
-    _intervalDecreasePerLevel: 0
-    _spawnCount: 0
+    _maxScalingLevel: 7
+    _secDifficultyLevel: 10
+    _spwanInterval: 10
+    _intervalDecreasePerLevel: 1
+    _spawnCount: 1
     _countIncreasePerLevel: 0
   _minSpawnInterval: 5
 --- !u!4 &1463457809
@@ -2619,30 +2693,21 @@ MonoBehaviour:
   - {fileID: 2142566617}
   - {fileID: 724123306}
   _monster:
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 755825375291484649, guid: 4a44607357cdde14fb509dc0ef9702d7, type: 3}
     MonsterLevel: 0
     Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
+  - Monster: {fileID: 7267098481191964096, guid: c45afa5170e9dde418e55bf84e5b0821, type: 3}
+    MonsterLevel: 1
+    Monsterweigth: 1
+  - Monster: {fileID: 1862700129162560927, guid: 704c802d0b42f0e4eb1cff9c5b6a88fa, type: 3}
+    MonsterLevel: 2
+    Monsterweigth: 2
+  - Monster: {fileID: 2875748347370138448, guid: 9e2c5de6f8b5db7498a9f66a0d167a27, type: 3}
+    MonsterLevel: 3
+    Monsterweigth: 3
+  - Monster: {fileID: 4255552051480737237, guid: 4d15cfc5ec738e946a131e61dd6cea06, type: 3}
+    MonsterLevel: 3
+    Monsterweigth: 3
 --- !u!1001 &1736497570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2715,7 +2780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840158493}
   - component: {fileID: 1840158494}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MonsterSpawner01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2731,7 +2796,7 @@ Transform:
   m_GameObject: {fileID: 1840158492}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 14.3, y: 16, z: 172.6}
+  m_LocalPosition: {x: 14.3, y: 16, z: 174.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2761,30 +2826,18 @@ MonoBehaviour:
   - {fileID: 474656235}
   - {fileID: 1462888222}
   _monster:
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 755825375291484649, guid: 4a44607357cdde14fb509dc0ef9702d7, type: 3}
     MonsterLevel: 0
     Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 7267098481191964096, guid: c45afa5170e9dde418e55bf84e5b0821, type: 3}
     MonsterLevel: 1
     Monsterweigth: 1
-  - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
-    MonsterLevel: 2
-    Monsterweigth: 2
-  - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
-    MonsterLevel: 3
-    Monsterweigth: 3
-  - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
-    MonsterLevel: 4
-    Monsterweigth: 4
-  - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
-    MonsterLevel: 5
-    Monsterweigth: 5
-  - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
-    MonsterLevel: 6
-    Monsterweigth: 6
-  - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-    MonsterLevel: 7
-    Monsterweigth: 7
+  - Monster: {fileID: 1862700129162560927, guid: 704c802d0b42f0e4eb1cff9c5b6a88fa, type: 3}
+    MonsterLevel: 1
+    Monsterweigth: 1
+  - Monster: {fileID: 4255552051480737237, guid: 4d15cfc5ec738e946a131e61dd6cea06, type: 3}
+    MonsterLevel: 1
+    Monsterweigth: 1
 --- !u!1 &1842150838
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,7 +3081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127453172}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -95.06, y: 16, z: 167.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3039,7 +3092,7 @@ Transform:
   - {fileID: 581267421}
   - {fileID: 1059758003}
   m_Father: {fileID: 1400052161}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2127453174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3059,30 +3112,21 @@ MonoBehaviour:
   - {fileID: 581267421}
   - {fileID: 1059758003}
   _monster:
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 755825375291484649, guid: 4a44607357cdde14fb509dc0ef9702d7, type: 3}
     MonsterLevel: 0
     Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
+  - Monster: {fileID: 7267098481191964096, guid: c45afa5170e9dde418e55bf84e5b0821, type: 3}
     MonsterLevel: 1
     Monsterweigth: 1
-  - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
+  - Monster: {fileID: 1862700129162560927, guid: 704c802d0b42f0e4eb1cff9c5b6a88fa, type: 3}
     MonsterLevel: 2
     Monsterweigth: 2
-  - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
+  - Monster: {fileID: 2875748347370138448, guid: 9e2c5de6f8b5db7498a9f66a0d167a27, type: 3}
     MonsterLevel: 3
     Monsterweigth: 3
-  - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
-    MonsterLevel: 4
-    Monsterweigth: 4
-  - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
-    MonsterLevel: 5
-    Monsterweigth: 5
-  - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
-    MonsterLevel: 6
-    Monsterweigth: 6
-  - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
-    MonsterLevel: 7
-    Monsterweigth: 7
+  - Monster: {fileID: 4255552051480737237, guid: 4d15cfc5ec738e946a131e61dd6cea06, type: 3}
+    MonsterLevel: 3
+    Monsterweigth: 3
 --- !u!1001 &2142566616
 PrefabInstance:
   m_ObjectHideFlags: 0
