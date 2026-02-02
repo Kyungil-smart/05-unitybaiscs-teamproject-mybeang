@@ -15,15 +15,18 @@ public class PenetrateType : MonoBehaviour
     private void OnEnable()
     {
         transform.position = _shootingTransform.position;
+        transform.rotation = _shootingTransform.rotation;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!(other is IDamageable)) return;
-        
         if(_penetrateCoroutine != null) return;
-        
-        _penetrateCoroutine = StartCoroutine(PenetrateDamageCoroutine(other));
+
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Crystal"))
+        {
+            _penetrateCoroutine = StartCoroutine(PenetrateDamageCoroutine(other));
+            Debug.Log("지속데미지 시작");
+        }
     }
 
     private void Update()
@@ -36,12 +39,31 @@ public class PenetrateType : MonoBehaviour
         transform.Translate(Vector3.forward * _moveSpeed * Time.deltaTime);
     }
 
+    private void OnDisable()
+    {
+        StopCoroutine(_penetrateCoroutine);
+        _penetrateCoroutine = null;
+        Debug.Log("공격시간 종료");
+    }
+
     private IEnumerator PenetrateDamageCoroutine(Collider other)
     {
+        Debug.Log($"충돌 : {other.gameObject.name}");
         while (true)
         {
-            (other as IDamageable).TakeDamage(_shootingMonster.DamageCalc(_shootingMonster.Damage));
-            Debug.Log($"{_shootingMonster.name} : 명중! {_shootingMonster.DamageCalc(_shootingMonster.Damage)} 피해");
+            if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("Crystal"))
+            {
+                _penetrateCoroutine = null;
+                Debug.Log("범위 벗어나서 종료");
+                yield break;
+            }
+            
+            if (!other.gameObject.CompareTag("Enemy"))
+            {
+                other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_shootingMonster.DamageCalc(_shootingMonster.Damage));
+                Debug.Log($"{_shootingMonster.name} : 명중! {_shootingMonster.DamageCalc(_shootingMonster.Damage)} 피해");
+            }
+            
             yield return YieldContainer.WaitForSeconds(_damageRate);
         }
     }

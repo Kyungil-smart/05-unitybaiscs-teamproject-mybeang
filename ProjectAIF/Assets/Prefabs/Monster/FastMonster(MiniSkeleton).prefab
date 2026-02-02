@@ -60,7 +60,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -103,14 +103,12 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 15
   <AttackRate>k__BackingField: 1.5
   <AttackRange>k__BackingField: 3
-  <Exp>k__BackingField: 10
-  Player: {fileID: 1026817363066699652, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
-  PlayerLevel: {fileID: 2846247506866570063, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+  <Exp>k__BackingField: 50
   ScreamAc: {fileID: 8300000, guid: 7729c927c5610d249b105dd45bfb0e42, type: 3}
   DeadAc: {fileID: 8300000, guid: 7108f7549a1c3b741a4378fd886c6637, type: 3}
   AttackAc: {fileID: 8300000, guid: 8a67cd189abcc48428d89ef8f72385f6, type: 3}
   DamagedAc: {fileID: 8300000, guid: af392a5a179d9ff4bad71d633488752a, type: 3}
-  _animator: {fileID: 0}
+  _animator: {fileID: 9174002997345964999}
   _detectionHeight: 1
   _attackTargetLayer:
     serializedVersion: 2
@@ -356,5 +354,10 @@ PrefabInstance:
 --- !u!4 &5939684398565228232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
+  m_PrefabInstance: {fileID: 8083606507787217047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9174002997345964999 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1116371902028168016, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
   m_PrefabInstance: {fileID: 8083606507787217047}
   m_PrefabAsset: {fileID: 0}
