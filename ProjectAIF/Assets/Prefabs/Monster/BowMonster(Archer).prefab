@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 4706893418795395519}
   - component: {fileID: 7135731102554350814}
   - component: {fileID: 6630121972855396192}
+  - component: {fileID: 6403168424411031479}
   - component: {fileID: 6492381203223687731}
   - component: {fileID: 6033771536591465119}
-  - component: {fileID: 6403168424411031479}
   m_Layer: 6
   m_Name: BowMonster(Archer)
   m_TagString: Enemy
@@ -93,7 +93,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -118,6 +118,36 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.8, z: 0.4}
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &6403168424411031479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7627008493037234255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254ea02b966b4e64997362f71ba768bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 15
+  <Defence>k__BackingField: 0
+  <Hp>k__BackingField: 25
+  <MoveSpeed>k__BackingField: 20
+  <AttackRate>k__BackingField: 1
+  <AttackRange>k__BackingField: 15
+  <Exp>k__BackingField: 15
+  ScreamAc: {fileID: 8300000, guid: 9be7f2b969f0a544b89ba17d060f9558, type: 3}
+  DeadAc: {fileID: 8300000, guid: ac14f452bc7e6c74880604d6f46af64b, type: 3}
+  AttackAc: {fileID: 8300000, guid: c6e476bb7fe4b08458a752179404b9f1, type: 3}
+  DamagedAc: {fileID: 8300000, guid: d055067d998f25d42aec47dd7353663d, type: 3}
+  _animator: {fileID: 3000217489480690987}
+  _detectionHeight: 1
+  _attackTargetLayer:
+    serializedVersion: 2
+    m_Bits: 1073741952
+  _attackAnimationDelay: 1
+  _projectile: {fileID: 636280962206556035}
 --- !u!195 &6492381203223687731
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -158,36 +188,6 @@ MonoBehaviour:
   OnMovingEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6403168424411031479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7627008493037234255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 254ea02b966b4e64997362f71ba768bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 0
-  <Defence>k__BackingField: 0
-  <Hp>k__BackingField: 0
-  <MoveSpeed>k__BackingField: 0
-  <AttackRate>k__BackingField: 0
-  <AttackRange>k__BackingField: 0
-  <Exp>k__BackingField: 0
-  ScreamAc: {fileID: 8300000, guid: 9be7f2b969f0a544b89ba17d060f9558, type: 3}
-  DeadAc: {fileID: 8300000, guid: ac14f452bc7e6c74880604d6f46af64b, type: 3}
-  AttackAc: {fileID: 8300000, guid: c6e476bb7fe4b08458a752179404b9f1, type: 3}
-  DamagedAc: {fileID: 8300000, guid: d055067d998f25d42aec47dd7353663d, type: 3}
-  _animator: {fileID: 0}
-  _detectionHeight: 0
-  _attackTargetLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _attackAnimationDelay: 0
-  _projectile: {fileID: 636280962206556035}
 --- !u!1001 &1861646723796767459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -693,6 +693,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 249c135e43948ca4995fc26c238c058b, type: 3}
+--- !u!95 &3000217489480690987 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5348263984606774366, guid: 249c135e43948ca4995fc26c238c058b, type: 3}
+  m_PrefabInstance: {fileID: 7177101908197878133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9170108659883374417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2078680700503809572, guid: 249c135e43948ca4995fc26c238c058b, type: 3}

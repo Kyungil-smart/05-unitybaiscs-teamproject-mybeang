@@ -60,7 +60,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -98,17 +98,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 25
-  <Defence>k__BackingField: 10
-  <Hp>k__BackingField: 50
-  <MoveSpeed>k__BackingField: 10
-  <AttackRate>k__BackingField: 2
+  <Defence>k__BackingField: 0
+  <Hp>k__BackingField: 150
+  <MoveSpeed>k__BackingField: 15
+  <AttackRate>k__BackingField: 3
   <AttackRange>k__BackingField: 5
-  <Exp>k__BackingField: 0
+  <Exp>k__BackingField: 25
   ScreamAc: {fileID: 8300000, guid: 5837ebed21829aa44afd9638495468b0, type: 3}
   DeadAc: {fileID: 8300000, guid: 1b1bc94272343d84f89d06e37577d294, type: 3}
   AttackAc: {fileID: 8300000, guid: 66ce15feba2c2e548b98f810770e75af, type: 3}
   DamagedAc: {fileID: 8300000, guid: 87739409cee2af24a86f8110dff67d70, type: 3}
-  _animator: {fileID: 0}
+  _animator: {fileID: 423262715638237420}
   _detectionHeight: 1
   _attackTargetLayer:
     serializedVersion: 2
@@ -463,6 +463,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d2e6e9a35aebe848bcaf85c3ec6c0f1, type: 3}
+--- !u!95 &423262715638237420 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4915082991154533488, guid: 3d2e6e9a35aebe848bcaf85c3ec6c0f1, type: 3}
+  m_PrefabInstance: {fileID: 4749708550398041244}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5998680242799317654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1357216421320936970, guid: 3d2e6e9a35aebe848bcaf85c3ec6c0f1, type: 3}

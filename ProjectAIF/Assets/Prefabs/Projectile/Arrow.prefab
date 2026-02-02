@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7912138013405447582}
   - component: {fileID: 6380575303655432537}
   - component: {fileID: 8089932086637340929}
-  - component: {fileID: 4512462588299738212}
-  m_Layer: 0
+  - component: {fileID: -7029864616689928304}
+  m_Layer: 6
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.5}
---- !u!54 &4512462588299738212
+--- !u!54 &-7029864616689928304
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,9 +97,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &3282057183928493575
 GameObject:
@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8080520172707470241}
   - component: {fileID: 1366742610318559982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArrowTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 2560732536650677107}
   - component: {fileID: 629435879993804070}
   - component: {fileID: 8964845083528079686}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ArrowMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

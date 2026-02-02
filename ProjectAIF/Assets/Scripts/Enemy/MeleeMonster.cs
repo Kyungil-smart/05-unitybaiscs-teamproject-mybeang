@@ -21,6 +21,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
     private Transform _targetTransform;
+    private int _targetDef;
 
     
     private void Awake()
@@ -37,7 +38,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         if (_targetable is IDamageable)
         {
-            Attack(DamageCalc(Damage));
+            Attack(DamageCalc());
         }
     }
     
@@ -63,6 +64,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
         _monsterMovement = GetComponent<MonsterMovement>();
         _animator = GetComponentInChildren<Animator>();
         _playerLevel = GameObject.FindWithTag("Player").GetComponent<PlayerLevel>();
+        _playerStatus = GameObject.FindWithTag("Player").GetComponent<PlayerStatus>();
     }
     
     public void Attack(int damage)
@@ -74,11 +76,9 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
         _attackCoroutine = StartCoroutine(AttackCoroutine(damage));
     }
 
-    private int DamageCalc(int attValue)
+    private int DamageCalc()
     {
-        //TODO : 플레이어/크리스탈 방어력 들어있는 컴포넌트 지정해서 삽입
-        int targetDef = 0;
-        return attValue - targetDef;
+        return Damage - _targetDef;
     }
 
     private IEnumerator AttackCoroutine(int damage)
@@ -130,7 +130,7 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
         }
     }
 
-    private void Death()
+    public void Death()
     {
         if (_deathCoroutine != null) return;
         AudioManager.Instance.StopPlaySoundContinuous(_screamCoroutine);
@@ -159,15 +159,30 @@ public class MeleeMonster : Monster, IAttackable, IDamageable, ITargetable
             
             _targetTransform = hit.transform;
             _targetable = hit.transform.GetComponent<ITargetable>();
+            if (hit.transform.CompareTag("Player"))
+            {
+                if (_playerStatus.Defense != null)
+                {
+                    _targetDef = _playerStatus.Defense;
+                }
+                else
+                {
+                    _targetDef = 0;
+                    Debug.Log("플레이어 방어력 참조 실패");
+                }
+            }
+            else
+            {
+                _targetDef = 0;
+            }
             
-            //_targetDef = hit.transform.gameObject.Defense();
             Debug.Log($"{gameObject.name} : 목표 포착");
         }
         else
         {
             _targetable = null;
             _targetTransform = null;
-            //_targetDef = 0;
+            _targetDef = 0;
             Debug.Log($"{gameObject.name} : 목표 수색중");
         }
     }

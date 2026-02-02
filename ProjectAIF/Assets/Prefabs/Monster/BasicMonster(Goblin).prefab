@@ -3471,7 +3471,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -3511,15 +3511,15 @@ MonoBehaviour:
   <Damage>k__BackingField: 5
   <Defence>k__BackingField: 0
   <Hp>k__BackingField: 15
-  <MoveSpeed>k__BackingField: 8
+  <MoveSpeed>k__BackingField: 12
   <AttackRate>k__BackingField: 1
   <AttackRange>k__BackingField: 3
-  <Exp>k__BackingField: 0
+  <Exp>k__BackingField: 5
   ScreamAc: {fileID: 8300000, guid: 934126bb761feca4d846e9ab2c5b4ba3, type: 3}
   DeadAc: {fileID: 8300000, guid: c1ab8021f199d7545a646252533386d3, type: 3}
   AttackAc: {fileID: 8300000, guid: c5b441f42e2306945b5f7f115f973649, type: 3}
   DamagedAc: {fileID: 8300000, guid: c1ab8021f199d7545a646252533386d3, type: 3}
-  _animator: {fileID: 0}
+  _animator: {fileID: 584468020116178354}
   _detectionHeight: 1
   _attackTargetLayer:
     serializedVersion: 2

@@ -12,14 +12,16 @@ public class ArrowType : MonoBehaviour
     private void OnEnable()
     {
         transform.position = _shootingTransform.position;
+        transform.rotation = _shootingTransform.rotation;
     }
     
     private void OnCollisionEnter(Collision other)
     {
-        if (!(other is IDamageable)) return;
+        Debug.Log($"충돌 : {other.gameObject.name}");
         
-        (other as IDamageable).TakeDamage(_shootingMonster.DamageCalc(_shootingMonster.Damage));
-        Debug.Log($"{_shootingMonster.name} : 명중! {_shootingMonster.DamageCalc(_shootingMonster.Damage)} 피해");
+        other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_shootingMonster.DamageCalc());
+        Debug.Log($"{_shootingMonster.name} : 명중! {_shootingMonster.DamageCalc()} 피해");
+        gameObject.SetActive(false);
     }
 
     private void Update()
