@@ -119,7 +119,6 @@ public class PlayerController : MonoBehaviour
             if (_isWalking) AudioManager.Instance.PlaySound(_walkSound);
             yield return YieldContainer.WaitForSeconds((1f / _moveSpeed) * 10f);
         }
-        yield return null;
     }
     
     private void Jump()

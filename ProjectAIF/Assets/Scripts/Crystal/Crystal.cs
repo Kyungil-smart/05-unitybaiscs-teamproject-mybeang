@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class Crystal : MonoBehaviour, IDamageable, ITargetable
 {
@@ -27,11 +28,18 @@ public class Crystal : MonoBehaviour, IDamageable, ITargetable
     [SerializeField] private Transform _playerTF;
     [SerializeField] private float _distance;
     [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private List<AudioClip> _nonsenseSounds;
+    
     private Ray _ray;
 
     private void Awake()
     {
         Init();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(PlayNonsenseSoundCoroutine());
     }
     
     private void LateUpdate()
@@ -42,6 +50,11 @@ public class Crystal : MonoBehaviour, IDamageable, ITargetable
     private void Init()
     {
         CurrentHp = _maxHp;
+        _nonsenseSounds.Add(Resources.Load<AudioClip>("CrystalSay001"));
+        _nonsenseSounds.Add(Resources.Load<AudioClip>("CrystalSay002"));
+        _nonsenseSounds.Add(Resources.Load<AudioClip>("CrystalSay003"));
+        _nonsenseSounds.Add(Resources.Load<AudioClip>("CrystalSay004"));
+        _nonsenseSounds.Add(Resources.Load<AudioClip>("CrystalSay005"));
     }
     
     private Vector3 GetDirectionToPlayer()
@@ -80,13 +93,18 @@ public class Crystal : MonoBehaviour, IDamageable, ITargetable
         }
     }
 
-    public void SetTarget()
+    private IEnumerator PlayNonsenseSoundCoroutine()
     {
-        
+        while (true)
+        {
+            int index = Random.Range(0, _nonsenseSounds.Count - 1);
+            AudioManager.Instance.PlaySound(_nonsenseSounds[index]);
+            float length = _nonsenseSounds[index].length;
+            yield return YieldContainer.WaitForSeconds(length + 10f);
+        }
     }
 
-    public void UnsetTarget()
-    {
-        
-    }
+    public void SetTarget() { }
+
+    public void UnsetTarget() { }
 }
