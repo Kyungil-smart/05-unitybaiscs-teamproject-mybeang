@@ -2446,6 +2446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 363538071771899940, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1026817363066699652, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
       propertyPath: _damagedSound
       value: 
@@ -2494,8 +2498,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2848044600665189036, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3556494906164034133, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
       propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556494906164034133, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3556494906164034133, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168567038995072097, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
