@@ -440,7 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTf: {fileID: 1590381692}
   _respawnPoint: {fileID: 211422864}
-  _playerRespawnSound: {fileID: 0}
+  _playerRespawnSound: {fileID: 8300000, guid: 805b2d41b69f4524eb0463eb28820dc8, type: 3}
 --- !u!1001 &285972054
 PrefabInstance:
   m_ObjectHideFlags: 0
