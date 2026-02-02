@@ -46,10 +46,9 @@ public class PauseGameUI : MonoBehaviour
 
     public void QuitGame()
     {
-        GameManager.Instance.IsPaused = false;
+        UnlockMouse();
         AudioManager.Instance.PlaySound(_uIBt);
         Time.timeScale = 1.0f;
-        UnlockMouse();
         SceneManager.LoadScene(0); // 타이틀 씬으로
     }
 

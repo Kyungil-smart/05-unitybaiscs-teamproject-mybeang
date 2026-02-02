@@ -172,10 +172,12 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         {
             elapsedTime += Time.deltaTime;
             float interval = elapsedTime / duration;
+            _weaponObjects[index].SetActive(true);
             _weaponObjects[index].transform.position = 
                 Vector3.Lerp(_disWpPosArr[index].position, _enWpPosArr[index].position, interval);
             _weaponObjects[_curWpIndex].transform.position = 
                 Vector3.Lerp(_enWpPosArr[_curWpIndex].position, _disWpPosArr[_curWpIndex].position, interval);
+            _weaponObjects[_curWpIndex].SetActive(false);
             yield return null;
         }
         _isSwapable = true;
@@ -213,6 +215,10 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         while (true)
         {
             Attack(damage);
+            if (_curWpIndex == 2)
+            {
+                yield break;
+            }
             yield return YieldContainer.WaitForSeconds(_weapons[_curWpIndex].AttackRate);
         }
     }
@@ -333,6 +339,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         
         Rigidbody rb = grenadeObj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        rb.constraints = RigidbodyConstraints.None;
         rb.useGravity = true;
 
         SphereCollider col = grenadeObj.AddComponent<SphereCollider>();
