@@ -42,15 +42,10 @@ public class PlayerStatus : MonoBehaviour, IDamageable, ITargetable
     [Header("Sounds")]
     [SerializeField] private AudioClip _damagedSound;
 
-    private void Awake()
-    {
-        OnCurrentHpChanged = new UnityEvent<int, int>();
-        OnTotalHpChanged = new UnityEvent<int, int>();
-    }
-    
     public void TakeDamage(int damage)
     {
         CurrentHp -= damage;
+        Debug.Log($"아프다: {CurrentHp}");
         AudioManager.Instance.PlaySound(_damagedSound);
         if (CurrentHp <= 0)
         {
