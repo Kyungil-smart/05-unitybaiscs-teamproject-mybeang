@@ -41,6 +41,7 @@ public class PlayerStatus : MonoBehaviour, IDamageable, ITargetable
     
     [Header("Sounds")]
     [SerializeField] private AudioClip _damagedSound;
+    [SerializeField] private PlayerRespawn _playerRespawn;
 
     public void TakeDamage(int damage)
     {
@@ -49,7 +50,9 @@ public class PlayerStatus : MonoBehaviour, IDamageable, ITargetable
         if (CurrentHp <= 0)
         {
             PlayerManager.Instance.IsDead = true;
-            GameManager.Instance.GameOver();
+            // GameManager.Instance.GameOver();
+            _playerRespawn.PlayerToRespawnPoint();
+            CurrentHp = MaxHp;
         }
     }
 
