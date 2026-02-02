@@ -35,6 +35,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     [Header("Attack")]
     [SerializeField] private float _attackRange;
     [SerializeField] private LayerMask _attackTargetLayer;
+    private Coroutine _attackCoroutine;
 
     [Header("Sounds")] 
     [SerializeField] private AudioClip _pistolAttackSound;
@@ -76,8 +77,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     
     private void OnDrawGizmos()
     {
-        // Gizmos.color = Color.yellow;
-        // Gizmos.DrawRay(_ray.origin, _ray.direction * _attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(_ray.origin, _ray.direction * _attackRange);
     }
 
     private void Init()
@@ -118,7 +119,18 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         // 공격
         if (Input.GetMouseButtonDown(0))
         {
-            Attack(_weapons[0].Damage);
+            AudioManager.Instance.PlaySound(_attackSound);
+            _attackCoroutine = StartCoroutine(AttackCoroutine(_weapons[0].Damage));
+            _isSwapable = false;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (_attackCoroutine != null)
+            {
+                StopCoroutine(_attackCoroutine);    
+            }
+            _isSwapable = true;
         }
         // Reload
         if (Input.GetKeyDown(KeyCode.R))
@@ -172,8 +184,6 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
     public void Attack(int damage)
     {
-        _isSwapable = false;
-        AudioManager.Instance.PlaySound(_attackSound);
         if (_curWpIndex < 2)
         {
             if (_weapons[_curWpIndex].CurrentMagazine <= 0)
@@ -196,7 +206,15 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
                 }
             }
         }
-        _isSwapable = true;
+    }
+
+    public IEnumerator AttackCoroutine (int damage)
+    {
+        while (true)
+        {
+            Attack(damage);
+            yield return YieldContainer.WaitForSeconds(_weapons[_curWpIndex].AttackRate);
+        }
     }
 
     private void DetectTarget()
@@ -287,6 +305,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     private void Throw()
     {
         _isThrowing = true;
+        _weapons[_curWpIndex].CurrentMagazine--;
         // 수류탄 투척시 팔회전 각도 계산
         AudioManager.Instance.PlaySound(_grenadeAttackSound);
     }
@@ -298,7 +317,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _grenadeObject.transform.position = _grenadePoint.transform.position;
 
         GrenadeInstantiate();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(GrenadeStatus.AttackRate);
 
         _grenadeObject.transform.position = origin;
 
