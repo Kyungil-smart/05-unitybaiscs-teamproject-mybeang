@@ -98,12 +98,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 25
-  <Defence>k__BackingField: 10
-  <Hp>k__BackingField: 50
-  <MoveSpeed>k__BackingField: 10
-  <AttackRate>k__BackingField: 2
+  <Defence>k__BackingField: 0
+  <Hp>k__BackingField: 150
+  <MoveSpeed>k__BackingField: 15
+  <AttackRate>k__BackingField: 3
   <AttackRange>k__BackingField: 5
-  <Exp>k__BackingField: 50
+  <Exp>k__BackingField: 25
   ScreamAc: {fileID: 8300000, guid: 5837ebed21829aa44afd9638495468b0, type: 3}
   DeadAc: {fileID: 8300000, guid: 1b1bc94272343d84f89d06e37577d294, type: 3}
   AttackAc: {fileID: 8300000, guid: 66ce15feba2c2e548b98f810770e75af, type: 3}

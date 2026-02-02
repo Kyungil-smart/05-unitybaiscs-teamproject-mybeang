@@ -22,6 +22,7 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     private Coroutine _attackCoroutine;
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
+    private int _targetDef;
     
     public Transform _targetTransform { get; private set; }
 
@@ -41,7 +42,7 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         if (_targetable is IDamageable)
         {
-            Attack(DamageCalc(Damage));
+            Attack(DamageCalc());
         }
     }
     
@@ -68,6 +69,7 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
         _monsterMovement = GetComponent<MonsterMovement>();
         _animator = GetComponentInChildren<Animator>();
         _playerLevel = GameObject.FindWithTag("Player").GetComponent<PlayerLevel>();
+        _playerStatus = GameObject.FindWithTag("Player").GetComponent<PlayerStatus>();
     }
     
     private void Scream(bool isMoving)
@@ -92,17 +94,15 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
 
         if (_attackCoroutine  != null) return;
         
-        _attackCoroutine = StartCoroutine(AttackCoroutine(damage));
+        _attackCoroutine = StartCoroutine(AttackCoroutine());
     }
 
-    public int DamageCalc(int attValue)
+    public int DamageCalc()
     {
-        //TODO : 플레이어/크리스탈 방어력 들어있는 컴포넌트 지정해서 삽입
-        int targetDef = 0;
-        return attValue - targetDef;
+        return Damage - _targetDef;
     }
 
-    private IEnumerator AttackCoroutine(int damage)
+    private IEnumerator AttackCoroutine()
     {
         while (true)
         {
@@ -180,14 +180,30 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
             _targetTransform = hit.transform;
             _targetable = hit.transform.GetComponent<ITargetable>();
             
-            //_targetDef = hit.transform.gameObject.Defense();
+            if (hit.transform.CompareTag("Player"))
+            {
+                if (_playerStatus.Defense != null)
+                {
+                    _targetDef = _playerStatus.Defense;
+                }
+                else
+                {
+                    _targetDef = 0;
+                    Debug.Log("플레이어 방어력 참조 실패");
+                }
+            }
+            else
+            {
+                _targetDef = 0;
+            }
+            
             Debug.Log($"{gameObject.name} : 목표 포착");
         }
         else
         {
             _targetable = null;
             _targetTransform = null;
-            //_targetDef = 0;
+            _targetDef = 0;
             Debug.Log($"{gameObject.name} : 목표 수색중");
         }
     }
