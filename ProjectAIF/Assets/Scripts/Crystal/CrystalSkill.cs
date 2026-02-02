@@ -15,6 +15,18 @@ public class CrystalSkill : MonoBehaviour
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         foreach (var e in enemies)
-            Destroy(e);
+        {
+            MeleeMonster mMonster = e.GetComponent<MeleeMonster>();
+            if (mMonster != null)
+            {
+                mMonster.Death();
+            }
+
+            RangeMonster rMonster = e.GetComponent<RangeMonster>();
+            if (rMonster != null)
+            {
+                rMonster.Death();
+            }
+        }
     }
 }
