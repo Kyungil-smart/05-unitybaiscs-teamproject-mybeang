@@ -2498,6 +2498,30 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4168567038995072097, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _totalMagazine
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168567038995072097, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _currentMagazine
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300492422998181073, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _totalMagazine
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300492422998181073, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _currentMagazine
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712033994014825092, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _totalMagazine
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712033994014825092, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+      propertyPath: _currentMagazine
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8719255078200078598, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
       propertyPath: RifleStatus
       value: 
