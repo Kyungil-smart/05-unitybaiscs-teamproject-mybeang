@@ -13,9 +13,4 @@ public class PlayerRespawn : MonoBehaviour
         _playerTf.position = _respawnPoint.position;
         AudioManager.Instance.PlaySound(_playerRespawnSound);
     }
-
-
-    
-
-
 }

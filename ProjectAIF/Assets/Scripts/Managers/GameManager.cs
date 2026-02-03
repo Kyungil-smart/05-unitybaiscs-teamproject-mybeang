@@ -11,6 +11,7 @@ public class GameManager : SingleTon<GameManager>
     public UnityEvent OnGameOver;
     public int StageNumber { get; private set; }
     public bool IsPaused;
+    public bool IsOpenedAbilityManagerUI;
     private bool _isGameStart;
     private bool _isGameOverScene;
     private int _timerSeconds;
@@ -27,10 +28,8 @@ public class GameManager : SingleTon<GameManager>
     public int GameTime;
 
     // Game Objects Data
-    // ToDo: Player Data
     [SerializeField] private int _maxPlayerLevel = 100;
     public int MaxPlayerLevel => _maxPlayerLevel;
-    // ToDo: Crystal Data
     
     // 아래 값을 이용하여 Enemy 가
     // Player 를 쫒아 갈 것/공격 할 것 인지

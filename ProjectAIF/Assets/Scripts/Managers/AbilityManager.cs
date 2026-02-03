@@ -97,7 +97,49 @@ public class AbilityManager : SingleTon<AbilityManager>
             Debug.Log("Applying Ability: " + _selectedAbilityName);
             // TODO: Apply 후 본래의 게임 화면으로 돌아가는 내용 추가 구현 필요    
         }
+        _isSelectAbility = false;
     }
+    // 로그찍어보고 싶은사람은 밑에 코드로
+    //public void ApplyAbility()
+    //{
+    //    if (!_isSelectAbility)
+    //    {
+    //        Debug.LogWarning("[Ability] ApplyAbility called but _isSelectAbility is false");
+    //        return;
+    //    }
+
+    //    if (CurrentAbilityData == null || !CurrentAbilityData.ContainsKey(_selectedAbilityName))
+    //    {
+    //        Debug.LogError($"[Ability] ApplyAbility failed: CurrentAbilityData does not contain {_selectedAbilityName}");
+    //        return;
+    //    }
+
+    //    float before = Debug_GetNumericValueByAbilityName(_selectedAbilityName);
+
+    //    bool result = CurrentAbilityData[_selectedAbilityName].ApplyAbility();
+
+    //    float after = Debug_GetNumericValueByAbilityName(_selectedAbilityName);
+    //    float delta = after - before;
+
+    //    string signText = delta > 0f ? "증가" : (delta < 0f ? "감소" : "변화없음");
+
+    //    if (Debug_IsFloatAbility(_selectedAbilityName))
+    //    {
+    //        Debug.Log($"[Ability] APPLY {_selectedAbilityName} | {signText} {delta:+0.###;-0.###;0} | BEFORE={before:0.###} -> AFTER={after:0.###} | result={result}");
+    //    }
+    //    else
+    //    {
+    //        // int 계열은 보기 좋게 반올림해서 출력
+    //        int b = Mathf.RoundToInt(before);
+    //        int a = Mathf.RoundToInt(after);
+    //        int d = a - b;
+    //        Debug.Log($"[Ability] APPLY {_selectedAbilityName} | {signText} {d:+0;-0;0} | BEFORE={b} -> AFTER={a} | result={result}");
+    //    }
+
+    //    PlaySound(result);
+    //    _isSelectAbility = false;// 이거 추가했음
+    //}
+
 
 
 
@@ -117,6 +159,7 @@ public class AbilityManager : SingleTon<AbilityManager>
     /// </summary>
     public void ReadyToThreeAbilities()
     {
+        _isSelectAbility = false;
         CurrentAbilityData.Clear();
         List<AbilityName> selected = new List<AbilityName>();
         int cnt = AbilityData.Count - 1;
@@ -262,24 +305,68 @@ public class AbilityManager : SingleTon<AbilityManager>
 
 
 
+    //public void ClickLeftSelectBt()
+    //{
+    //    _selectedAbilityName = Enum.Parse<AbilityName>(_leftAbilityText.text);
+    //    _isSelectAbility = !_isSelectAbility;
+    //    // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+    //}
+    //public void ClickCenterSelectBt()
+    //{
+    //    _selectedAbilityName = Enum.Parse<AbilityName>(_centerAbilityText.text);
+    //    _isSelectAbility = !_isSelectAbility;
+    //    // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+    //}
+    //public void ClickRightSelectBt()
+    //{
+    //    _selectedAbilityName = Enum.Parse<AbilityName>(_rightAbilityText.text);
+    //    _isSelectAbility = !_isSelectAbility;
+    //    // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+    //}
     public void ClickLeftSelectBt()
+{
+    AbilityName parsed = Enum.Parse<AbilityName>(_leftAbilityText.text);
+
+    // 이미 선택된 상태에서 같은 버튼을 다시 누르면 선택 해제
+    if (_isSelectAbility && _selectedAbilityName.Equals(parsed))
     {
-        _selectedAbilityName = Enum.Parse<AbilityName>(_leftAbilityText.text);
-        _isSelectAbility = !_isSelectAbility;
-        // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+        _isSelectAbility = false;
+        return;
     }
-    public void ClickCenterSelectBt()
+
+    // 그 외에는 무조건 선택 상태 true로 세팅
+    _selectedAbilityName = parsed;
+    _isSelectAbility = true;
+}
+
+public void ClickCenterSelectBt()
+{
+    AbilityName parsed = Enum.Parse<AbilityName>(_centerAbilityText.text);
+
+    if (_isSelectAbility && _selectedAbilityName.Equals(parsed))
     {
-        _selectedAbilityName = Enum.Parse<AbilityName>(_centerAbilityText.text);
-        _isSelectAbility = !_isSelectAbility;
-        // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+        _isSelectAbility = false;
+        return;
     }
-    public void ClickRightSelectBt()
+
+    _selectedAbilityName = parsed;
+    _isSelectAbility = true;
+}
+
+public void ClickRightSelectBt()
+{
+    AbilityName parsed = Enum.Parse<AbilityName>(_rightAbilityText.text);
+
+    if (_isSelectAbility && _selectedAbilityName.Equals(parsed))
     {
-        _selectedAbilityName = Enum.Parse<AbilityName>(_rightAbilityText.text);
-        _isSelectAbility = !_isSelectAbility;
-        // TODO: 클릭시 글자 Box 에 Outline 추가 필요. 재 클릭하면 빈값이 되도록 하는 것도 필요
+        _isSelectAbility = false;
+        return;
     }
+
+    _selectedAbilityName = parsed;
+    _isSelectAbility = true;
+}
+
 }
 
 public enum AbilityName
