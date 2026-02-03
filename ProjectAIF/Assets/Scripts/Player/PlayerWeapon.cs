@@ -120,7 +120,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         if (Input.GetMouseButtonDown(0))
         {
             AudioManager.Instance.PlaySound(_attackSound);
-            _attackCoroutine = StartCoroutine(AttackCoroutine(_weapons[0].Damage));
+            _attackCoroutine = StartCoroutine(AttackCoroutine(_weapons[_curWpIndex].Damage));
             _isSwapable = false;
         }
 
