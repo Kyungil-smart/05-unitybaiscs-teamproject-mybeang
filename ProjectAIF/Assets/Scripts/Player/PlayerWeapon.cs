@@ -119,6 +119,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         // 공격
         if (Input.GetMouseButtonDown(0))
         {
+            if (GameManager.Instance.IsPaused) return;
             AudioManager.Instance.PlaySound(_attackSound);
             _attackCoroutine = StartCoroutine(AttackCoroutine(_weapons[_curWpIndex].Damage));
             _isSwapable = false;
