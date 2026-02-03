@@ -183,25 +183,25 @@ MonoBehaviour:
     Monsterweigth: 0
   - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
     MonsterLevel: 1
-    Monsterweigth: 20
+    Monsterweigth: 4
   - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 15
+    Monsterweigth: 2
   - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 25
+    Monsterweigth: 4
   - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 5
+    Monsterweigth: 1
   - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 10
+    Monsterweigth: 3
   - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 15
+    Monsterweigth: 2
   - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 15
+    Monsterweigth: 3
 --- !u!1001 &96363466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1228,29 +1228,26 @@ MonoBehaviour:
   - {fileID: 682582848}
   _monster:
   - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
     MonsterLevel: 1
-    Monsterweigth: 20
+    Monsterweigth: 4
   - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 15
+    Monsterweigth: 2
   - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 25
+    Monsterweigth: 4
   - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 5
+    Monsterweigth: 1
   - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 10
+    Monsterweigth: 3
   - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 10
+    Monsterweigth: 2
   - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 15
+    Monsterweigth: 3
 --- !u!1 &789013470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,29 +2757,26 @@ MonoBehaviour:
   - {fileID: 724123306}
   _monster:
   - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
     MonsterLevel: 1
-    Monsterweigth: 20
+    Monsterweigth: 4
   - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 15
+    Monsterweigth: 2
   - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 25
+    Monsterweigth: 4
   - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 5
+    Monsterweigth: 1
   - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 10
+    Monsterweigth: 3
   - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 10
+    Monsterweigth: 2
   - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 15
+    Monsterweigth: 3
 --- !u!1001 &1736497570
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2902,29 +2896,26 @@ MonoBehaviour:
   - {fileID: 1462888222}
   _monster:
   - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
     MonsterLevel: 1
-    Monsterweigth: 20
+    Monsterweigth: 4
   - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 15
+    Monsterweigth: 2
   - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 25
+    Monsterweigth: 4
   - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 5
+    Monsterweigth: 1
   - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 10
+    Monsterweigth: 3
   - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 10
+    Monsterweigth: 2
   - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 15
+    Monsterweigth: 3
 --- !u!1 &1842150838
 GameObject:
   m_ObjectHideFlags: 0
@@ -3200,29 +3191,26 @@ MonoBehaviour:
   - {fileID: 1059758003}
   _monster:
   - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
-    MonsterLevel: 0
-    Monsterweigth: 0
-  - Monster: {fileID: 755825375291484649, guid: b67d91965e7766a4ba60b604e0f76668, type: 3}
     MonsterLevel: 1
-    Monsterweigth: 20
+    Monsterweigth: 4
   - Monster: {fileID: 7627008493037234255, guid: 592e4d60bf56fe149b65105f59567bdf, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 15
+    Monsterweigth: 2
   - Monster: {fileID: 1771822946396319837, guid: f475a87d403b6234382c356f3800d199, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 25
+    Monsterweigth: 4
   - Monster: {fileID: 4255552051480737237, guid: b0faec62f35793142bc0c88781014812, type: 3}
     MonsterLevel: 4
-    Monsterweigth: 5
+    Monsterweigth: 1
   - Monster: {fileID: 2875748347370138448, guid: 619717826c1331944b2e07c39335da85, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 10
+    Monsterweigth: 3
   - Monster: {fileID: 1862700129162560927, guid: 1f11cbf2556e28a4bb85beb8711060de, type: 3}
     MonsterLevel: 3
-    Monsterweigth: 10
+    Monsterweigth: 2
   - Monster: {fileID: 7267098481191964096, guid: 066535a7a27401346a62a54955ee0408, type: 3}
     MonsterLevel: 2
-    Monsterweigth: 15
+    Monsterweigth: 3
 --- !u!1001 &2142566616
 PrefabInstance:
   m_ObjectHideFlags: 0

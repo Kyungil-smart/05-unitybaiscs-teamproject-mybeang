@@ -70,7 +70,7 @@ public class MonsterSpawnManager : SingleTon<MonsterSpawnManager>
                 yield break;
             }
 
-            int difficultyLevel = _scaling.GetCurrentLevel(_spawnTimeSec);
+            int difficultyLevel = Mathf.Max(1, _scaling.GetCurrentLevel(_spawnTimeSec));
             int spawnCount = _scaling.GetSpawnCount(_spawnTimeSec);
             float interval = Mathf.Max(_minSpawnInterval, _scaling.GetCurrentSpawnInterval(_spawnTimeSec));
 
