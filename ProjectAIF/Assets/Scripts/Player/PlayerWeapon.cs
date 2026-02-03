@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
-using static PlayerManager;
+using Random = UnityEngine.Random;
 
 public class PlayerWeapon : MonoBehaviour, IAttackable
 {
@@ -129,7 +129,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         {
             if (GameManager.Instance.IsPaused) return;
             //AudioManager.Instance.PlaySound(_attackSound);
-            _attackCoroutine = StartCoroutine(AttackCoroutine(_weapons[_curWpIndex].Damage));
+            _attackCoroutine = StartCoroutine(AttackCoroutine(DamageCal()));
             _isSwapable = false;
         }
 
@@ -228,6 +228,40 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
                     StartCoroutine(ThrowArmRotation());    
                 }
             }
+        }
+    }
+
+    private int DamageCal()
+    {
+        switch (_curWpIndex)
+        {
+            case 0:
+                if (PistolStatus.CriticalChance == 0 || Random.Range(0f, 1f) > PistolStatus.CriticalChance)
+                {
+                    Debug.Log($"권총 타격 : {_weapons[0].Damage}");
+                    return _weapons[0].Damage;
+                }
+                else
+                {
+                    Debug.Log($"권총 치명타 : {_weapons[0].Damage + PistolStatus.CriticalDamage}");
+                    return _weapons[0].Damage + PistolStatus.CriticalDamage;
+                }
+            
+            case 1:
+                if (RifleStatus.CriticalChance == 0 || Random.Range(0f, 1f) > RifleStatus.CriticalChance)
+                {
+                    Debug.Log("소총타격");
+                    return _weapons[1].Damage;
+                }
+                else
+                {
+                    Debug.Log("소총 치명타");
+                    return _weapons[1].Damage + RifleStatus.CriticalDamage;
+                }
+                
+            default:
+                Debug.Log($"{_curWpIndex}번 무기 타격");
+                return _weapons[_curWpIndex].Damage;
         }
     }
 
