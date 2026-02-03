@@ -31,7 +31,13 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     [SerializeField] private Transform _disRiflePos;
     [SerializeField] private Transform _disGrenadePos;
     private Transform[] _disWpPosArr = new Transform[3];
+    
+    [SerializeField] private GameObject _muzzleFlashPistol;
+    [SerializeField] private GameObject _muzzleFlashRifle;
+    private GameObject[] _muzzleFlashArr = new GameObject[2];
+    
     private int _curWpIndex;
+    private float _flashDuration = 0.1f;
     
     [Header("Attack")]
     [SerializeField] private float _attackRange;
@@ -42,12 +48,9 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     [SerializeField] private AudioClip _pistolAttackSound;
     [SerializeField] private AudioClip _rifleAttackSound;
     [SerializeField] private AudioClip _grenadeAttackSound;
-    
     [SerializeField] private AudioClip _pistolSwapSound;
     [SerializeField] private AudioClip _rifleSwapSound;
-
     [SerializeField] private AudioClip _ReloadSound;
-    
     [SerializeField] private AudioClip _attackSound;
     
     private IDamageable _targetDamagable;
@@ -97,6 +100,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _disWpPosArr[0] = _disPistolPos;
         _disWpPosArr[1] = _disRiflePos;
         _disWpPosArr[2] = _disGrenadePos;
+        _muzzleFlashArr[0] = _muzzleFlashPistol;
+        _muzzleFlashArr[1] = _muzzleFlashRifle;
         
         _camera = Camera.main;
         _curWpIndex = 0;
@@ -204,6 +209,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
             if (!_reLoading)
             {
                 Fire(damage);
+                StartCoroutine(FlashCoroutine());
             }
         }
         else
@@ -276,6 +282,13 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         }
         _targetDamagable.TakeDamage(damage);
         _isSwapable = true;
+    }
+
+    private IEnumerator FlashCoroutine()
+    {
+        _muzzleFlashArr[_curWpIndex].SetActive(true);
+        yield return YieldContainer.WaitForSeconds(_flashDuration);
+        _muzzleFlashArr[_curWpIndex].SetActive(false);
     }
 
     //장전할것은 명령하는 함수
