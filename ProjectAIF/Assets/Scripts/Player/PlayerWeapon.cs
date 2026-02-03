@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
-using static PlayerManager;
+using Random = UnityEngine.Random;
 
 public class PlayerWeapon : MonoBehaviour, IAttackable
 {
@@ -31,7 +31,13 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     [SerializeField] private Transform _disRiflePos;
     [SerializeField] private Transform _disGrenadePos;
     private Transform[] _disWpPosArr = new Transform[3];
+    
+    [SerializeField] private GameObject _muzzleFlashPistol;
+    [SerializeField] private GameObject _muzzleFlashRifle;
+    private GameObject[] _muzzleFlashArr = new GameObject[2];
+    
     private int _curWpIndex;
+    private float _flashDuration = 0.1f;
     
     [Header("Attack")]
     [SerializeField] private float _attackRange;
@@ -42,12 +48,9 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     [SerializeField] private AudioClip _pistolAttackSound;
     [SerializeField] private AudioClip _rifleAttackSound;
     [SerializeField] private AudioClip _grenadeAttackSound;
-    
     [SerializeField] private AudioClip _pistolSwapSound;
     [SerializeField] private AudioClip _rifleSwapSound;
-
     [SerializeField] private AudioClip _ReloadSound;
-    
     [SerializeField] private AudioClip _attackSound;
     
     private IDamageable _targetDamagable;
@@ -97,6 +100,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _disWpPosArr[0] = _disPistolPos;
         _disWpPosArr[1] = _disRiflePos;
         _disWpPosArr[2] = _disGrenadePos;
+        _muzzleFlashArr[0] = _muzzleFlashPistol;
+        _muzzleFlashArr[1] = _muzzleFlashRifle;
         
         _camera = Camera.main;
         _curWpIndex = 0;
@@ -124,7 +129,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         {
             if (GameManager.Instance.IsPaused) return;
             //AudioManager.Instance.PlaySound(_attackSound);
-            _attackCoroutine = StartCoroutine(AttackCoroutine(_weapons[_curWpIndex].Damage));
+            _attackCoroutine = StartCoroutine(AttackCoroutine(DamageCal()));
             _isSwapable = false;
         }
 
@@ -204,6 +209,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
             if (!_reLoading)
             {
                 Fire(damage);
+                StartCoroutine(FlashCoroutine());
             }
         }
         else
@@ -222,6 +228,40 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
                     StartCoroutine(ThrowArmRotation());    
                 }
             }
+        }
+    }
+
+    private int DamageCal()
+    {
+        switch (_curWpIndex)
+        {
+            case 0:
+                if (PistolStatus.CriticalChance == 0 || Random.Range(0f, 1f) > PistolStatus.CriticalChance)
+                {
+                    Debug.Log($"권총 타격 : {_weapons[0].Damage}");
+                    return _weapons[0].Damage;
+                }
+                else
+                {
+                    Debug.Log($"권총 치명타 : {_weapons[0].Damage + PistolStatus.CriticalDamage}");
+                    return _weapons[0].Damage + PistolStatus.CriticalDamage;
+                }
+            
+            case 1:
+                if (RifleStatus.CriticalChance == 0 || Random.Range(0f, 1f) > RifleStatus.CriticalChance)
+                {
+                    Debug.Log("소총타격");
+                    return _weapons[1].Damage;
+                }
+                else
+                {
+                    Debug.Log("소총 치명타");
+                    return _weapons[1].Damage + RifleStatus.CriticalDamage;
+                }
+                
+            default:
+                Debug.Log($"{_curWpIndex}번 무기 타격");
+                return _weapons[_curWpIndex].Damage;
         }
     }
 
@@ -276,6 +316,13 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         }
         _targetDamagable.TakeDamage(damage);
         _isSwapable = true;
+    }
+
+    private IEnumerator FlashCoroutine()
+    {
+        _muzzleFlashArr[_curWpIndex].SetActive(true);
+        yield return YieldContainer.WaitForSeconds(_flashDuration);
+        _muzzleFlashArr[_curWpIndex].SetActive(false);
     }
 
     //장전할것은 명령하는 함수
