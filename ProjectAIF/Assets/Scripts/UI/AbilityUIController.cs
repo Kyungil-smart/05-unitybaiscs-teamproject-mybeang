@@ -44,8 +44,7 @@ public class AbilityUIController : MonoBehaviour
         Debug.Log($"[AbilityUI] OpenAbilityUI | LevelUp Level={level}");
 
         AbilityManager.Instance.ReadyToThreeAbilities();
-        //로그 나중에 없에도됨
-        AbilityManager.Instance.Debug_LogCurrentChoices("UI Open");
+
 
         if (_abilityPanel != null)
         {
