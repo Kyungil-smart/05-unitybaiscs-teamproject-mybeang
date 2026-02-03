@@ -6,6 +6,7 @@ public class PauseGameUI : MonoBehaviour
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private AudioClip _uIBt;
     [SerializeField] private AudioClip _openPenalSound;
+    private bool _isOpened;
 
     private void Awake()
     {
@@ -25,13 +26,13 @@ public class PauseGameUI : MonoBehaviour
     // 진행중인 게임을 돌아가기
     public void ReturnGame()
     {
-        GameManager.Instance.IsPaused = false;
-        Time.timeScale = 1f;
-
+        AudioManager.Instance.PlaySound(_uIBt);
         if (_pausePanel != null)
             _pausePanel.SetActive(false);
         
-        AudioManager.Instance.PlaySound(_uIBt);
+        if (GameManager.Instance.IsOpenedAbilityManagerUI) return;
+        GameManager.Instance.IsPaused = false;
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -55,14 +56,14 @@ public class PauseGameUI : MonoBehaviour
     private void StopGame()
     {
         AudioManager.Instance.PlaySound(_openPenalSound);
-        //토글
-        GameManager.Instance.IsPaused = !GameManager.Instance.IsPaused;
-
-        Time.timeScale = GameManager.Instance.IsPaused ? 0f : 1f;
-
+        _isOpened = !_isOpened;
         if (_pausePanel != null)
-            _pausePanel.SetActive(GameManager.Instance.IsPaused);
+            _pausePanel.SetActive(_isOpened);
 
+        if (GameManager.Instance.IsOpenedAbilityManagerUI) return;
+        GameManager.Instance.IsPaused = !GameManager.Instance.IsPaused;
+        Time.timeScale = GameManager.Instance.IsPaused ? 0f : 1f;
+        
         if (GameManager.Instance.IsPaused)
         {
             UnlockMouse();
