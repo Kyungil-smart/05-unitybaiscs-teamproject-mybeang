@@ -72,14 +72,14 @@ public class MonsterSpawner : MonoBehaviour
     {
         int totalWeight = 0; //토탈 가중치
         for (int i = 0; i < candidates.Count; i++)
-            totalWeight += candidates[i].MonsterLevel; // 가중치=레벨
+            totalWeight += candidates[i].Monsterweigth; // 가중치
 
         int RandomPick = Random.Range(0, totalWeight);
         int acc = 0; // 가중치
 
         for (int i = 0; i < candidates.Count; i++)
         {
-            acc += candidates[i].MonsterLevel;
+            acc += candidates[i].Monsterweigth;
             if (RandomPick < acc)
             {
                 return candidates[i];
