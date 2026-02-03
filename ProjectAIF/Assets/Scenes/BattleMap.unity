@@ -1975,6 +1975,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 0684ae5497742024e947aa3b15883258, type: 3}
     - target: {fileID: 2669356983189600888, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+      propertyPath: _aimImage
+      value: 
+      objectReference: {fileID: 1412424167}
+    - target: {fileID: 2669356983189600888, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
       propertyPath: _playerLevel
       value: 
       objectReference: {fileID: 1590381681}
@@ -2099,6 +2103,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+--- !u!114 &1412424167 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3649574189936716284, guid: 2aa4d2722ac8f3349ad5391a5369deac, type: 3}
+  m_PrefabInstance: {fileID: 1412424166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1416882289
 PrefabInstance:
   m_ObjectHideFlags: 0
