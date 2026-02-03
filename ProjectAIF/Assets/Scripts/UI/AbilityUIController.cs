@@ -42,7 +42,7 @@ public class AbilityUIController : MonoBehaviour
     {
         //로그 나중에 없어도됨
         Debug.Log($"[AbilityUI] OpenAbilityUI | LevelUp Level={level}");
-
+        GameManager.Instance.IsOpenedAbilityManagerUI = true;
         AbilityManager.Instance.ReadyToThreeAbilities();
 
 
@@ -82,6 +82,7 @@ public class AbilityUIController : MonoBehaviour
 
         if (_playerLevel != null)
             _playerLevel.ConfirmAbility();
+        GameManager.Instance.IsOpenedAbilityManagerUI = false;
     }
 
     // 이 밑에 있는 코드는 테스트용 코드입니다. 추후에 삭제 가능합니다.
