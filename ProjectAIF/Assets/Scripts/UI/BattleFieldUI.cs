@@ -29,6 +29,8 @@ public class BattleFieldUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _rifleText;
     [SerializeField] private TextMeshProUGUI _grenadeText;
 
+    [SerializeField] private Image _aimImage; //에임 이미지 
+    private bool _lastAimActive = true;
     private void Start()
     {
         GameManager.Instance.GameStart();
@@ -36,6 +38,8 @@ public class BattleFieldUI : MonoBehaviour
         SetPistolMegazine(_pistolStatus.CurrentMagazine, _pistolStatus.TotalMagazine);
         SetRifleMegazine(_rifleStatus.CurrentMagazine, _rifleStatus.TotalMagazine);
         SetGrenadeMegazine(_grenadeStatus.CurrentMagazine, _grenadeStatus.TotalMagazine);
+
+        RefreshAimImage(); //추가
     }
 
     private void OnEnable()
@@ -52,6 +56,23 @@ public class BattleFieldUI : MonoBehaviour
         _grenadeStatus.OnCurrentMagazineChanged.AddListener(SetGrenadeMegazine);
         _grenadeStatus.OnTotalMagazineChanged.AddListener(SetGrenadeMegazine);
     }
+    private void Update()
+    {
+        RefreshAimImage();
+    }
+    private void RefreshAimImage()
+    {
+        if (_aimImage == null || GameManager.Instance == null) return;
+
+        // PauseUI/AbilityUI 둘 다 IsPaused=true 다시 돌아옴
+        bool shouldActive = !GameManager.Instance.IsPaused;
+
+        if (_lastAimActive == shouldActive) return;
+        _lastAimActive = shouldActive;
+
+        _aimImage.gameObject.SetActive(shouldActive);
+    }
+
 
     private void OnDisable()
     {
