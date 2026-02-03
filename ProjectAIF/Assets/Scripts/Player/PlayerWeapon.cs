@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -56,6 +57,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     private bool _isThrowing;
     private bool _isTrhowCoroutin;
     private bool _isSwapable;
+    private bool _isCharging;
     private Quaternion _targetRotation;
     private Vector3 _idleArmPos;
     private Ray _ray;
@@ -102,6 +104,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _isThrowing = false;
         _isTrhowCoroutin = false;
         _isSwapable = true;
+        _isCharging = false;
     }
 
     void ReadyWeapon()
@@ -120,7 +123,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         if (Input.GetMouseButtonDown(0))
         {
             if (GameManager.Instance.IsPaused) return;
-            AudioManager.Instance.PlaySound(_attackSound);
+            //AudioManager.Instance.PlaySound(_attackSound);
             _attackCoroutine = StartCoroutine(AttackCoroutine(_weapons[_curWpIndex].Damage));
             _isSwapable = false;
         }
@@ -156,6 +159,11 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         {
             StartCoroutine(VisualSwap(2));
         }
+    }
+
+    private void LateUpdate()
+    {
+        GrenadeCharge();
     }
 
     // 무기가 스왑되는 시각적인 효과를 제공한다
@@ -202,7 +210,13 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         {
             if (!_isThrowing)
             {
+                if (_weapons[_curWpIndex].CurrentMagazine <= 0)
+                {
+                    return;
+                }
+                
                 Throw();
+                
                 if (_isThrowing && !_isTrhowCoroutin)
                 {
                     StartCoroutine(ThrowArmRotation());    
@@ -350,5 +364,22 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         Vector3 throwDir = _grenadePoint.transform.forward * 14f + _grenadePoint.transform.up * 8f;
 
         rb.AddForce(throwDir, ForceMode.Impulse);
+    }
+
+    // 수류탄 충전에 관한 함수
+    private void GrenadeCharge()
+    {
+        if (_weapons[2].CurrentMagazine < _weapons[2].TotalMagazine && !_isCharging)
+        {
+            StartCoroutine(ChargeCoroutine());
+        }
+    }
+
+    private IEnumerator ChargeCoroutine()
+    {
+        _isCharging = true;
+        yield return YieldContainer.WaitForSeconds(GrenadeStatus.ChargeTime);
+        _weapons[2].CurrentMagazine++;
+        _isCharging = false;
     }
 }
