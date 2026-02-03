@@ -15,6 +15,9 @@ public class PlayerLevel : MonoBehaviour
     [Tooltip("증가량")]
     [SerializeField] private int _playerExpIncrease;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip _levelUpSound;
+    
     //레벨
     public int CurrentLevel { get; private set; }
     //현재 누적된 경험치
@@ -22,9 +25,9 @@ public class PlayerLevel : MonoBehaviour
     //현재레벨에서 필요한 경험치
     public int CurrentMaxExp { get; private set; }
 
-    public UnityEvent<int> OnLevelChange;
-    public UnityEvent<int, int> OnExpbarChange;
-    public UnityEvent<int> OnLevelUp;
+    [HideInInspector] public UnityEvent<int> OnLevelChange = new UnityEvent<int>();
+    [HideInInspector] public UnityEvent<int, int> OnExpbarChange = new UnityEvent<int, int>();
+    [HideInInspector] public UnityEvent<int> OnLevelUp = new UnityEvent<int>();
 
     private int MaxPlayerLevel => GameManager.Instance.MaxPlayerLevel;
 
@@ -33,14 +36,6 @@ public class PlayerLevel : MonoBehaviour
 
     // 어빌리티 선택창이 열려있는 동안 true (열려있으면 다음 레벨업 진행 X)
     public bool isOpenAblity { get; private set; }
-
-    private void Awake()
-    {
-        // 인스펙터에서 이벤트를 비워둬도 NullReference 안 나게 초기화
-        if (OnLevelChange == null) OnLevelChange = new UnityEvent<int>();
-        if (OnExpbarChange == null) OnExpbarChange = new UnityEvent<int, int>();
-        if (OnLevelUp == null) OnLevelUp = new UnityEvent<int>();
-    }
 
     private void Start()
     {
@@ -56,7 +51,6 @@ public class PlayerLevel : MonoBehaviour
         PendingLevel = 0;
         isOpenAblity = false;
 
-        // TODO(UI): 게임 시작 시 경험치바/레벨 텍스트 초기화 필요
         // - OnExpbarChange(int curExp, int maxExp) -> EXP 게이지/텍스트 갱신 함수 연결
         // - OnLevelChange(int level) -> 레벨 텍스트 갱신 함수 연결
         // UI 갱신 이벤트
@@ -68,7 +62,7 @@ public class PlayerLevel : MonoBehaviour
     {
         if (Value <= 0) return;
         if (CurrentLevel >= MaxPlayerLevel) return;
-
+        
         CurrentExp += Value;
 
         // 현재 경험치로 가능한 레벨업 횟수 계산
@@ -79,10 +73,7 @@ public class PlayerLevel : MonoBehaviour
         {
             TryProcessOneLevelUp();
         }
-
-
         // 최종 경험치 바 갱신
-        // TODO(UI): 경험치 획득 시 경험치바 갱신 필요
         OnExpbarChange?.Invoke(CurrentExp, CurrentMaxExp);
     }
 
@@ -134,7 +125,7 @@ public class PlayerLevel : MonoBehaviour
         // 레벨업 1번 적용
         CurrentExp -= CurrentMaxExp;
         CurrentLevel++;
-
+        AudioManager.Instance.PlaySound(_levelUpSound);
         CurrentMaxExp = ExpCalc(CurrentLevel);
 
         // Pending 다시 계산

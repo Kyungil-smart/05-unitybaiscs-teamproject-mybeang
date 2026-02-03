@@ -3471,8 +3471,8 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &8324826134953120405
@@ -3511,11 +3511,15 @@ MonoBehaviour:
   <Damage>k__BackingField: 5
   <Defence>k__BackingField: 0
   <Hp>k__BackingField: 15
-  <MoveSpeed>k__BackingField: 8
+  <MoveSpeed>k__BackingField: 12
   <AttackRate>k__BackingField: 1
   <AttackRange>k__BackingField: 3
-  <Exp>k__BackingField: 0
-  Player: {fileID: 1026817363066699652, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
+  <Exp>k__BackingField: 5
+  ScreamAc: {fileID: 8300000, guid: 934126bb761feca4d846e9ab2c5b4ba3, type: 3}
+  DeadAc: {fileID: 8300000, guid: c1ab8021f199d7545a646252533386d3, type: 3}
+  AttackAc: {fileID: 8300000, guid: c5b441f42e2306945b5f7f115f973649, type: 3}
+  DamagedAc: {fileID: 8300000, guid: c1ab8021f199d7545a646252533386d3, type: 3}
+  _animator: {fileID: 584468020116178354}
   _detectionHeight: 1
   _attackTargetLayer:
     serializedVersion: 2
@@ -3558,6 +3562,9 @@ MonoBehaviour:
   _crystalTF: {fileID: 8097869810816761410, guid: fab68152e6a9b0446852e6fedcf81e27, type: 3}
   _playerTF: {fileID: 1457970132235383509, guid: 3e21353bbfd230840b6757ad174ad54f, type: 3}
   _monster: {fileID: 3328067211768931059}
+  OnMovingEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &759208720957371045
 GameObject:
   m_ObjectHideFlags: 0

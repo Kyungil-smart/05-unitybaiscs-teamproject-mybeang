@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
+using UnityEngine.Events;
+using Debug = UnityEngine.Debug;
 
 public class GrenadeStatus : WeaponStatusBase
 {
+    [SerializeField] private LayerMask _explosionLayer;
     public float EffectRange = 10f; // 폭발 범위
     public float ChargeTime = 3f;
 
@@ -17,59 +21,67 @@ public class GrenadeStatus : WeaponStatusBase
     [Header("터지기")]
     public float ExplosionForce = 700f; // 폭발
     public GameObject ExplosionEffectPrefab; // 이펙트
-
-    private bool _hasExploded = false; // 두 번 방지
+    [SerializeField] private float _explosionDestroyTime;
+    [SerializeField] AudioClip _explodeSound;
     
-    private void Awake()
-    {
-        Damage = 50;
-        TotalMagazine = 3;
-        CurrentMagazine = TotalMagazine;
-    }
+    //private void Awake()
+    //{
+    //    Damage = 50;
+    //    TotalMagazine = 3;
+    //    AttackRate = 10f;
+    //    CurrentMagazine = TotalMagazine;
+    //}
     
     // 충돌하면 폭발
     private void OnCollisionEnter(Collision collision)
     {
         // 닿았을 때 터지기
+        /*
         if (_hasExploded)
         {
             return;
         }
+        */
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            return;
-        } 
+        if ((_explosionLayer.value & (1 << collision.gameObject.layer)) == 0) return;
+        
         Explode();
     }
 
     public void Explode()
     {
-        _hasExploded = true; // 터지는 거 체크
-
-        // 이펙트 미리 준비
+        // play explosion effect
         if (ExplosionEffectPrefab != null)
         {
-            Instantiate(ExplosionEffectPrefab, transform.position, Quaternion.identity);
+            GameObject explosion = Instantiate(ExplosionEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(explosion,_explosionDestroyTime);
         }
 
-        // 주변 물체 밀기
-        Collider[] colliders = Physics.OverlapSphere(transform.position, EffectRange); // 범위 내 물체 찾기
+        // play audio
+        if (_explodeSound != null)
+        {
+            AudioManager.Instance.PlaySound(_explodeSound);
+        }
+        
+        Collider[] colliders = Physics.OverlapSphere(transform.position, EffectRange);
+        
         foreach (Collider nearbyObject in colliders)
         {
+            // Damage
+            IDamageable damageable = nearbyObject.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable?.TakeDamage(Damage);
+            }
+
+            // Knock-back
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                // 터질 때 밀어내기
                 rb.AddExplosionForce(ExplosionForce, transform.position, EffectRange, 2.0f);
             }
-            
-
         }
-
-        Debug.Log("수류탄 폭발");
-
-        // 수류탄 삭제
+        
         Destroy(gameObject);
     }
 }

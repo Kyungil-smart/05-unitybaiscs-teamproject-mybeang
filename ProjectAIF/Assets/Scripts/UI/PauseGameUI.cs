@@ -5,11 +5,12 @@ public class PauseGameUI : MonoBehaviour
 {
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private AudioClip _uIBt;
-
-    private bool isPaused = false;
+    [SerializeField] private AudioClip _openPenalSound;
+    private bool _isOpened;
 
     private void Awake()
     {
+        GameManager.Instance.IsPaused = false;
         if (_pausePanel != null)
             _pausePanel.SetActive(false);
     }
@@ -25,20 +26,20 @@ public class PauseGameUI : MonoBehaviour
     // 진행중인 게임을 돌아가기
     public void ReturnGame()
     {
-        isPaused = false;
-        Time.timeScale = 1f;
-
+        AudioManager.Instance.PlaySound(_uIBt);
         if (_pausePanel != null)
             _pausePanel.SetActive(false);
         
-        AudioManager.Instance.PlaySound(_uIBt);
+        if (GameManager.Instance.IsOpenedAbilityManagerUI) return;
+        GameManager.Instance.IsPaused = false;
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     public void RetstartGame()
     {
-        isPaused = false;
+        GameManager.Instance.IsPaused = false;
         AudioManager.Instance.PlaySound(_uIBt);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(2); // 게임 재시작
@@ -46,7 +47,7 @@ public class PauseGameUI : MonoBehaviour
 
     public void QuitGame()
     {
-        isPaused = false;
+        UnlockMouse();
         AudioManager.Instance.PlaySound(_uIBt);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(0); // 타이틀 씬으로
@@ -54,15 +55,34 @@ public class PauseGameUI : MonoBehaviour
 
     private void StopGame()
     {
-        //토글
-        isPaused = !isPaused;
-
-        Time.timeScale = isPaused ? 0f : 1f;
-
+        AudioManager.Instance.PlaySound(_openPenalSound);
+        _isOpened = !_isOpened;
         if (_pausePanel != null)
-            _pausePanel.SetActive(isPaused);
+            _pausePanel.SetActive(_isOpened);
 
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isPaused;
+        if (GameManager.Instance.IsOpenedAbilityManagerUI) return;
+        GameManager.Instance.IsPaused = !GameManager.Instance.IsPaused;
+        Time.timeScale = GameManager.Instance.IsPaused ? 0f : 1f;
+        
+        if (GameManager.Instance.IsPaused)
+        {
+            UnlockMouse();
+        }
+        else
+        {
+            LockMouse();
+        }
+    }
+
+    private void LockMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void UnlockMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

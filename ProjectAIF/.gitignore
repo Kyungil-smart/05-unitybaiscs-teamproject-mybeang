@@ -104,4 +104,5 @@ Assets/Imports/**
 ## custom
 *.vs*
 *.idea*
-*/Test/*
+*Test/*
+*Test*

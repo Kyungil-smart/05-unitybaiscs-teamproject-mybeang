@@ -9,16 +9,22 @@ public class CrystalRaycast : MonoBehaviour
     [Header("Hold Settings")]
     [SerializeField] private float _holdSeconds = 5f;
 
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip _holdSound;
+    [SerializeField] private AudioClip _skillSound;
+    
     private Camera _cam;
     private CrystalOutline _current;
     private CrystalSkill _currentSkill;
     private Ray _ray;
+    private bool _playingHoldSound;
 
     private float holdTimer = 0f;
 
     void Awake()
     {
         _cam = Camera.main;
+        _playingHoldSound = false;
     }
 
     void Update()
@@ -53,16 +59,25 @@ public class CrystalRaycast : MonoBehaviour
         //F 홀드: 누르는 동안 빨간색, 5초 채우면 발동
         if (Input.GetKey(KeyCode.F))
         {
-            _current.SetHoldVisual(true);
-            holdTimer += Time.deltaTime;
-
-            if (holdTimer >= _holdSeconds)
+            if (_currentSkill != null)
             {
-                if (_currentSkill != null)
-                    _currentSkill.Activate(); //맵 전체 몬스터 제거
+                _current.SetHoldVisual(true);
+                if (!_playingHoldSound && !_currentSkill.IsUsed)
+                {
+                    AudioManager.Instance.PlaySound(_holdSound);
+                    _playingHoldSound = true;
+                }
+                holdTimer += Time.deltaTime;
 
-                holdTimer = 0f;
-                _current.SetHoldVisual(false); // 발동 후 흰색으로 복귀(원하면 유지로 바꿔도 됨)
+                if (holdTimer >= _holdSeconds)
+                {
+                    AudioManager.Instance.PlaySound(_skillSound);
+                    //맵 전체 몬스터 제거
+                    _currentSkill.Activate();
+                    holdTimer = 0f;
+                    // 발동 후 흰색으로 복귀(원하면 유지로 바꿔도 됨)
+                    _current.SetHoldVisual(false); 
+                }
             }
         }
         else
@@ -86,6 +101,10 @@ public class CrystalRaycast : MonoBehaviour
         if (Physics.Raycast(_ray, out hit, _maxDistance))
         {
             return hit.collider.GetComponentInParent<CrystalOutline>();
+        }
+        else
+        {
+            _playingHoldSound = false;
         }
 
         return null;

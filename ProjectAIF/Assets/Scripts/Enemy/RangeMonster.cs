@@ -1,9 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
 {
@@ -17,9 +16,13 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     [Tooltip("공격에 사용하는 투사체 선택")] 
     [SerializeField] private GameObject _projectile;
 
+    private bool _isScreaming;
+    private MonsterMovement _monsterMovement;
+    private Coroutine _screamCoroutine;
     private Coroutine _attackCoroutine;
     private Coroutine _deathCoroutine;
     private ITargetable _targetable;
+    private int _targetDef;
     
     public Transform _targetTransform { get; private set; }
 
@@ -39,8 +42,18 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         if (_targetable is IDamageable)
         {
-            Attack(DamageCalc(Damage));
+            Attack(DamageCalc());
         }
+    }
+    
+    private void OnEnable()
+    {
+        _monsterMovement.OnMovingEvent.AddListener(Scream);
+    }
+    
+    private void OnDisable()
+    {
+        _monsterMovement.OnMovingEvent.RemoveListener(Scream);
     }
 
     private void OnDrawGizmos()
@@ -53,6 +66,26 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         _currentHp = Hp;
         _projectile.SetActive(false);
+        _monsterMovement = GetComponent<MonsterMovement>();
+        _animator = GetComponentInChildren<Animator>();
+        _playerLevel = GameObject.FindWithTag("Player").GetComponent<PlayerLevel>();
+        _playerStatus = GameObject.FindWithTag("Player").GetComponent<PlayerStatus>();
+    }
+    
+    private void Scream(bool isMoving)
+    {
+        if (ScreamAc == null || _isScreaming) return;
+        if (isMoving)
+        {
+            float screamInterval = Random.Range(3f, 15f);
+            _screamCoroutine = AudioManager.Instance.StartPlaySoundContinuous(ScreamAc, screamInterval);
+            _isScreaming = true;
+        }
+        else
+        {
+            AudioManager.Instance.StopPlaySoundContinuous(_screamCoroutine);
+            _isScreaming = false;
+        }
     }
     
     public void Attack(int damage)
@@ -61,17 +94,15 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
 
         if (_attackCoroutine  != null) return;
         
-        _attackCoroutine = StartCoroutine(AttackCoroutine(damage));
+        _attackCoroutine = StartCoroutine(AttackCoroutine());
     }
 
-    public int DamageCalc(int attValue)
+    public int DamageCalc()
     {
-        //TODO : 플레이어/크리스탈 방어력 들어있는 컴포넌트 지정해서 삽입
-        int targetDef = 0;
-        return attValue - targetDef;
+        return Damage - _targetDef;
     }
 
-    private IEnumerator AttackCoroutine(int damage)
+    private IEnumerator AttackCoroutine()
     {
         while (true)
         {
@@ -120,7 +151,7 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
         _projectile.SetActive(true);
     }
 
-    private void Death()
+    public void Death()
     {
         if (_deathCoroutine  != null) return;
         
@@ -131,7 +162,7 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
     {
         _animator.SetTrigger("SetDeath");
         yield return YieldContainer.WaitForSeconds(1f);
-        Player.Exp += Exp;
+        _playerLevel.AddExp(Exp);
         Destroy(gameObject);
     }
 
@@ -149,14 +180,30 @@ public class RangeMonster : Monster, IAttackable, IDamageable, ITargetable
             _targetTransform = hit.transform;
             _targetable = hit.transform.GetComponent<ITargetable>();
             
-            //_targetDef = hit.transform.gameObject.Defense();
+            if (hit.transform.CompareTag("Player"))
+            {
+                if (_playerStatus.Defense != null)
+                {
+                    _targetDef = _playerStatus.Defense;
+                }
+                else
+                {
+                    _targetDef = 0;
+                    Debug.Log("플레이어 방어력 참조 실패");
+                }
+            }
+            else
+            {
+                _targetDef = 0;
+            }
+            
             Debug.Log($"{gameObject.name} : 목표 포착");
         }
         else
         {
             _targetable = null;
             _targetTransform = null;
-            //_targetDef = 0;
+            _targetDef = 0;
             Debug.Log($"{gameObject.name} : 목표 수색중");
         }
     }

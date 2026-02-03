@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Transform _playerTf;
+    [SerializeField] private Transform _respawnPoint;
+    [SerializeField] private AudioClip _playerRespawnSound;
 
-    // Update is called once per frame
-    void Update()
+    public void PlayerToRespawnPoint() 
     {
-        
+        _playerTf.position = _respawnPoint.position;
+        AudioManager.Instance.PlaySound(_playerRespawnSound);
     }
 }

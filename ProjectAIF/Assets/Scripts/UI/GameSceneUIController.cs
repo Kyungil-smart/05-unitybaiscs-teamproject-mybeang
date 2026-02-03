@@ -11,37 +11,42 @@ public class GameSceneUIController : MonoBehaviour
     public void GoToTitle()
     {
         AudioManager.Instance.PlaySound(_uIBtClip);
-        SceneManager.LoadScene(0);
+        StartCoroutine(LoadSceneWithDelay(0, 1f));
     }
 
     public void GoToStory()
     {
         AudioManager.Instance.PlaySound(_uIBtClip);
-        SceneManager.LoadScene(1);
+        StartCoroutine(LoadSceneWithDelay(1, 1f));
     }
     
     public void GoToGameStart()
     {
-        Debug.Log("Start Game");
         AudioManager.Instance.PlaySound(_uIBtClip);
-        SceneManager.LoadScene(2);
+        StartCoroutine(LoadSceneWithDelay(2, 1f));
     }
     
     public void GoToEnding()
     {
         AudioManager.Instance.PlaySound(_uIBtClip);
-        SceneManager.LoadScene(3);
+        StartCoroutine(LoadSceneWithDelay(3, 1f));
     }
     
     public void GoToCredits()
     {
         AudioManager.Instance.PlaySound(_uIBtClip);
-        SceneManager.LoadScene(4);
+        StartCoroutine(LoadSceneWithDelay(4, 1f));
     }
 
     public void ExitGame()
     {
         AudioManager.Instance.PlaySound(_uIBtClip);
         Application.Quit();
+    }
+    
+    private IEnumerator LoadSceneWithDelay(int number, float delay)
+    {
+        yield return YieldContainer.WaitForRealSeconds(delay);
+        SceneManager.LoadScene(number);
     }
 }

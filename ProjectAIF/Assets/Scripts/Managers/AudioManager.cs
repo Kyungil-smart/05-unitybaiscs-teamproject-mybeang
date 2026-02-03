@@ -1,13 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
-public class AudioManager : SingleTon<AudioManager>
+public class AudioManager : MonoBehaviour
 {
     private AudioSource _audioSource;
-    
+    private static AudioManager _instance;
+    public static AudioManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<AudioManager>();
+            }
+            return _instance;
+        }
+    }
     private void Awake()
     {
-        SingleTonInit();
         Init();
     }
 
@@ -26,9 +36,9 @@ public class AudioManager : SingleTon<AudioManager>
         _audioSource.PlayOneShot(_audioClip);
     }
 
-    public Coroutine StartPlaySoundContinuous(AudioClip _audioClip)
+    public Coroutine StartPlaySoundContinuous(AudioClip _audioClip, float interval = 3f)
     {
-        float interval = _audioClip.length + 3f;
+        interval += _audioClip.length;
         return StartCoroutine(PlaySoundCoroutine(_audioClip, interval));
     }
 

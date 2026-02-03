@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
-using static PlayerManager;
+using Random = UnityEngine.Random;
 
 public class PlayerWeapon : MonoBehaviour, IAttackable
 {
@@ -30,25 +31,37 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     [SerializeField] private Transform _disRiflePos;
     [SerializeField] private Transform _disGrenadePos;
     private Transform[] _disWpPosArr = new Transform[3];
+    
+    [SerializeField] private GameObject _muzzleFlashPistol;
+    [SerializeField] private GameObject _muzzleFlashRifle;
+    private GameObject[] _muzzleFlashArr = new GameObject[2];
+    
     private int _curWpIndex;
+    private float _flashDuration = 0.1f;
     
     [Header("Attack")]
     [SerializeField] private float _attackRange;
     [SerializeField] private LayerMask _attackTargetLayer;
+    private Coroutine _attackCoroutine;
 
+    [Header("Sounds")] 
+    [SerializeField] private AudioClip _pistolAttackSound;
+    [SerializeField] private AudioClip _rifleAttackSound;
+    [SerializeField] private AudioClip _grenadeAttackSound;
+    [SerializeField] private AudioClip _pistolSwapSound;
+    [SerializeField] private AudioClip _rifleSwapSound;
+    [SerializeField] private AudioClip _ReloadSound;
+    [SerializeField] private AudioClip _attackSound;
+    
     private IDamageable _targetDamagable;
     private Transform _targetTransform;
-
-    private Vector3[] _velocityArr = new Vector3[3] {Vector3.zero, Vector3.zero, Vector3.zero};
-    private Vector3 _velocityThrow = Vector3.zero;
     
-    private float _smoothTime;
     private bool _reLoading;
     private bool _isThrowing;
     private bool _isTrhowCoroutin;
     private bool _isSwapable;
+    private bool _isCharging;
     private Quaternion _targetRotation;
-    private Vector3 _armPos;
     private Vector3 _idleArmPos;
     private Ray _ray;
 
@@ -87,14 +100,16 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _disWpPosArr[0] = _disPistolPos;
         _disWpPosArr[1] = _disRiflePos;
         _disWpPosArr[2] = _disGrenadePos;
+        _muzzleFlashArr[0] = _muzzleFlashPistol;
+        _muzzleFlashArr[1] = _muzzleFlashRifle;
         
         _camera = Camera.main;
         _curWpIndex = 0;
-        _smoothTime = 0.15f;
         _reLoading = false;
         _isThrowing = false;
         _isTrhowCoroutin = false;
         _isSwapable = true;
+        _isCharging = false;
     }
 
     void ReadyWeapon()
@@ -112,7 +127,19 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         // 공격
         if (Input.GetMouseButtonDown(0))
         {
-            Attack(_weapons[0].Damage);
+            if (GameManager.Instance.IsPaused) return;
+            //AudioManager.Instance.PlaySound(_attackSound);
+            _attackCoroutine = StartCoroutine(AttackCoroutine(DamageCal()));
+            _isSwapable = false;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (_attackCoroutine != null)
+            {
+                StopCoroutine(_attackCoroutine);    
+            }
+            _isSwapable = true;
         }
         // Reload
         if (Input.GetKeyDown(KeyCode.R))
@@ -125,16 +152,23 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         // 아래는 Swap
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            AudioManager.Instance.PlaySound(_pistolSwapSound);
             StartCoroutine(VisualSwap(0));
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            AudioManager.Instance.PlaySound(_rifleSwapSound);
             StartCoroutine(VisualSwap(1));
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             StartCoroutine(VisualSwap(2));
         }
+    }
+
+    private void LateUpdate()
+    {
+        GrenadeCharge();
     }
 
     // 무기가 스왑되는 시각적인 효과를 제공한다
@@ -152,10 +186,12 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         {
             elapsedTime += Time.deltaTime;
             float interval = elapsedTime / duration;
+            _weaponObjects[index].SetActive(true);
             _weaponObjects[index].transform.position = 
                 Vector3.Lerp(_disWpPosArr[index].position, _enWpPosArr[index].position, interval);
             _weaponObjects[_curWpIndex].transform.position = 
                 Vector3.Lerp(_enWpPosArr[_curWpIndex].position, _disWpPosArr[_curWpIndex].position, interval);
+            _weaponObjects[_curWpIndex].SetActive(false);
             yield return null;
         }
         _isSwapable = true;
@@ -164,7 +200,6 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
     public void Attack(int damage)
     {
-        _isSwapable = false;
         if (_curWpIndex < 2)
         {
             if (_weapons[_curWpIndex].CurrentMagazine <= 0)
@@ -174,34 +209,85 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
             if (!_reLoading)
             {
                 Fire(damage);
+                StartCoroutine(FlashCoroutine());
             }
         }
         else
         {
             if (!_isThrowing)
             {
+                if (_weapons[_curWpIndex].CurrentMagazine <= 0)
+                {
+                    return;
+                }
+                
                 Throw();
+                
                 if (_isThrowing && !_isTrhowCoroutin)
                 {
                     StartCoroutine(ThrowArmRotation());    
                 }
             }
         }
-        _isSwapable = true;
+    }
+
+    private int DamageCal()
+    {
+        switch (_curWpIndex)
+        {
+            case 0:
+                if (PistolStatus.CriticalChance == 0 || Random.Range(0f, 1f) > PistolStatus.CriticalChance)
+                {
+                    Debug.Log($"권총 타격 : {_weapons[0].Damage}");
+                    return _weapons[0].Damage;
+                }
+                else
+                {
+                    Debug.Log($"권총 치명타 : {_weapons[0].Damage + PistolStatus.CriticalDamage}");
+                    return _weapons[0].Damage + PistolStatus.CriticalDamage;
+                }
+            
+            case 1:
+                if (RifleStatus.CriticalChance == 0 || Random.Range(0f, 1f) > RifleStatus.CriticalChance)
+                {
+                    Debug.Log("소총타격");
+                    return _weapons[1].Damage;
+                }
+                else
+                {
+                    Debug.Log("소총 치명타");
+                    return _weapons[1].Damage + RifleStatus.CriticalDamage;
+                }
+                
+            default:
+                Debug.Log($"{_curWpIndex}번 무기 타격");
+                return _weapons[_curWpIndex].Damage;
+        }
+    }
+
+    public IEnumerator AttackCoroutine (int damage)
+    {
+        while (true)
+        {
+            Attack(damage);
+            if (_curWpIndex == 2)
+            {
+                yield break;
+            }
+            yield return YieldContainer.WaitForSeconds(_weapons[_curWpIndex].AttackRate);
+        }
     }
 
     private void DetectTarget()
     {
         _ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+        
         if (Physics.Raycast(_ray, out hit, _attackRange, _attackTargetLayer))
         {
-            if (_targetTransform != hit.transform)
-            {
-                _targetTransform = hit.transform;
-                _targetDamagable = hit.transform.GetComponent<IDamageable>();
-            }
+            if (_targetTransform == hit.transform) return;
+            _targetTransform = hit.transform;
+            _targetDamagable = hit.transform.GetComponent<IDamageable>();
         }
         else
         {
@@ -213,13 +299,30 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     private void Fire(int damage)
     {
         _isSwapable = false;
+        if (_curWpIndex == 0)
+        {
+            // pistol
+            AudioManager.Instance.PlaySound(_pistolAttackSound);
+        }
+        else
+        {
+            // rifle
+            AudioManager.Instance.PlaySound(_rifleAttackSound);
+        }
         _weapons[_curWpIndex].CurrentMagazine--;
         if (_targetDamagable == null || !(_targetDamagable is IDamageable) || _curWpIndex == 2)
         {
             return;
         }
-        (_targetDamagable as IDamageable).TakeDamage(damage);
+        _targetDamagable.TakeDamage(damage);
         _isSwapable = true;
+    }
+
+    private IEnumerator FlashCoroutine()
+    {
+        _muzzleFlashArr[_curWpIndex].SetActive(true);
+        yield return YieldContainer.WaitForSeconds(_flashDuration);
+        _muzzleFlashArr[_curWpIndex].SetActive(false);
     }
 
     //장전할것은 명령하는 함수
@@ -229,6 +332,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
 
         _reLoading = true;
         _isSwapable = false;
+        AudioManager.Instance.PlaySound(_ReloadSound);
         StartCoroutine(ReloadCoroutine());
     }
     
@@ -269,8 +373,9 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
     private void Throw()
     {
         _isThrowing = true;
+        _weapons[_curWpIndex].CurrentMagazine--;
         // 수류탄 투척시 팔회전 각도 계산
-        _armPos = _enGrenadePos.localPosition + new Vector3(0.6f, 1.6f, -0.45f);
+        AudioManager.Instance.PlaySound(_grenadeAttackSound);
     }
 
     IEnumerator ThrowArmRotation()
@@ -280,7 +385,7 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         _grenadeObject.transform.position = _grenadePoint.transform.position;
 
         GrenadeInstantiate();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(GrenadeStatus.AttackRate);
 
         _grenadeObject.transform.position = origin;
 
@@ -296,6 +401,8 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         
         Rigidbody rb = grenadeObj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
+        rb.constraints = RigidbodyConstraints.None;
+        rb.useGravity = true;
 
         SphereCollider col = grenadeObj.AddComponent<SphereCollider>();
         col.radius = 0.15f;      
@@ -304,5 +411,22 @@ public class PlayerWeapon : MonoBehaviour, IAttackable
         Vector3 throwDir = _grenadePoint.transform.forward * 14f + _grenadePoint.transform.up * 8f;
 
         rb.AddForce(throwDir, ForceMode.Impulse);
+    }
+
+    // 수류탄 충전에 관한 함수
+    private void GrenadeCharge()
+    {
+        if (_weapons[2].CurrentMagazine < _weapons[2].TotalMagazine && !_isCharging)
+        {
+            StartCoroutine(ChargeCoroutine());
+        }
+    }
+
+    private IEnumerator ChargeCoroutine()
+    {
+        _isCharging = true;
+        yield return YieldContainer.WaitForSeconds(GrenadeStatus.ChargeTime);
+        _weapons[2].CurrentMagazine++;
+        _isCharging = false;
     }
 }
