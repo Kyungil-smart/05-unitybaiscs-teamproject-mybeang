@@ -46,3 +46,4 @@
 
 # 협업
 - 노션
+- 발표자료: [text](doc/presentation.pdf)
